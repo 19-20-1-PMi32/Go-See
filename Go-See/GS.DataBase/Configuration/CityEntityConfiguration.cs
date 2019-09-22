@@ -23,6 +23,11 @@ namespace GS.DataBase.Configuration
             builder
                 .Property(x => x.Name)
                 .IsRequired();
+
+            builder
+                .HasMany(x => x.Places)
+                .WithOne(x => x.City)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

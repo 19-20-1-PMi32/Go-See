@@ -34,6 +34,16 @@ namespace GS.DataBase.Configuration
             builder
                 .Property(x => x.Phone)
                 .HasMaxLength(25);
+
+            builder
+                .HasMany(x => x.Reviews)
+                .WithOne(x => x.User)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+               .HasMany(x => x.Trips)
+               .WithOne(x => x.User)
+               .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

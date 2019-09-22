@@ -27,6 +27,16 @@ namespace GS.DataBase.Configuration
             builder
                 .Property(x => x.PlaceId)
                 .IsRequired();
+
+            builder
+                .HasOne(x => x.Place)
+                .WithMany(x => x.Reviews)
+                .HasForeignKey(x => x.PlaceId);
+
+            builder
+                .HasOne(x => x.User)
+                .WithMany(x => x.Reviews)
+                .HasForeignKey(x => x.UserId);
         }
     }
 }

@@ -12,7 +12,11 @@ namespace GS.DataBase.Entities
 
         public int TripId { get; set; }
 
+        public Trip Trip { get; set; }
+
         public int PlaceId { get; set; }
+
+        public Place Place { get; set; }
 
         public int SequenceNumber { get; set; }
     }

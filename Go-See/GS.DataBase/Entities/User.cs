@@ -19,5 +19,8 @@ namespace GS.DataBase.Entities
 
         public string Password { get; set; }
 
+        public ICollection<Review> Reviews { get; set; }
+
+        public ICollection<Trip> Trips { get; set; }
     }
 }

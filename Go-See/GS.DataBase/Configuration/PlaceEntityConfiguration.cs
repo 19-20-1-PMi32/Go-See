@@ -23,6 +23,11 @@ namespace GS.DataBase.Configuration
             builder
                 .Property(x => x.Name)
                 .IsRequired();
+
+            builder
+                .HasOne(x => x.City)
+                .WithMany(x => x.Places)
+                .HasForeignKey(x => x.CityId);
         }
     }
 }

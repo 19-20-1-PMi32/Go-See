@@ -31,6 +31,16 @@ namespace GS.DataBase.Configuration
             builder
                 .Property(x => x.SequenceNumber)
                 .IsRequired();
+
+            builder
+                .HasOne(x => x.Trip)
+                .WithMany(x => x.TripNodes)
+                .HasForeignKey(x => x.TripId);
+
+            builder
+                .HasOne(x => x.Place)
+                .WithMany(x => x.TripNodes)
+                .HasForeignKey(x => x.PlaceId);
         }
     }
 }

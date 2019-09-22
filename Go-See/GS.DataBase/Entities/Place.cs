@@ -14,10 +14,14 @@ namespace GS.DataBase.Entities
 
         public int? CityId { get; set; }
 
+        public City City { get; set; }
+
         public string Type { get; set; }
 
         public string Description { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
+
+        public ICollection<TripNode> TripNodes { get; set; }
     }
 }

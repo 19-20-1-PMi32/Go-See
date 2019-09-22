@@ -27,6 +27,16 @@ namespace GS.DataBase.Configuration
             builder
                 .Property(x => x.UserId)
                 .IsRequired();
+
+            builder
+                .HasOne(x => x.User)
+                .WithMany(x => x.Trips)
+                .HasForeignKey(x => x.UserId);
+
+            builder
+                .HasMany(x => x.TripNodes)
+                .WithOne(x => x.Trip)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
