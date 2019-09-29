@@ -1,8 +1,8 @@
-﻿### For generating migration use
+### If you use Package Manager Console then for generating migration run
 ```sh
 add-migration MigrationName
 ```
-### For updating database according to migration use
+### for updating database according to migration run
 ```sh
 update-database MigrationName
 ```
