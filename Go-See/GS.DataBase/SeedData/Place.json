@@ -1,0 +1,74 @@
+[
+  {
+    "Id": 1,
+    "Name": "Saint Sophia's Cathedral",
+    "CityId": 1,
+    "Type": "architecture",
+    "Description": "Saint Sophia’s Cathedral is an outstanding complex; work started on it in 1037 and lasted for just three years. As the architectural monument has had only a few reconstructions, you can marvel at the Byzantine cathedral in close to its original form. In addition, as it is located at the intersection of the four leading roads in Kiev, climb to the cathedral’s bell tower and you’ll be rewarded with a magnificent view from the top."
+  },
+
+  {
+    "Id": 2,
+    "Name": "Rynok Square",
+    "CityId": 2,
+    "Type": "architecture",
+    "Description": "It is the heart of the city, that can be translated as Market Square. For the past 500 years it has been the bustling center of city life and till now retains all the charm of the old European city, without the pretentions of its more famous neighbors - Prague and Krakow."
+  },
+
+  {
+    "Id": 3,
+    "Name": "Parliament Building",
+    "CityId": 3,
+    "Type": "architecture",
+    "Description": "The Hungarian Parliament Building, which was designed and built in the Gothic Revival style, is one of the largest buildings in Hungary, and is home to hundreds of parliamentary offices. Although the impressive building looks fantastic from every angle, to see the whole building in its full glory, it is worth viewing it from the other side of the Danube."
+  },
+
+  {
+    "Id": 4,
+    "Name": "Schönbrunn Palace and Gardens",
+    "CityId": 4,
+    "Type": "nature",
+    "Description": "The spectacular 18th-century Schönbrunn Palace (Schloss Schönbrunn) is worth visiting not only for its magnificent architecture, but also for its beautiful park-like setting. This Baroque palace contains more than 1,441 rooms and apartments, including those once used by Empress Maria Theresa."
+  },
+
+  {
+    "Id": 5,
+    "Name": "Rigatoni Carbonara",
+    "CityId": 5,
+    "Type": "food",
+    "Description": "True Roman Carbonara is an art form. Impossibly creamy (with not a spot of cream in sight), this rich Roman sauce is one of those dishes you dream about for years to c"
+  },
+
+  {
+    "Id": 6,
+    "Name": "Charles Bridge",
+    "CityId": 6,
+    "Type": "architecture",
+    "Description": "One of the most recognizable old bridges in Europe, magnificent Charles Bridge (Karluv Most) boasts 32 unique points of interest along its 621-meter span. Built in 1357, the bridge has long been the subject of a great deal of superstition, including the builders having laid the initial bridge stone on the 9th of July at exactly 5:31am, a precise set of numbers (135797531) believed to give the structure additional strength."
+  },
+
+  {
+    "Id": 7,
+    "Name": "Viking Ship Museum",
+    "CityId": 7,
+    "Type": "museum",
+    "Description": "No less exciting are similar ships from Tune and Gokstad, together with all the artefacts found buried with them like beds, small boats, a complete cart, tent components, wood carvings, textiles and other treasures brought to light in Viking graves."
+  },
+
+  {
+    "Id": 8,
+    "Name": "Museum Island",
+    "CityId": 8,
+    "Type": "museum",
+    "Description": "Home to three famous museums - the Pergamon, the Altes and the Bode."
+  },
+
+  {
+    "Id": 9,
+    "Name": "Pod Aniolami",
+    "CityId": 9,
+    "Type": "food",
+    "Description": "Pod Aniolami is a beautiful restaurant in Krakow Old Town with 13th-century interiors. You can choose different areas of the restaurant to dine in, including downstairs in the cosy cellars, or in the Garden in the medieval courtyard."
+  }
+
+]
