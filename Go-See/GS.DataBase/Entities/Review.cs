@@ -18,7 +18,7 @@ namespace GS.DataBase.Entities
 
         public Place Place { get; set; }
 
-        public int Raiting { get; set; }
+        public int Rating { get; set; }
 
         public string Text { get; set; }
     }
