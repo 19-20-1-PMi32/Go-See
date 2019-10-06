@@ -1,5 +1,6 @@
 ﻿using GS.DataBase.Configuration;
 using GS.DataBase.Entities;
+using GS.DataBase.SeedData;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,6 @@ namespace GS.DataBase
 {
     public class GSDbContext : DbContext
     {
-
         public GSDbContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -20,6 +20,16 @@ namespace GS.DataBase
             modelBuilder.ApplyConfiguration(new TripNodeEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ReviewEntityConfiguration());
             modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
+
+            if (SeedDataProvider.IsSeedOn())
+            {
+                modelBuilder.Entity<City>().HasData(SeedDataProvider.GetCities());
+                modelBuilder.Entity<Place>().HasData(SeedDataProvider.GetPlace());
+                modelBuilder.Entity<Review>().HasData(SeedDataProvider.GetReviews());
+                modelBuilder.Entity<Trip>().HasData(SeedDataProvider.GetTrips());
+                modelBuilder.Entity<TripNode>().HasData(SeedDataProvider.GetTripNodes());
+                modelBuilder.Entity<User>().HasData(SeedDataProvider.GetUsers());
+            }
         }
 
         public DbSet<City> Cities { get; set; }

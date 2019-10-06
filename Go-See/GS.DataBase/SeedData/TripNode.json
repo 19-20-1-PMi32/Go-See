@@ -1,0 +1,232 @@
+[
+  {
+    "Id": 1,
+    "TripId": 1,
+    "PlaceId": 1,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 2,
+    "TripId": 1,
+    "PlaceId": 2,
+    "SequenceNumber": 2
+  },
+
+  {
+    "Id": 3,
+    "TripId": 1,
+    "PlaceId": 3,
+    "SequenceNumber": 3
+  },
+
+  {
+    "Id": 4,
+    "TripId": 1,
+    "PlaceId": 4,
+    "SequenceNumber": 4
+  },
+
+  {
+    "Id": 5,
+    "TripId": 2,
+    "PlaceId": 5,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 6,
+    "TripId": 2,
+    "PlaceId": 6,
+    "SequenceNumber": 2
+  },
+
+  {
+    "Id": 7,
+    "TripId": 2,
+    "PlaceId": 7,
+    "SequenceNumber": 3
+  },
+
+  {
+    "Id": 8,
+    "TripId": 3,
+    "PlaceId": 8,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 9,
+    "TripId": 3,
+    "PlaceId": 9,
+    "SequenceNumber": 2
+  },
+
+  {
+    "Id": 10,
+    "TripId": 4,
+    "PlaceId": 9,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 11,
+    "TripId": 4,
+    "PlaceId": 1,
+    "SequenceNumber": 2
+  },
+
+  {
+    "Id": 12,
+    "TripId": 4,
+    "PlaceId": 2,
+    "SequenceNumber": 3
+  },
+
+  {
+    "Id": 13,
+    "TripId": 4,
+    "PlaceId": 8,
+    "SequenceNumber": 4
+  },
+
+  {
+    "Id": 14,
+    "TripId": 5,
+    "PlaceId": 3,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 15,
+    "TripId": 5,
+    "PlaceId": 4,
+    "SequenceNumber": 2
+  },
+
+  {
+    "Id": 16,
+    "TripId": 5,
+    "PlaceId": 5,
+    "SequenceNumber": 3
+  },
+
+  {
+    "Id": 17,
+    "TripId": 5,
+    "PlaceId": 6,
+    "SequenceNumber": 4
+  },
+
+  {
+    "Id": 18,
+    "TripId": 5,
+    "PlaceId": 7,
+    "SequenceNumber": 5
+  },
+
+  {
+    "Id": 19,
+    "TripId": 6,
+    "PlaceId": 8,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 20,
+    "TripId": 6,
+    "PlaceId": 9,
+    "SequenceNumber": 2
+  },
+
+  {
+    "Id": 21,
+    "TripId": 7,
+    "PlaceId": 2,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 22,
+    "TripId": 7,
+    "PlaceId": 1,
+    "SequenceNumber": 2
+  },
+
+  {
+    "Id": 23,
+    "TripId": 7,
+    "PlaceId": 4,
+    "SequenceNumber": 3
+  },
+
+  {
+    "Id": 24,
+    "TripId": 8,
+    "PlaceId": 7,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 25,
+    "TripId": 8,
+    "PlaceId": 9,
+    "SequenceNumber": 2
+  },
+
+  {
+    "Id": 26,
+    "TripId": 8,
+    "PlaceId": 5,
+    "SequenceNumber": 3
+  },
+
+  {
+    "Id": 27,
+    "TripId": 8,
+    "PlaceId": 6,
+    "SequenceNumber": 4
+  },
+
+  {
+    "Id": 28,
+    "TripId": 9,
+    "PlaceId": 3,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 29,
+    "TripId": 10,
+    "PlaceId": 1,
+    "SequenceNumber": 1
+  },
+
+  {
+    "Id": 30,
+    "TripId": 10,
+    "PlaceId": 9,
+    "SequenceNumber": 2
+  },
+
+  {
+    "Id": 31,
+    "TripId": 10,
+    "PlaceId": 2,
+    "SequenceNumber": 3
+  },
+
+  {
+    "Id": 32,
+    "TripId": 10,
+    "PlaceId": 4,
+    "SequenceNumber": 4
+  },
+
+  {
+    "Id": 33,
+    "TripId": 10,
+    "PlaceId": 5,
+    "SequenceNumber": 5
+  }
+]
