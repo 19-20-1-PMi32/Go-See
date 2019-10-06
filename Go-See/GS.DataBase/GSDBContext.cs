@@ -32,16 +32,16 @@ namespace GS.DataBase
             }
         }
 
-        DbSet<City> Cities { get; set; }
+        public DbSet<City> Cities { get; set; }
 
-        DbSet<Place> Places { get; set; }
+        public DbSet<Place> Places { get; set; }
 
-        DbSet<Review> Reviews { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
-        DbSet<Trip> Trips { get; set; }
+        public DbSet<Trip> Trips { get; set; }
 
-        DbSet<TripNode> TripNodes { get; set; }
+        public DbSet<TripNode> TripNodes { get; set; }
 
-        DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
