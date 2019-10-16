@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GS.DataBase
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly GSDbContext _dbContext;
 
