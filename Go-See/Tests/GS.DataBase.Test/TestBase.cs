@@ -8,7 +8,7 @@ namespace GS.DataBaseTest
 {
     public class TestBase
     {
-        protected UnitOfWork UnitOfWork { get; set; }
+        public UnitOfWork UnitOfWork { get; set; }
         public TestBase()
         {
             var options = new DbContextOptionsBuilder<GSDbContext>()
