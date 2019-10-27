@@ -8,7 +8,7 @@ import { createBrowserHistory } from "history";
 import App from "./app";
 import { configureStore } from "./redux";
 
-import i18n from "#utils/i18n.js";
+import i18n from "#utils/i18n";
 
 const history = createBrowserHistory();
 

@@ -1,0 +1,6 @@
+/.git
+/.next
+/tmp
+build
+node_modules
+webpack.config.js

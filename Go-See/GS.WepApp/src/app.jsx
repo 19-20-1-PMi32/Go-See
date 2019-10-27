@@ -1,10 +1,14 @@
 import React from "react";
-import * as style from "./index.scss";
-import { useTranslation } from "react-i18next";
+import { Switch, Route } from "react-router";
 
-const App = () => {
-  const { t } = useTranslation();
-  return <div className={style.app}>{t("helloWorld")}</div>;
-};
+import Init from "./modules/init";
+
+const App = () => (
+  <Switch>
+    <Route path="/">
+      <Init />
+    </Route>
+  </Switch>
+);
 
 export default App;

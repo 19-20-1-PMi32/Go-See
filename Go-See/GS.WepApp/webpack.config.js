@@ -1,16 +1,26 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
 
 module.exports = {
-  entry: "./src/root.jsx", 
+  target: "web",
+  entry: {
+    main: path.resolve(__dirname, "./src/root.jsx")
+  },
+  devtool: "inline-source-map",
+  devServer: {
+    historyApiFallback: true
+  },
   output: {
-
-    path: path.resolve(__dirname, "./build"), 
+    publicPath: "/"
+  },
+  output: {
+    path: path.resolve(__dirname, "./build"),
     filename: "[name].js",
-    library: "name-app", 
-    libraryTarget: "umd", 
-    publicPath: process.env.PUBLIC_URL, 
+    library: "name-app",
+    libraryTarget: "umd",
+    publicPath: process.env.PUBLIC_URL,
     chunkFilename: "[name].bundle.js"
   },
   resolve: {
@@ -24,17 +34,31 @@ module.exports = {
     }
   },
   module: {
-
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: "babel-loader",
-        options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
-          plugins: [
-            //additional plugins for loader
-          ]
-        }
+        include: [/src/],
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: [
+                [
+                  "@babel/preset-env",
+                  {
+                    useBuiltIns: "entry",
+                    corejs: "3"
+                  }
+                ],
+                "@babel/preset-react"
+              ],
+              plugins: [
+                "@babel/plugin-transform-runtime",
+                "@babel/plugin-proposal-class-properties"
+              ]
+            }
+          }
+        ]
       },
       {
         test: /\.scss$/,
@@ -93,6 +117,17 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css"
+    }),
+    new webpack.DefinePlugin({
+      "global.GENTLY": false,
+      GATEWAY_URL:
+        process.env.GATEWAY_URL instanceof String
+          ? process.env.GATEWAY_URL
+          : JSON.stringify(process.env.GATEWAY_URL),
+      MOCK_API:
+        process.env.MOCK_API instanceof String
+          ? process.env.MOCK_API
+          : JSON.stringify(process.env.MOCK_API)
     })
   ]
 };

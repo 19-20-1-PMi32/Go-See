@@ -22,7 +22,7 @@ namespace GS.DataBase.Repository
             _dbContext.Users.Add(entity);
         }
 
-        public async void Delete(string id)
+        public async void Delete(Guid id)
         {
             var user = await _dbContext.Users.FindAsync(id);
             if (user != null)
@@ -31,7 +31,7 @@ namespace GS.DataBase.Repository
             }
         }
 
-        public async Task<User> Get(string id)
+        public async Task<User> Get(Guid id)
         {
             return await _dbContext.Users.FindAsync(id);
         }

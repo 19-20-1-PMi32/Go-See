@@ -26,6 +26,15 @@ namespace GS.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddCors(options =>
+                 {
+                     options.AddPolicy("Default", policy =>
+                          {
+                              policy.AllowAnyOrigin()
+                                  .AllowAnyHeader()
+                                  .AllowAnyMethod();
+                          });
+                 });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +50,7 @@ namespace GS.WebAPI
                 app.UseHsts();
             }
 
+            app.UseCors("Default");
             app.UseHttpsRedirection();
             app.UseMvc();
         }

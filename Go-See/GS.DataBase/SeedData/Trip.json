@@ -2,61 +2,25 @@
   {
     "Id": 1,
     "Name": "Rome 2019",
-    "UserId": "jackleo"
+    "UserId": "8a255896-6f0f-4f67-9baa-551483e76bf6"
   },
 
   {
     "Id": 2,
     "Name": "To the edge of the world",
-    "UserId": "lucyduvet"
+    "UserId": "0f58a296-6f85-4f67-9baa-551483e76bf6"
   },
 
   {
     "Id": 3,
     "Name": "Family trip",
-    "UserId": "maxfizz"
+    "UserId": "551483e7-6f85-4f67-9baa-0f58a2966bf6"
   },
 
   {
     "Id": 4,
     "Name": "Honeymoon",
-    "UserId": "iglooloky"
-  },
-
-  {
-    "Id": 5,
-    "Name": "Class trip",
-    "UserId": "travelam"
-  },
-
-  {
-    "Id": 6,
-    "Name": "Asia is waiting",
-    "UserId": "goofli"
-  },
-
-  {
-    "Id": 7,
-    "Name": "Team trip",
-    "UserId": "jerrykey"
-  },
-
-  {
-    "Id": 8,
-    "Name": "Assignment",
-    "UserId": "libbytart"
-  },
-
-  {
-    "Id": 9,
-    "Name": "Hello America",
-    "UserId": "dorryblack"
-  },
-
-  {
-    "Id": 10,
-    "Name": "Trip2019",
-    "UserId": "neogreen"
+    "UserId": "9baa83e7-6f85-4f67-5514-0f58a2966bf6"
   }
 
 ]

@@ -22,7 +22,12 @@ namespace GS.DataBase.Configuration
 
             builder
                 .Property(x => x.Name)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(150);
+
+            builder
+                .Property(x => x.Description)
+                .HasMaxLength(1024);
 
             builder
                 .HasMany(x => x.Places)

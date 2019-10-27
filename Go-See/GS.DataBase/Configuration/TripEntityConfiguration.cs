@@ -22,7 +22,8 @@ namespace GS.DataBase.Configuration
 
             builder
                 .Property(x => x.Name)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(128);
 
             builder
                 .Property(x => x.UserId)

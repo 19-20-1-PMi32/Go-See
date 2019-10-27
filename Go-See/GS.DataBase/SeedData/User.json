@@ -1,92 +1,42 @@
 [
   {
+    "Id": "8a255896-6f0f-4f67-9baa-551483e76bf6",
     "Login": "jackleo",
     "FirstName": "Jack",
     "LastName": "Leonardo",
     "Email": "jackleo@mail.com",
     "Phone": "380942378556",
-    "Password": "lack1999"
+    "PasswordHash": "lack1999"
   },
 
   {
+    "Id": "0f58a296-6f85-4f67-9baa-551483e76bf6",
     "Login": "lucyduvet",
     "FirstName": "Lucy",
     "LastName": "Duveteri",
-    "Email": "lucya2012@mail.com",
-    "Phone": "380754379526",
-    "Password": "2012LuDu"
+    "Email": "",
+    "Phone": "",
+    "PasswordHash": "2012LuDu"
   },
 
   {
+    "Id": "551483e7-6f85-4f67-9baa-0f58a2966bf6",
     "Login": "maxfizz",
     "FirstName": "Max",
     "LastName": "Fizzer",
     "Email": "maxfizzer2000@mail.com",
-    "Phone": "380942118426",
-    "Password": "max_2000F"
+    "Phone": "",
+    "PasswordHash": "max_2000F"
   },
 
   {
+    "Id": "9baa83e7-6f85-4f67-5514-0f58a2966bf6",
     "Login": "iglooloky",
     "FirstName": "Loky",
     "LastName": "Igloomir",
-    "Email": "lokysh1980@mail.com",
+    "Email": "",
     "Phone": "380933379571",
-    "Password": "loky_vs_tor"
-  },
-
-  {
-    "Login": "travelam",
-    "FirstName": "Amma",
-    "LastName": "Rishto",
-    "Email": "ammarishto222@mail.com",
-    "Phone": "380998123549",
-    "Password": "iamtrav2018"
-  },
-
-  {
-    "Login": "goofli",
-    "FirstName": "Goof",
-    "LastName": "lidian",
-    "Email": "gooffy777@mail.com",
-    "Phone": "380649378556",
-    "Password": "736492GF"
-  },
-
-  {
-    "Login": "jerrykey",
-    "FirstName": "Jerry",
-    "LastName": "Keylin",
-    "Email": "jerry2000@mail.com",
-    "Phone": "380941735906",
-    "Password": "jerkey2000"
-  },
-
-  {
-    "Login": "libbytart",
-    "FirstName": "Libby",
-    "LastName": "Tart",
-    "Email": "libsthekittyo@mail.com",
-    "Phone": "380949920056",
-    "Password": "20010708L"
-  },
-
-  {
-    "Login": "dorryblack",
-    "FirstName": "Dorrian",
-    "LastName": "Black",
-    "Email": "dorryb888@mail.com",
-    "Phone": "380946002716",
-    "Password": "8d8o8r"
-  },
-
-  {
-    "Login": "neogreen",
-    "FirstName": "Neon",
-    "LastName": "Green",
-    "Email": "neogree2000@mail.com",
-    "Phone": "380948930485",
-    "Password": "greenny2000neo"
+    "PasswordHash": "loky_vs_tor"
   }
 
 ]
