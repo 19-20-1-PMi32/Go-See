@@ -13,18 +13,28 @@ namespace GS.DataBase.Configuration
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder
-                .HasKey(x => x.Login);
+                .HasKey(x => x.Id);
+
+            builder
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd();
+
+            builder
+                .Property(x => x.Login)
+                .HasMaxLength(128);
 
             builder
                 .Property(x => x.FirstName)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(128);
 
             builder
                 .Property(x => x.LastName)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(128);
 
             builder
-                .Property(x => x.Password)
+                .Property(x => x.PasswordHash)
                 .IsRequired();
 
             builder

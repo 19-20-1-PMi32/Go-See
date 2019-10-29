@@ -1,3 +1,21 @@
 {
-  "helloWorld": "Hello, world!"
+  "helloWorld": "Hello, world!",
+  "auth": {
+    "login": "Login",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "buttons": {
+      "login": "Log in",
+      "signup": "Sign up"
+    }
+  },
+  "user": {
+    "firstName": "First Name",
+    "lastName": "LastName",
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "search": {
+    "title": "Where are you going"
+  }
 }

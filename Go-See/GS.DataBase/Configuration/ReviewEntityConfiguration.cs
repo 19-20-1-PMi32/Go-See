@@ -37,6 +37,11 @@ namespace GS.DataBase.Configuration
                 .HasOne(x => x.User)
                 .WithMany(x => x.Reviews)
                 .HasForeignKey(x => x.UserId);
+
+            builder
+                .Property(x => x.Text)
+                .HasMaxLength(512);
+
         }
     }
 }

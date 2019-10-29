@@ -1,0 +1,37 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["import", "jest"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["#components", "./src/components"],
+        ["#locales", "./src/assets/locales"],
+        ["#utils", "./src/utils"],
+        ["#mocks", "./__mocks__"],
+        ["#redux", "./src/redux"]
+      ]
+    },
+    "react": {
+      "version": "16"
+    }
+  },
+  "rules": {
+    "import/prefer-default-export": "off"
+  },
+  "globals": {
+    "GATEWAY_URL": true,
+    "MOCK_API": true
+  }
+}
