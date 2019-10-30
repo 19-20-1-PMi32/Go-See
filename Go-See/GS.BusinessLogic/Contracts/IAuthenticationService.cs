@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace GS.BusinessLogic.Contracts
 {
-    interface IAuthentication
+    public interface IAuthenticationService
     {
-        Task<bool> LogIn(string username, string password);
+        Task<Guid> LogIn(string username, string password);
         Guid CreateUser(GS.Core.DTO.User userParam);
     }
 }

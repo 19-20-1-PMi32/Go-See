@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GS.DataBase
 {
-    interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         void Commit();
 

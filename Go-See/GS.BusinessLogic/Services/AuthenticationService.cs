@@ -1,20 +1,20 @@
 ﻿using GS.BusinessLogic.Contracts;
-using GS.DataBase;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using GS.DataBase;
 
 namespace GS.BusinessLogic
 {
-    public class Authentication : IAuthentication
+    public class AuthenticationService : IAuthenticationService
     {
         private UnitOfWork unitOfWork;
 
-        public Authentication(UnitOfWork unitOfWork)
+        public AuthenticationService(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork as UnitOfWork;
         }
 
         public Guid CreateUser(GS.Core.DTO.User userParam)
@@ -38,7 +38,7 @@ namespace GS.BusinessLogic
             return id;
         }
 
-        public async Task<bool> LogIn(string username, string password)
+        public async Task<Guid> LogIn(string username, string password)
         {
             IEnumerable<GS.DataBase.Entities.User> users = await unitOfWork.UserRepository.GetAllAsync();
 
@@ -46,11 +46,11 @@ namespace GS.BusinessLogic
             
             if (user.PasswordHash == password)
             {
-                return true;
+                return user.Id;
             }
             else
             {
-                return false;
+                throw new Exception("Wrong password or login");
             }
         }
     }
