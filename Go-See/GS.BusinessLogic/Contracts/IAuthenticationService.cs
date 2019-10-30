@@ -8,6 +8,7 @@ namespace GS.BusinessLogic.Contracts
     public interface IAuthenticationService
     {
         Task<Guid> LogIn(string username, string password);
-        Guid CreateUser(GS.Core.DTO.User userParam);
+
+        Task<Guid> CreateUser(GS.Core.DTO.User userParam);
     }
 }

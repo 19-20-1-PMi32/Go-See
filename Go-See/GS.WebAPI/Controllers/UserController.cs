@@ -38,7 +38,7 @@ namespace GS.WebAPI.Controllers
 
         [HttpPost("new")]
         [ProducesResponseType(201)]
-        public Task<IActionResult> Create([FromBody]UserParam value)
+        public async Task<IActionResult> Create([FromBody]UserParam value)
         {
             var newUser = new User()
             {
@@ -49,7 +49,7 @@ namespace GS.WebAPI.Controllers
                 Login = value.Login,
                 PasswordHash = value.PasswordHash
             };
-            var userId = authenticationService.CreateUser(newUser);
+            var userId = await authenticationService.CreateUser(newUser);
             return Ok(userId);
         }
 

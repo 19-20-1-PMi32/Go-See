@@ -17,7 +17,7 @@ namespace GS.BusinessLogic
             this.unitOfWork = unitOfWork as UnitOfWork;
         }
 
-        public Guid CreateUser(GS.Core.DTO.User userParam)
+        public async Task<Guid> CreateUser(GS.Core.DTO.User userParam)
         {
             Guid id = Guid.NewGuid();
 
@@ -33,7 +33,7 @@ namespace GS.BusinessLogic
             };
 
             unitOfWork.UserRepository.Create(user);
-            unitOfWork.Commit();
+            await unitOfWork.Commit();
 
             return id;
         }
@@ -43,7 +43,7 @@ namespace GS.BusinessLogic
             IEnumerable<GS.DataBase.Entities.User> users = await unitOfWork.UserRepository.GetAllAsync();
 
             GS.DataBase.Entities.User user = users.Where(entry => entry.Login == username).First();
-            
+
             if (user.PasswordHash == password)
             {
                 return user.Id;

@@ -1,7 +1,7 @@
 import { put, takeEvery, select } from "redux-saga/effects";
 import { push } from "connected-react-router";
 import { getFormValues } from "redux-form";
-import jwt from "jsonwebtoken";
+import hash from "object-hash";
 
 import ActionTypes from "./types";
 import AuthAPI from "./api";
@@ -16,10 +16,10 @@ export function* createAccount() {
   const values = yield select(getFormValues(form));
   try {
     if (values.password === values.confirmPassword) {
-      const passwordHash = yield jwt.sign(
-        { login: values.login },
-        values.password
-      );
+      const passwordHash = hash({
+        login: values.login,
+        passsword: values.password
+      });
 
       const sendedValue = {
         firstName: values.firstName,
@@ -32,6 +32,7 @@ export function* createAccount() {
 
       const api = AuthAPI.createAccount(sendedValue);
       const userId = yield api;
+
       yield put(User.Actions.setUID(userId));
       yield put(push("/search"));
     }
@@ -44,11 +45,15 @@ export function* logIn() {
   const form = "log-in-form";
   const values = yield select(getFormValues(form));
 
-  const passwordHash = yield jwt.sign({ login: values.login }, values.password);
+  const passwordHash = hash({
+    login: values.login,
+    passsword: values.password
+  });
 
   try {
     const api = AuthAPI.logIn(values.login, passwordHash);
     const userId = yield api;
+
     yield put(User.Actions.setUID(userId));
     yield put(push("/search"));
   } catch (error) {
