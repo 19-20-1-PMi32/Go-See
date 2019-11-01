@@ -12,28 +12,28 @@ namespace GS.DataBase
         private readonly GSDbContext _dbContext;
 
         #region Repositories
-        public ICityRepository CityRepository =>
-            CityRepository ?? new CityRepository(_dbContext);
+        public ICityRepository CityRepository { get; }
 
-        public IPlaceRepository PlaceRepository =>
-            PlaceRepository ?? new PlaceRepository(_dbContext);
+        public IPlaceRepository PlaceRepository { get; }
 
-        public IReviewRepository ReviewRepository =>
-            ReviewRepository ?? new ReviewRepository(_dbContext);
+        public IReviewRepository ReviewRepository { get; }
 
-        public ITripNodeRepository TripNodeRepository =>
-            TripNodeRepository ?? new TripNodeRepository(_dbContext);
+        public ITripNodeRepository TripNodeRepository { get; }
 
-        public ITripRepository TripRepository =>
-            TripRepository ?? new TripRepository(_dbContext);
+        public ITripRepository TripRepository { get; }
 
-        public IUserRepository UserRepository =>
-            UserRepository ?? new UserRepository(_dbContext);
+        public IUserRepository UserRepository { get; }
         #endregion
 
         public UnitOfWork(GSDbContext dbContext)
         {
             _dbContext = dbContext;
+            CityRepository = new CityRepository(_dbContext);
+            PlaceRepository = new PlaceRepository(_dbContext);
+            ReviewRepository = new ReviewRepository(_dbContext);
+            TripNodeRepository = new TripNodeRepository(_dbContext);
+            TripRepository = new TripRepository(_dbContext);
+            UserRepository = new UserRepository(_dbContext);
         }
 
         public async void Commit()
