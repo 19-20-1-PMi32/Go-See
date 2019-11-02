@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GS.DataBase
 {
@@ -36,7 +37,8 @@ namespace GS.DataBase
             UserRepository = new UserRepository(_dbContext);
         }
 
-        public async void Commit()
+
+        public async Task Commit()
         {
             await _dbContext.SaveChangesAsync();
         }
