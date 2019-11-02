@@ -22,7 +22,7 @@ namespace GS.DataBase.Repository
             _dbContext.Reviews.Add(entity);
         }
 
-        public async void Delete(int id)
+        public async void Delete(Guid id)
         {
             var review = await _dbContext.Reviews.FindAsync(id);
             if (review != null)
@@ -31,7 +31,7 @@ namespace GS.DataBase.Repository
             }
         }
 
-        public async Task<Review> Get(int id)
+        public async Task<Review> Get(Guid id)
         {
             return await _dbContext.Reviews.FindAsync(id);
         }

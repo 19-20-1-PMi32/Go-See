@@ -13,139 +13,12 @@ namespace GS.DataBaseTest
     {
         public UserRepositoryTest() { }
 
-        public UnitOfWork UnitOfWork { get; set; }
-
-        public UnitOfWork GetOption(string name)
-        {
-            var options = new DbContextOptionsBuilder<GSDbContext>()
-                .UseInMemoryDatabase(databaseName: name)
-                .Options;
-
-            var context = new GSDbContext(options);
-
-            UnitOfWork = new UnitOfWork(context);
-
-            return UnitOfWork;
-
-        }
-
         [Fact]
         public async Task Create()
         {
-
-            UnitOfWork = GetOption("TestCreateUser");
-
-            var expectedUser = new DataBase.Entities.User()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestCreateUser"))
             {
-                Id = Guid.NewGuid(),
-                Login = "jackleo",
-                FirstName = "Jack",
-                LastName = "Leonardo",
-                Email = "jackleo@mail.com",
-                Phone = "380942378556",
-                PasswordHash = "lack1999"
-            };
-
-            UnitOfWork.UserRepository.Create(expectedUser);
-
-            UnitOfWork.Commit();
-
-            var user =  UnitOfWork.UserRepository.Get(Guid.NewGuid());
-
-            Assert.Equal(expectedUser.Id, user.Id);
-
-        }
-
-
-
-        [Fact]
-        public async Task Delete()
-        {
-
-            UnitOfWork = GetOption("TestDeleteUser");
-
-
-            var user = new List<DataBase.Entities.User>()
-            {
-                new DataBase.Entities.User()
-            {
-                Id = Guid.NewGuid(),
-                Login = "jackleo",
-                FirstName = "Jack",
-                LastName = "Leonardo",
-                Email = "jackleo@mail.com",
-                Phone = "380942378556",
-                PasswordHash = "lack1999"
-            },
-
-            new DataBase.Entities.User()
-            {
-                Id = Guid.NewGuid(),
-                Login = "lucyduvet",
-                FirstName = "Lucy",
-                LastName = "Duveteri",
-                Email = "",
-                Phone = "380992649101",
-                PasswordHash = "2012LuDu"
-            }
-
-            };
-        
-
-            UnitOfWork.UserRepository.Create(user[0]);
-
-            UnitOfWork.UserRepository.Create(user[1]);
-
-            UnitOfWork.UserRepository.Delete(Guid.NewGuid());
-
-            UnitOfWork.Commit();
-
-            var test =  UnitOfWork.UserRepository.GetAllAsync();
-
-            List<DataBase.Entities.User> users = test.ToList();
-
-            Assert.Equal(1, users.Count());
-
-        }
-
-        [Fact]
-        public async Task Get()
-        {
-
-            UnitOfWork = GetOption("TestGetUser");
-
-            var expectedUser = new DataBase.Entities.User()
-            {
-                Id = Guid.NewGuid(),
-                Login = "jackleo",
-                FirstName = "Jack",
-                LastName = "Leonardo",
-                Email = "jackleo@mail.com",
-                Phone = "380942378556",
-                PasswordHash = "lack1999"
-            };
-
-            UnitOfWork.UserRepository.Create(expectedUser);
-
-            UnitOfWork.Commit();
-
-            var user = await UnitOfWork.UserRepository.Get(Guid.NewGuid());
-
-            Assert.Equal(expectedUser.Id, user.Id);
-
-        }
-
-
-        [Fact]
-        public async Task GetAll()
-        {
-
-            UnitOfWork = GetOption("TestGetAllUser");
-
-
-            var user = new List<DataBase.Entities.User>()
-            {
-                new DataBase.Entities.User()
+                var expectedUser = new DataBase.Entities.User()
                 {
                     Id = Guid.NewGuid(),
                     Login = "jackleo",
@@ -154,65 +27,165 @@ namespace GS.DataBaseTest
                     Email = "jackleo@mail.com",
                     Phone = "380942378556",
                     PasswordHash = "lack1999"
-                },
+                };
 
-                new DataBase.Entities.User()
+                unitOfWork.UserRepository.Create(expectedUser);
+
+                await unitOfWork.Commit().ConfigureAwait(true);
+
+                var user = await unitOfWork.UserRepository.Get(expectedUser.Id).ConfigureAwait(true);
+
+                Assert.Equal(expectedUser.Id, user.Id);
+            }
+        }
+
+
+
+        [Fact]
+        public async Task Delete()
+        {
+            using (var unitOfWork = Utils.GetUnitOfWork("TestDeleteUser"))
+            {
+                var users = new List<DataBase.Entities.User>()
+                {
+                    new DataBase.Entities.User()
+                    {
+                        Id = Guid.NewGuid(),
+                        Login = "jackleo",
+                        FirstName = "Jack",
+                        LastName = "Leonardo",
+                        Email = "jackleo@mail.com",
+                        Phone = "380942378556",
+                        PasswordHash = "lack1999"
+                    },
+                    new DataBase.Entities.User()
+                    {
+                        Id = Guid.NewGuid(),
+                        Login = "lucyduvet",
+                        FirstName = "Lucy",
+                        LastName = "Duveteri",
+                        Email = "",
+                        Phone = "380992649101",
+                        PasswordHash = "2012LuDu"
+                    }
+                };
+
+
+                unitOfWork.UserRepository.Create(users[0]);
+
+                unitOfWork.UserRepository.Create(users[1]);
+
+                unitOfWork.UserRepository.Delete(users[0].Id);
+
+                await unitOfWork.Commit().ConfigureAwait(true);
+
+                var test = await unitOfWork.UserRepository.GetAllAsync().ConfigureAwait(true);
+
+                var newUsers = test.ToList();
+
+                Assert.Single(newUsers);
+            }
+        }
+
+        [Fact]
+        public async Task Get()
+        {
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetUser"))
+            {
+                var expectedUser = new DataBase.Entities.User()
                 {
                     Id = Guid.NewGuid(),
-                    Login = "lucyduvet",
-                    FirstName = "Lucy",
-                    LastName = "Duveteri",
-                    Email = "",
-                    Phone = "380992649101",
-                    PasswordHash = "2012LuDu"
-                }
+                    Login = "jackleo",
+                    FirstName = "Jack",
+                    LastName = "Leonardo",
+                    Email = "jackleo@mail.com",
+                    Phone = "380942378556",
+                    PasswordHash = "lack1999"
+                };
+
+                unitOfWork.UserRepository.Create(expectedUser);
+
+                await unitOfWork.Commit().ConfigureAwait(true);
+
+                var user = await unitOfWork.UserRepository.Get(expectedUser.Id).ConfigureAwait(true);
+
+                Assert.Equal(expectedUser.Id, user.Id);
+            }
+        }
+
+
+        [Fact]
+        public async Task GetAll()
+        {
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetAllUser"))
+            {
+                var user = new List<DataBase.Entities.User>()
+                {
+                    new DataBase.Entities.User()
+                    {
+                        Id = Guid.NewGuid(),
+                        Login = "jackleo",
+                        FirstName = "Jack",
+                        LastName = "Leonardo",
+                        Email = "jackleo@mail.com",
+                        Phone = "380942378556",
+                        PasswordHash = "lack1999"
+                    },
+                    new DataBase.Entities.User()
+                    {
+                       Id = Guid.NewGuid(),
+                       Login = "lucyduvet",
+                       FirstName = "Lucy",
+                       LastName = "Duveteri",
+                       Email = "",
+                       Phone = "380992649101",
+                       PasswordHash = "2012LuDu"
+                    }
              };
 
-            UnitOfWork.UserRepository.Create(user[0]);
+                unitOfWork.UserRepository.Create(user[0]);
 
-            UnitOfWork.UserRepository.Create(user[1]);
+                unitOfWork.UserRepository.Create(user[1]);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            var test = await UnitOfWork.UserRepository.GetAllAsync();
+                var test = await unitOfWork.UserRepository.GetAllAsync().ConfigureAwait(true);
 
-            List<DataBase.Entities.User> users = test.ToList();
+                var length = test.ToList().Count;
 
-            Assert.Equal(2, users.Count());
-
+                Assert.Equal(2, length);
+            }
         }
 
 
         [Fact]
         public async Task Update()
         {
-
-            UnitOfWork = GetOption("TestUpdateUser");
-
-
-            var expectedUser = new DataBase.Entities.User()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestUpdateUser"))
             {
-                Id = Guid.NewGuid(),
-                Login = "jackleo",
-                FirstName = "Jack",
-                LastName = "Leonardo",
-                Email = "jackleo@mail.com",
-                Phone = "380942378556",
-                PasswordHash = "lack1999"
-            };
+                var expectedUser = new DataBase.Entities.User()
+                {
+                    Id = Guid.NewGuid(),
+                    Login = "jackleo",
+                    FirstName = "Jack",
+                    LastName = "Leonardo",
+                    Email = "jackleo@mail.com",
+                    Phone = "380942378556",
+                    PasswordHash = "lack1999"
+                };
 
-            UnitOfWork.UserRepository.Create(expectedUser);
+                unitOfWork.UserRepository.Create(expectedUser);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            expectedUser.Id = Guid.NewGuid();
+                expectedUser.Id = Guid.NewGuid();
 
-            UnitOfWork.UserRepository.Update(expectedUser);
+                unitOfWork.UserRepository.Update(expectedUser);
 
-            var test = await UnitOfWork.UserRepository.Get(Guid.NewGuid());
+                var test = await unitOfWork.UserRepository.Get(expectedUser.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedUser.Id, test.Id);
-
+                Assert.Equal(expectedUser.Id, test.Id);
+            }
         }
     }
 }

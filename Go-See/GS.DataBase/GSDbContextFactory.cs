@@ -22,7 +22,7 @@ namespace GS.DataBase
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             builder.UseSqlServer(connectionString);
 
-            return new GSDbContext(builder.Options);
+            return new GSDbContext(builder.Options, configuration.GetValue<bool>("IsSeedOn"));
         }
     }
 }

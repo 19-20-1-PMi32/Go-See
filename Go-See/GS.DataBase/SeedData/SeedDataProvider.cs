@@ -10,18 +10,6 @@ namespace GS.DataBase.SeedData
 {
     public static class SeedDataProvider
     {
-        public static bool IsSeedOn()
-        {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json")
-               .Build();
-
-            var isSeedOn = configuration.GetValue<bool>("IsSeedOn");
-
-            return isSeedOn;
-        }
-
         public static City[] GetCities()
         {
             string citiesFile = File.ReadAllText(Directory.GetCurrentDirectory() + "/SeedData/City.json");

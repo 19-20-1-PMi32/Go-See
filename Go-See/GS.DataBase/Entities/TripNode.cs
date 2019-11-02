@@ -8,13 +8,13 @@ namespace GS.DataBase.Entities
 {
     public class TripNode
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int TripId { get; set; }
+        public Guid TripId { get; set; }
 
         public Trip Trip { get; set; }
 
-        public int PlaceId { get; set; }
+        public Guid PlaceId { get; set; }
 
         public Place Place { get; set; }
 

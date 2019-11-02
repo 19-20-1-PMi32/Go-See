@@ -13,85 +13,64 @@ namespace GS.DataBaseTest
     {
         public TripRepositoryTest() { }
 
-        public UnitOfWork UnitOfWork { get; set; }
-
-        public UnitOfWork GetOption(string name)
-        {
-            var options = new DbContextOptionsBuilder<GSDbContext>()
-                .UseInMemoryDatabase(databaseName: name)
-                .Options;
-
-            var context = new GSDbContext(options);
-
-            UnitOfWork = new UnitOfWork(context);
-
-            return UnitOfWork;
-
-        }
-
-
         [Fact]
         public async Task Create()
         {
-
-            UnitOfWork = GetOption("TestCreateTrip");
-
-            var expectedTrip = new DataBase.Entities.Trip()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestCreateTrip"))
             {
-                Id = 1,
-                Name = "Rome 2019",
-                UserId = Guid.NewGuid()
-            };
+                var expectedTrip = new DataBase.Entities.Trip()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Rome 2019",
+                    UserId = Guid.NewGuid()
+                };
 
-            UnitOfWork.TripRepository.Create(expectedTrip);
+                unitOfWork.TripRepository.Create(expectedTrip);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(false);
 
-            var trip = UnitOfWork.TripRepository.Get(1);
+                var trip = await unitOfWork.TripRepository.Get(expectedTrip.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedTrip.Id, trip.Id);
-
+                Assert.Equal(expectedTrip.Id, trip.Id);
+            }
         }
 
 
         [Fact]
         public async Task Delete()
         {
-
-            UnitOfWork = GetOption("TestDeleteTrip");
-
-
-            var trips = new List<DataBase.Entities.Trip>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestDeleteTrip"))
             {
-                new DataBase.Entities.Trip()
+                var trips = new List<DataBase.Entities.Trip>()
                 {
-                    Id = 1,
-                    Name = "Rome 2019",
-                    UserId = Guid.NewGuid()
-                },
-
                 new DataBase.Entities.Trip()
-                {
-                    Id = 2,
-                    Name = "To the edge of the world",
-                    UserId = Guid.NewGuid()
-                }
-            };
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Rome 2019",
+                        UserId = Guid.NewGuid()
+                    },
+                new DataBase.Entities.Trip()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "To the edge of the world",
+                        UserId = Guid.NewGuid()
+                    }
+                };
 
-            UnitOfWork.TripRepository.Create(trips[0]);
+                unitOfWork.TripRepository.Create(trips[0]);
 
-            UnitOfWork.TripRepository.Create(trips[1]);
+                unitOfWork.TripRepository.Create(trips[1]);
 
-            UnitOfWork.TripRepository.DeleteAsync(1);
+                unitOfWork.TripRepository.Delete(trips[0].Id);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            var test = UnitOfWork.TripRepository.GetAll();
+                var test = await unitOfWork.TripRepository.GetAll().ConfigureAwait(true);
 
-            List<DataBase.Entities.Trip> trip = test.ToList();
+                List<DataBase.Entities.Trip> trip = test.ToList();
 
-            Assert.Equal(1, trip.Count());
-
+                Assert.Single(trip);
+            }
         }
 
 
@@ -99,91 +78,89 @@ namespace GS.DataBaseTest
         public async Task Get()
         {
 
-            UnitOfWork = GetOption("TestGetTrip");
-
-            var expectedTrip = new DataBase.Entities.Trip()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetTrip"))
             {
-                Id = 1,
-                Name = "Rome 2019",
-                UserId = Guid.NewGuid()
-            };
 
-            UnitOfWork.TripRepository.Create(expectedTrip);
+                var expectedTrip = new DataBase.Entities.Trip()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Rome 2019",
+                    UserId = Guid.NewGuid()
+                };
 
-            UnitOfWork.Commit();
+                unitOfWork.TripRepository.Create(expectedTrip);
 
-            var trip = await UnitOfWork.TripRepository.Get(1);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            Assert.Equal(expectedTrip.Id, trip.Id);
+                var trip = await unitOfWork.TripRepository.Get(expectedTrip.Id).ConfigureAwait(true);
 
+                Assert.Equal(expectedTrip.Id, trip.Id);
+            }
         }
 
 
         [Fact]
         public async Task GetAll()
         {
-
-            UnitOfWork = GetOption("TestGetAllTrip");
-
-
-            var trip = new List<DataBase.Entities.Trip>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetAllTrip"))
             {
-                new DataBase.Entities.Trip()
+                var trip = new List<DataBase.Entities.Trip>()
                 {
-                    Id = 1,
-                    Name = "Rome 2019",
-                    UserId = Guid.NewGuid()
-                },
+                    new DataBase.Entities.Trip()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Rome 2019",
+                        UserId = Guid.NewGuid()
+                    },
+                    new DataBase.Entities.Trip()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "To the edge of the world",
+                        UserId = Guid.NewGuid()
+                    }
+                };
 
-                new DataBase.Entities.Trip()
-                {
-                    Id = 2,
-                    Name = "To the edge of the world",
-                    UserId = Guid.NewGuid()
-                }
-             };
+                unitOfWork.TripRepository.Create(trip[0]);
 
-            UnitOfWork.TripRepository.Create(trip[0]);
+                unitOfWork.TripRepository.Create(trip[1]);
 
-            UnitOfWork.TripRepository.Create(trip[1]);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var test = await unitOfWork.TripRepository.GetAll().ConfigureAwait(true);
 
-            var test = await UnitOfWork.TripRepository.GetAll();
+                var length = test.ToList().Count;
 
-            List<DataBase.Entities.Trip> trips = test.ToList();
-
-            Assert.Equal(2, trips.Count());
-
+                Assert.Equal(2, length);
+            }
         }
 
 
         [Fact]
         public async Task Update()
         {
-
-            UnitOfWork = GetOption("TestUpdateTrip");
-
-
-            var expectedTrip = new DataBase.Entities.Trip()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestUpdateTrip"))
             {
-                Id = 1,
-                Name = "Rome 2019",
-                UserId = Guid.NewGuid()
-            };
+                var expectedTrip = new DataBase.Entities.Trip()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Rome 2019",
+                    UserId = Guid.NewGuid()
+                };
 
-            UnitOfWork.TripRepository.Create(expectedTrip);
+                unitOfWork.TripRepository.Create(expectedTrip);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var newTripName = "Rome";
+                expectedTrip.Name = newTripName;
 
-            expectedTrip.Id = 4;
+                unitOfWork.TripRepository.Update(expectedTrip);
 
-            UnitOfWork.TripRepository.Update(expectedTrip);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            var test = UnitOfWork.TripRepository.Get(1);
+                var test = await unitOfWork.TripRepository.Get(expectedTrip.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedTrip.Id, test.Id);
-
+                Assert.Equal(expectedTrip.Id.ToString(), test.Id.ToString());
+            }
         }
     }
 }

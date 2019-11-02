@@ -13,180 +13,156 @@ namespace GS.DataBaseTest
     {
         public TripNodeRepositoryTest() { }
 
-        public UnitOfWork UnitOfWork { get; set; }
-
-        public UnitOfWork GetOption(string name)
-        {
-            var options = new DbContextOptionsBuilder<GSDbContext>()
-                .UseInMemoryDatabase(databaseName: name)
-                .Options;
-
-            var context = new GSDbContext(options);
-
-            UnitOfWork = new UnitOfWork(context);
-
-            return UnitOfWork;
-
-        }
-
         [Fact]
         public async Task Get()
         {
-
-            UnitOfWork = GetOption("TestGetTripNode");
-
-            var expectedTripNode = new DataBase.Entities.TripNode()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetTripNode"))
             {
-                Id = 1,
-                TripId = 1,
-                PlaceId = 1,
-                SequenceNumber = 1
-            };
+                var expectedTripNode = new DataBase.Entities.TripNode()
+                {
+                    Id = Guid.NewGuid(),
+                    TripId = Guid.NewGuid(),
+                    PlaceId = Guid.NewGuid(),
+                    SequenceNumber = 1
+                };
 
-            UnitOfWork.TripNodeRepository.Create(expectedTripNode);
+                unitOfWork.TripNodeRepository.Create(expectedTripNode);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            var tripNode = await UnitOfWork.TripNodeRepository.Get(1);
+                var tripNode = await unitOfWork.TripNodeRepository.Get(expectedTripNode.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedTripNode.Id, tripNode.Id);
-
+                Assert.Equal(expectedTripNode.Id, tripNode.Id);
+            }
         }
 
         [Fact]
         public async Task Create()
         {
-
-            UnitOfWork = GetOption("TestCreateTripNode");
-
-            var expectedTripNode = new DataBase.Entities.TripNode()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestCreateTripNode"))
             {
-                Id = 1,
-                TripId = 1,
-                PlaceId = 1,
-                SequenceNumber = 1
-            };
+                var expectedTripNode = new DataBase.Entities.TripNode()
+                {
+                    Id = Guid.NewGuid(),
+                    TripId = Guid.NewGuid(),
+                    PlaceId = Guid.NewGuid(),
+                    SequenceNumber = 1
+                };
 
-            UnitOfWork.TripNodeRepository.Create(expectedTripNode);
+                unitOfWork.TripNodeRepository.Create(expectedTripNode);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            var tripNode = UnitOfWork.TripNodeRepository.Get(1);
+                var tripNode = await unitOfWork.TripNodeRepository.Get(expectedTripNode.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedTripNode.Id, tripNode.Id);
-
+                Assert.Equal(expectedTripNode.Id, tripNode.Id);
+            }
         }
 
         [Fact]
         public async Task GetAll()
         {
-
-            UnitOfWork = GetOption("TestGetAllTripNodes");
-
-
-            var tripNodes = new List<DataBase.Entities.TripNode>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetAllTripNodes"))
             {
-                new DataBase.Entities.TripNode()
+
+                var tripNodes = new List<DataBase.Entities.TripNode>()
                 {
-                    Id = 1,
-                    TripId = 1,
-                    PlaceId = 1,
-                    SequenceNumber = 1
-                },
+                    new DataBase.Entities.TripNode()
+                    {
+                        Id = Guid.NewGuid(),
+                        TripId = Guid.NewGuid(),
+                        PlaceId = Guid.NewGuid(),
+                        SequenceNumber = 1
+                    },
+                    new DataBase.Entities.TripNode()
+                    {
+                        Id = Guid.NewGuid(),
+                        TripId = Guid.NewGuid(),
+                        PlaceId = Guid.NewGuid(),
+                        SequenceNumber = 2
+                    }
+                };
 
-                new DataBase.Entities.TripNode()
-                {
-                    Id = 2,
-                    TripId = 2,
-                    PlaceId = 2,
-                    SequenceNumber = 2
-                }
-             };
+                unitOfWork.TripNodeRepository.Create(tripNodes[0]);
 
-            UnitOfWork.TripNodeRepository.Create(tripNodes[0]);
+                unitOfWork.TripNodeRepository.Create(tripNodes[1]);
 
-            UnitOfWork.TripNodeRepository.Create(tripNodes[1]);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var test = await unitOfWork.TripNodeRepository.GetAll().ConfigureAwait(true);
 
-            var test = await UnitOfWork.TripNodeRepository.GetAll();
+                var length = test.ToList().Count;
 
-            List<DataBase.Entities.TripNode> trip = test.ToList();
-
-            Assert.Equal(2, trip.Count());
-
+                Assert.Equal(2, length);
+            }
         }
 
         [Fact]
         public async Task Update()
         {
-
-            UnitOfWork = GetOption("TestUpdateTripNode");
-
-
-            var expectedTripNode = new DataBase.Entities.TripNode()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestUpdateTripNode"))
             {
-                Id = 1,
-                TripId = 1,
-                PlaceId = 1,
-                SequenceNumber = 1
-            };
+                var expectedTripNode = new DataBase.Entities.TripNode()
+                {
+                    Id = Guid.NewGuid(),
+                    TripId = Guid.NewGuid(),
+                    PlaceId = Guid.NewGuid(),
+                    SequenceNumber = 1
+                };
 
-            UnitOfWork.TripNodeRepository.Create(expectedTripNode);
+                unitOfWork.TripNodeRepository.Create(expectedTripNode);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var newSequenceNumber = 2;
+                expectedTripNode.SequenceNumber = newSequenceNumber;
+                unitOfWork.TripNodeRepository.Update(expectedTripNode);
 
-            expectedTripNode.Id = 4;
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.TripNodeRepository.Update(expectedTripNode);
+                var test = await unitOfWork.TripNodeRepository.Get(expectedTripNode.Id).ConfigureAwait(true);
 
-            var test = UnitOfWork.TripNodeRepository.Get(1);
-
-            Assert.Equal(expectedTripNode.Id, test.Id);
-
+                Assert.Equal(expectedTripNode.Id.ToString(), test.Id.ToString());
+            }
         }
 
 
         [Fact]
         public async Task Delete()
         {
-
-            UnitOfWork = GetOption("TestDeleteTripNode");
-
-
-            var tripNodes = new List<DataBase.Entities.TripNode>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestDeleteTripNode"))
             {
-                new DataBase.Entities.TripNode()
+                var tripNodes = new List<DataBase.Entities.TripNode>()
                 {
-                    Id = 1,
-                    TripId = 1,
-                    PlaceId = 1,
-                    SequenceNumber = 1
-                },
+                    new DataBase.Entities.TripNode()
+                    {
+                        Id = Guid.NewGuid(),
+                        TripId = Guid.NewGuid(),
+                        PlaceId = Guid.NewGuid(),
+                        SequenceNumber = 1
+                    },
+                    new DataBase.Entities.TripNode()
+                    {
+                        Id = Guid.NewGuid(),
+                        TripId = Guid.NewGuid(),
+                        PlaceId = Guid.NewGuid(),
+                        SequenceNumber = 2
+                    }
+                };
 
-                new DataBase.Entities.TripNode()
-                {
-                    Id = 2,
-                    TripId = 2,
-                    PlaceId = 2,
-                    SequenceNumber = 2
-                }
-             };
+                unitOfWork.TripNodeRepository.Create(tripNodes[0]);
 
-            UnitOfWork.TripNodeRepository.Create(tripNodes[0]);
+                unitOfWork.TripNodeRepository.Create(tripNodes[1]);
 
-            UnitOfWork.TripNodeRepository.Create(tripNodes[1]);
+                unitOfWork.TripNodeRepository.Delete(tripNodes[0].Id);
 
-            UnitOfWork.TripNodeRepository.Delete(1);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var test = await unitOfWork.TripNodeRepository.GetAll().ConfigureAwait(true);
 
-            var test = UnitOfWork.TripNodeRepository.GetAll();
+                var trips = test.ToList();
 
-            List<DataBase.Entities.TripNode> trips = test.ToList();
-
-            Assert.Equal(1, trips.Count());
-
+                Assert.Single(trips);
+            }
         }
 
     }
