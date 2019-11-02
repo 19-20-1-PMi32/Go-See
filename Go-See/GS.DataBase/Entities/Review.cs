@@ -8,13 +8,13 @@ namespace GS.DataBase.Entities
 {
     public class Review
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public Guid UserId { get; set; }
 
         public User User { get; set; }
 
-        public int PlaceId { get; set; }
+        public Guid PlaceId { get; set; }
 
         public Place Place { get; set; }
 

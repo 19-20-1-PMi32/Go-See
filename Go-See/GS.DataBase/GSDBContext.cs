@@ -10,7 +10,9 @@ namespace GS.DataBase
 {
     public class GSDbContext : DbContext
     {
-        public GSDbContext(DbContextOptions options) : base(options) { }
+        private bool _isSeedOn { get; set; }
+
+        public GSDbContext(DbContextOptions options, bool IsSeedOn) : base(options) { _isSeedOn = IsSeedOn; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,7 +23,7 @@ namespace GS.DataBase
             modelBuilder.ApplyConfiguration(new ReviewEntityConfiguration());
             modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
 
-            if (SeedDataProvider.IsSeedOn())
+            if (_isSeedOn)
             {
                 modelBuilder.Entity<City>().HasData(SeedDataProvider.GetCities());
                 modelBuilder.Entity<Place>().HasData(SeedDataProvider.GetPlace());
@@ -30,6 +32,7 @@ namespace GS.DataBase
                 modelBuilder.Entity<TripNode>().HasData(SeedDataProvider.GetTripNodes());
                 modelBuilder.Entity<User>().HasData(SeedDataProvider.GetUsers());
             }
+
         }
 
         public DbSet<City> Cities { get; set; }

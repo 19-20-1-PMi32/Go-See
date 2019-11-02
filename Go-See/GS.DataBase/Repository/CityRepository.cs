@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GS.DataBase.Entities;
@@ -20,7 +21,7 @@ namespace GS.DataBase.Repository
             return await _dbContext.Cities.ToListAsync();
         }
 
-        public async Task<City> Get(int id)
+        public async Task<City> Get(Guid id)
         {
             return await _dbContext.Cities.FindAsync(id);
         }
@@ -35,7 +36,7 @@ namespace GS.DataBase.Repository
             _dbContext.Cities.Update(entity);
         }
 
-        public async void Delete(int id)
+        public async void Delete(Guid id)
         {
             var city = await _dbContext.Cities.FindAsync(id);
             if (city != null)

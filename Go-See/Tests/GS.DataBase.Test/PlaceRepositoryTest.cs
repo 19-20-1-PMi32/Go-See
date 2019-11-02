@@ -11,211 +11,183 @@ namespace GS.DataBaseTest
 {
     public class PlaceRepositoryTest
     {
-
         public PlaceRepositoryTest() { }
-        
-        public UnitOfWork UnitOfWork { get; set; }
-        
-
-        public UnitOfWork GetOption(string name)
-        {
-            var options = new DbContextOptionsBuilder<GSDbContext>()
-                .UseInMemoryDatabase(databaseName: name)
-                .Options;
-
-            var context = new GSDbContext(options);
-
-            UnitOfWork = new UnitOfWork(context);
-
-            return UnitOfWork;
-
-        }
 
         [Fact]
         public async Task Get()
         {
-
-            UnitOfWork = GetOption("TestGetPlace");
-
-
-            var expectedPlace = new DataBase.Entities.Place()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetPlace"))
             {
-                Id = 1,
-                Name = "Saint Sophia's Cathedral",
-                CityId = 1,
-                Type = "architecture",
-                Description = "Saint Sophia’s Cathedral is an outstanding complex; "
-            };
-            
-            UnitOfWork.PlaceRepository.Create(expectedPlace);
+                var expectedPlace = new DataBase.Entities.Place()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Saint Sophia's Cathedral",
+                    CityId = Guid.NewGuid(),
+                    Type = "architecture",
+                    Description = "Saint Sophia’s Cathedral is an outstanding complex; "
+                };
 
-            UnitOfWork.Commit();
+                unitOfWork.PlaceRepository.Create(expectedPlace);
 
-            var place = await UnitOfWork.PlaceRepository.Get(1);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            Assert.Equal(expectedPlace.Id, place.Id);
+                var place = await unitOfWork.PlaceRepository.Get(expectedPlace.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedPlace.Name, place.Name);
+                Assert.Equal(expectedPlace.Id, place.Id);
 
-            Assert.Equal(expectedPlace.CityId, place.CityId);
+                Assert.Equal(expectedPlace.Name, place.Name);
 
-            Assert.Equal(expectedPlace.Type, place.Type);
+                Assert.Equal(expectedPlace.CityId, place.CityId);
 
-            Assert.Equal(expectedPlace.Description, place.Description);
+                Assert.Equal(expectedPlace.Type, place.Type);
 
+                Assert.Equal(expectedPlace.Description, place.Description);
+            }
         }
 
         [Fact]
         public async Task Create()
         {
-
-            UnitOfWork = GetOption("TestCreatePlace");
-
-
-            var expectedPlace = new DataBase.Entities.Place()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestCreatePlace"))
             {
-                Id = 1,
-                Name = "Saint Sophia's Cathedral",
-                CityId = 1,
-                Type = "architecture",
-                Description = "Saint Sophia’s Cathedral is an outstanding complex; "
-            };
 
-            UnitOfWork.PlaceRepository.Create(expectedPlace);
+                var expectedPlace = new DataBase.Entities.Place()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Saint Sophia's Cathedral",
+                    CityId = Guid.NewGuid(),
+                    Type = "architecture",
+                    Description = "Saint Sophia’s Cathedral is an outstanding complex; "
+                };
 
-            UnitOfWork.Commit();
+                unitOfWork.PlaceRepository.Create(expectedPlace);
 
-            var place = await UnitOfWork.PlaceRepository.Get(1);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            Assert.Equal(expectedPlace.Id, place.Id);
+                var place = await unitOfWork.PlaceRepository.Get(expectedPlace.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedPlace.Name, place.Name);
+                Assert.Equal(expectedPlace.Id, place.Id);
 
-            Assert.Equal(expectedPlace.CityId, place.CityId);
+                Assert.Equal(expectedPlace.Name, place.Name);
 
-            Assert.Equal(expectedPlace.Type, place.Type);
+                Assert.Equal(expectedPlace.CityId, place.CityId);
 
-            Assert.Equal(expectedPlace.Description, place.Description);
+                Assert.Equal(expectedPlace.Type, place.Type);
 
+                Assert.Equal(expectedPlace.Description, place.Description);
+            }
         }
 
         [Fact]
         public async Task GetAll()
         {
-
-            UnitOfWork = GetOption("TestGetAllPlace");
-
-
-            var places = new List<DataBase.Entities.Place>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetAllPlace"))
             {
-                new DataBase.Entities.Place()
+                var places = new List<DataBase.Entities.Place>()
                 {
-                    Id = 1,
-                    Name = "Saint Sophia's Cathedral",
-                    CityId = 1,
-                    Type = "architecture",
-                    Description = "Saint Sophia’s Cathedral is an outstanding complex; "
-                },
+                    new DataBase.Entities.Place()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Saint Sophia's Cathedral",
+                        CityId = Guid.NewGuid(),
+                        Type = "architecture",
+                        Description = "Saint Sophia’s Cathedral is an outstanding complex; "
+                    },
+                    new DataBase.Entities.Place()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Saint Sophia's Cathedral",
+                        CityId = Guid.NewGuid(),
+                        Type = "architecture",
+                        Description = "Saint Sophia’s Cathedral is an outstanding complex; "
+                    }
 
-                new DataBase.Entities.Place()
-                {
-                     Id = 2,
-                    Name = "Saint Sophia's Cathedral",
-                    CityId = 2,
-                    Type = "architecture",
-                    Description = "Saint Sophia’s Cathedral is an outstanding complex; "
-                }
+                };
 
-            };
+                unitOfWork.PlaceRepository.Create(places[0]);
 
+                unitOfWork.PlaceRepository.Create(places[1]);
 
-            UnitOfWork.PlaceRepository.Create(places[0]);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.PlaceRepository.Create(places[1]);
+                var test = await unitOfWork.PlaceRepository.GetAll().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var length = test.ToList().Count;
 
-            var test = await UnitOfWork.PlaceRepository.GetAll();
-
-            List<DataBase.Entities.Place> place = test.ToList();
-
-            Assert.Equal(2, place.Count());
-
+                Assert.Equal(2, length);
+            }
         }
 
         [Fact]
         public async Task Update()
         {
-
-            UnitOfWork = GetOption("TestUpdatePlace");
-
-
-            var expectedPlace = new DataBase.Entities.Place()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestUpdatePlace"))
             {
-                Id = 1,
-                Name = "Saint Sophia's Cathedral",
-                CityId = 1,
-                Type = "architecture",
-                Description = "Saint Sophia’s Cathedral is an outstanding complex; "
-            };
 
-            UnitOfWork.PlaceRepository.Create(expectedPlace);
+                var expectedPlace = new DataBase.Entities.Place()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Saint Sophia's Cathedral",
+                    CityId = Guid.NewGuid(),
+                    Type = "architecture",
+                    Description = "Saint Sophia’s Cathedral is an outstanding complex; "
+                };
 
-            UnitOfWork.Commit();
+                unitOfWork.PlaceRepository.Create(expectedPlace);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            expectedPlace.CityId = 4;
+                var newPlaceName = "";
+                expectedPlace.Name = newPlaceName;
+                unitOfWork.PlaceRepository.Update(expectedPlace);
 
-            UnitOfWork.PlaceRepository.Update(expectedPlace);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            var test = await UnitOfWork.PlaceRepository.Get(1);
+                var test = await unitOfWork.PlaceRepository.Get(expectedPlace.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedPlace.CityId, test.CityId);
-
+                Assert.Equal(newPlaceName, test.Name);
+            }
         }
 
         [Fact]
         public async Task Delete()
         {
-
-            UnitOfWork = GetOption("TestDeletePlace");
-
-
-            var places = new List<DataBase.Entities.Place>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestDeletePlace"))
             {
-                new DataBase.Entities.Place()
+
+                var places = new List<DataBase.Entities.Place>()
                 {
-                    Id = 1,
-                    Name = "Saint Sophia's Cathedral",
-                    CityId = 1,
-                    Type = "architecture",
-                    Description = "Saint Sophia’s Cathedral is an outstanding complex; "
-                },
+                    new DataBase.Entities.Place()
+                    {
+                       Id = Guid.NewGuid(),
+                       Name = "Saint Sophia's Cathedral",
+                       CityId = Guid.NewGuid(),
+                       Type = "architecture",
+                       Description = "Saint Sophia’s Cathedral is an outstanding complex; "
+                    },
+                    new DataBase.Entities.Place()
+                    {
+                       Id = Guid.NewGuid(),
+                       Name = "Saint Sophia's Cathedral",
+                       CityId = Guid.NewGuid(),
+                        Type = "architecture",
+                        Description = "Saint Sophia’s Cathedral is an outstanding complex; "
+                    }
+                };
 
-                new DataBase.Entities.Place()
-                {
-                     Id = 2,
-                    Name = "Saint Sophia's Cathedral",
-                    CityId = 2,
-                    Type = "architecture",
-                    Description = "Saint Sophia’s Cathedral is an outstanding complex; "
-                }
+                unitOfWork.PlaceRepository.Create(places[0]);
 
-            };
+                unitOfWork.PlaceRepository.Create(places[1]);
 
-            UnitOfWork.PlaceRepository.Create(places[0]);
+                unitOfWork.PlaceRepository.Delete(places[0].Id);
 
-            UnitOfWork.PlaceRepository.Create(places[1]);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.PlaceRepository.Delete(1);
+                var test = await unitOfWork.PlaceRepository.GetAll().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                List<DataBase.Entities.Place> place = test.ToList();
 
-            var test = await UnitOfWork.PlaceRepository.GetAll();
-
-            List<DataBase.Entities.Place> place = test.ToList();
-
-            Assert.Equal(1, place.Count());
-                   
+                Assert.Single(place);
+            }
         }
     }
 }

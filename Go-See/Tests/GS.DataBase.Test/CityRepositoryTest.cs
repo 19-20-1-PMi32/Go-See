@@ -11,187 +11,162 @@ namespace GS.DataBaseTest
 {
     public class CityRepositoryTest
     {
-
         public CityRepositoryTest() { }
-
-        public UnitOfWork UnitOfWork { get; set; }
-
-        public UnitOfWork GetOption(string name)
-        {
-            var options = new DbContextOptionsBuilder<GSDbContext>()
-                .UseInMemoryDatabase(databaseName: name)
-                .Options;
-
-            var context = new GSDbContext(options);
-
-            UnitOfWork = new UnitOfWork(context);
-
-            return UnitOfWork;
-
-        }
 
         [Fact]
         public async Task Get()
         {
-
-            UnitOfWork = GetOption("TestGetCity");
-
-            var expectedCity = new DataBase.Entities.City()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetCity"))
             {
-                Id = 1,
-                Name = "Lviv",
-                Description = "very beautiful city"
-            };
+                var expectedCity = new DataBase.Entities.City()
+                {
+                    Id = new Guid(),
+                    Name = "Lviv",
+                    Description = "very beautiful city"
+                };
 
-            UnitOfWork.CityRepository.Create(expectedCity);
+                unitOfWork.CityRepository.Create(expectedCity);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            var city = await UnitOfWork.CityRepository.Get(1);
+                var city = await unitOfWork.CityRepository.Get(expectedCity.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedCity.Id, city.Id);
+                Assert.Equal(expectedCity.Id, city.Id);
 
-            Assert.Equal(expectedCity.Name, city.Name);
+                Assert.Equal(expectedCity.Name, city.Name);
 
-            Assert.Equal(expectedCity.Description, city.Description);
-
+                Assert.Equal(expectedCity.Description, city.Description);
+            }
         }
 
         [Fact]
         public async Task Create()
         {
-
-            UnitOfWork = GetOption("TestCreateCity");
-
-
-            var expectedCity = new DataBase.Entities.City()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestCreateCity"))
             {
-                Id = 1,
-                Name = "Lviv",
-                Description = "very beautiful city"
-            };
 
-            UnitOfWork.CityRepository.Create(expectedCity); 
+                var expectedCity = new DataBase.Entities.City()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Lviv",
+                    Description = "very beautiful city"
+                };
 
-            UnitOfWork.Commit();
+                unitOfWork.CityRepository.Create(expectedCity);
 
-            var city = await UnitOfWork.CityRepository.Get(1);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            Assert.Equal(expectedCity.Id, city.Id);
+                var city = await unitOfWork.CityRepository.Get(expectedCity.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedCity.Name, city.Name);
+                Assert.Equal(expectedCity.Id, city.Id);
 
-            Assert.Equal(expectedCity.Description, city.Description);
+                Assert.Equal(expectedCity.Name, city.Name);
 
+                Assert.Equal(expectedCity.Description, city.Description);
+            }
         }
 
         [Fact]
         public async Task GetAll()
         {
-
-            UnitOfWork = GetOption("TestGetAllCity");
-
-
-            var cities = new List<DataBase.Entities.City>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetAllCity"))
             {
-                new DataBase.Entities.City()
+
+                var cities = new List<DataBase.Entities.City>()
                 {
-                    Id = 1,
-                    Name = "Lviv",
-                    Description = "very beautiful city"
-                },
+                    new DataBase.Entities.City()
+                    {
+                       Id = Guid.NewGuid(),
+                        Name = "Lviv",
+                        Description = "very beautiful city"
+                    },
+                    new DataBase.Entities.City()
+                    {
+                         Id = Guid.NewGuid(),
+                        Name = "Budapest",
+                        Description = "big industrial city "
+                    }
 
-                new DataBase.Entities.City()
-                {
-                     Id = 2,
-                    Name = "Budapest",
-                    Description = "big industrial city "
-                }
+                };
 
-            };
+                unitOfWork.CityRepository.Create(cities[0]);
 
-            UnitOfWork.CityRepository.Create(cities[0]);
+                unitOfWork.CityRepository.Create(cities[1]);
 
-            UnitOfWork.CityRepository.Create(cities[1]);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var test = await unitOfWork.CityRepository.GetAll().ConfigureAwait(true);
 
-            var test = await UnitOfWork.CityRepository.GetAll();
+                var length = test.ToList().Count;
 
-            List<DataBase.Entities.City> city = test.ToList();
-
-            Assert.Equal(2, city.Count());
-
+                Assert.Equal(2, length);
+            }
         }
 
         [Fact]
         public async Task Update()
         {
-
-            UnitOfWork = GetOption("TestUpdateCity");
-
-
-            var expectedCity = new DataBase.Entities.City()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestUpdateCity"))
             {
-                Id = 1,
-                Name = "Lviv",
-                Description = "very beautiful city"
-            };
 
-            UnitOfWork.CityRepository.Create(expectedCity);
+                var expectedCity = new DataBase.Entities.City()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Lviv",
+                    Description = "very beautiful city"
+                };
 
-            UnitOfWork.Commit();
+                unitOfWork.CityRepository.Create(expectedCity);
 
-            expectedCity.Id = 4;
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.CityRepository.Update(expectedCity);
+                var newUserId = Guid.NewGuid();
+                expectedCity.Id = newUserId;
 
-            var test = await UnitOfWork.CityRepository.Get(1);
+                unitOfWork.CityRepository.Update(expectedCity);
 
-            Assert.Equal(expectedCity.Id, test.Id);
+                var test = await unitOfWork.CityRepository.Get(newUserId).ConfigureAwait(true);
 
+                Assert.Equal(expectedCity.Id, test.Id);
+            }
         }
 
         [Fact]
         public async Task Delete()
         {
-
-            UnitOfWork = GetOption("TestDeleteCity");
-
-
-            var cities = new List<DataBase.Entities.City>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestDeleteCity"))
             {
-                new DataBase.Entities.City()
+
+                var cities = new List<DataBase.Entities.City>()
                 {
-                    Id = 1,
-                    Name = "Lviv",
-                    Description = "very beautiful city"
-                },
+                    new DataBase.Entities.City()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Lviv",
+                        Description = "very beautiful city"
+                    },
+                    new DataBase.Entities.City()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Budapest",
+                        Description = "big industrial city "
+                    }
+                };
 
-                new DataBase.Entities.City()
-                {
-                    Id = 2,
-                    Name = "Budapest",
-                    Description = "big industrial city "
-                }
+                unitOfWork.CityRepository.Create(cities[0]);
 
-            };
+                unitOfWork.CityRepository.Create(cities[1]);
 
-            UnitOfWork.CityRepository.Create(cities[0]);
+                unitOfWork.CityRepository.Delete(cities[0].Id);
 
-            UnitOfWork.CityRepository.Create(cities[1]);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.CityRepository.Delete(1);
+                var test = await unitOfWork.CityRepository.GetAll().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var city = test.ToList();
 
-            var test = await UnitOfWork.CityRepository.GetAll();
-
-            List<DataBase.Entities.City> city = test.ToList();
-
-            Assert.Equal(1, city.Count());
-
+                Assert.Single(city);
+            }
         }
-
     }
 }

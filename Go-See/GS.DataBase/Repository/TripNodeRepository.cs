@@ -22,7 +22,7 @@ namespace GS.DataBase.Repository
             _dbContext.TripNodes.Add(entity);
         }
 
-        public async void Delete(int id)
+        public async void Delete(Guid id)
         {
             var tripNode = await _dbContext.TripNodes.FindAsync(id);
             if (tripNode != null)
@@ -31,7 +31,7 @@ namespace GS.DataBase.Repository
             }
         }
 
-        public async Task<TripNode> Get(int id)
+        public async Task<TripNode> Get(Guid id)
         {
             return await _dbContext.TripNodes.FindAsync(id);
         }
@@ -46,4 +46,10 @@ namespace GS.DataBase.Repository
             _dbContext.TripNodes.Update(entity);
         }
     }
+
+
+    
+
+
+
 }

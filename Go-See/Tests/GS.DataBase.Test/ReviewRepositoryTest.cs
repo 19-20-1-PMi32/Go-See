@@ -14,202 +14,177 @@ namespace GS.DataBaseTest
 
         public ReviewRepositoryTest() { }
 
-        public UnitOfWork UnitOfWork { get; set; }
-
-        public UnitOfWork GetOption(string name)
-        {
-            var options = new DbContextOptionsBuilder<GSDbContext>()
-                .UseInMemoryDatabase(databaseName: name)
-                .Options;
-
-            var context = new GSDbContext(options);
-
-            UnitOfWork = new UnitOfWork(context);
-
-            return UnitOfWork;
-
-        }
-
         [Fact]
         public async Task Get()
         {
-
-            UnitOfWork = GetOption("TestGetReview");
-
-            var expectedReview = new DataBase.Entities.Review()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetReview"))
             {
-                Id = 1,
-                UserId = "Jack",
-                PlaceId = 1,
-                Rating = 4,
-                Text = "This is picturesque cathedral, I love it"
-            };
+                var expectedReview = new DataBase.Entities.Review()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = Guid.NewGuid(),
+                    PlaceId = Guid.NewGuid(),
+                    Rating = 4,
+                    Text = "This is picturesque cathedral, I love it"
+                };
 
-            UnitOfWork.ReviewRepository.Create(expectedReview);
+                unitOfWork.ReviewRepository.Create(expectedReview);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            var review = await UnitOfWork.ReviewRepository.Get(1);
+                var review = await unitOfWork.ReviewRepository.Get(expectedReview.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedReview.Id, review.Id);
+                Assert.Equal(expectedReview.Id, review.Id);
 
-            Assert.Equal(expectedReview.UserId, review.UserId);
+                Assert.Equal(expectedReview.UserId, review.UserId);
 
-            Assert.Equal(expectedReview.PlaceId, review.PlaceId);
+                Assert.Equal(expectedReview.PlaceId, review.PlaceId);
 
-            Assert.Equal(expectedReview.Rating, review.Rating);
+                Assert.Equal(expectedReview.Rating, review.Rating);
 
-            Assert.Equal(expectedReview.Text, review.Text);
-
+                Assert.Equal(expectedReview.Text, review.Text);
+            }
         }
 
         [Fact]
         public async Task Create()
         {
-
-            UnitOfWork = GetOption("TestGetReview");
-
-            var expectedReview = new DataBase.Entities.Review()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetReview"))
             {
-                Id = 1,
-                UserId = "Jack",
-                PlaceId = 1,
-                Rating = 4,
-                Text = "This is picturesque cathedral, I love it"
-            };
+                var expectedReview = new DataBase.Entities.Review()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = Guid.NewGuid(),
+                    PlaceId = Guid.NewGuid(),
+                    Rating = 4,
+                    Text = "This is picturesque cathedral, I love it"
+                };
 
-            UnitOfWork.ReviewRepository.Create(expectedReview);
+                unitOfWork.ReviewRepository.Create(expectedReview);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            var review = await UnitOfWork.ReviewRepository.Get(1);
+                var review = await unitOfWork.ReviewRepository.Get(expectedReview.Id).ConfigureAwait(true);
 
-            Assert.Equal(expectedReview.Id, review.Id);
+                Assert.Equal(expectedReview.Id, review.Id);
 
-            Assert.Equal(expectedReview.UserId, review.UserId);
+                Assert.Equal(expectedReview.UserId, review.UserId);
 
-            Assert.Equal(expectedReview.PlaceId, review.PlaceId);
+                Assert.Equal(expectedReview.PlaceId, review.PlaceId);
 
-            Assert.Equal(expectedReview.Rating, review.Rating);
+                Assert.Equal(expectedReview.Rating, review.Rating);
 
-            Assert.Equal(expectedReview.Text, review.Text);
-
+                Assert.Equal(expectedReview.Text, review.Text);
+            }
         }
 
         [Fact]
         public async Task GetAll()
         {
-
-            UnitOfWork = GetOption("TestGetAllReview");
-
-
-            var reviews = new List<DataBase.Entities.Review>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestGetAllReview"))
             {
-                new DataBase.Entities.Review()
+                var reviews = new List<DataBase.Entities.Review>()
                 {
-                    Id = 1,
-                    UserId = "Jack",
-                    PlaceId = 1,
-                    Rating = 4,
-                    Text = "This is picturesque cathedral, I love it"
-                },
+                    new DataBase.Entities.Review()
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = Guid.NewGuid(),
+                        PlaceId = Guid.NewGuid(),
+                        Rating = 4,
+                        Text = "This is picturesque cathedral, I love it"
+                    },
+                    new DataBase.Entities.Review()
+                    {
+                       Id = Guid.NewGuid(),
+                       UserId = Guid.NewGuid(),
+                       PlaceId = Guid.NewGuid(),
+                       Rating = 5,
+                       Text = "Amazing place!"
+                    }
+                };
 
-                new DataBase.Entities.Review()
-                {
-                    Id = 2,
-                    UserId = "Leo",
-                    PlaceId = 2,
-                    Rating = 5,
-                    Text = "Amazing place!"
-                }
-            };
+                unitOfWork.ReviewRepository.Create(reviews[0]);
 
-            UnitOfWork.ReviewRepository.Create(reviews[0]);
+                unitOfWork.ReviewRepository.Create(reviews[1]);
 
-            UnitOfWork.ReviewRepository.Create(reviews[1]);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var test = await unitOfWork.ReviewRepository.GetAll().ConfigureAwait(true);
 
-            var test = await UnitOfWork.ReviewRepository.GetAll();
+                var length = test.ToList().Count;
 
-            List<DataBase.Entities.Review> review = test.ToList();
-
-            Assert.Equal(2, review.Count());
-
+                Assert.Equal(2, length);
+            }
         }
 
         [Fact]
         public async Task Update()
         {
-
-            UnitOfWork = GetOption("TestUpdateReview");
-
-
-            var expectedReview = new DataBase.Entities.Review()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestUpdateReview"))
             {
-                Id = 1,
-                UserId = "Jack",
-                PlaceId = 1,
-                Rating = 4,
-                Text = "This is picturesque cathedral, I love it"
-            };
+                var expectedReview = new DataBase.Entities.Review()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = Guid.NewGuid(),
+                    PlaceId = Guid.NewGuid(),
+                    Rating = 4,
+                    Text = "This is picturesque cathedral, I love it"
+                };
 
-            UnitOfWork.ReviewRepository.Create(expectedReview);
+                unitOfWork.ReviewRepository.Create(expectedReview);
 
-            UnitOfWork.Commit();
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            expectedReview.Id = 4;
+                var newReviewId = Guid.NewGuid();
+                expectedReview.Id = newReviewId;
 
-            UnitOfWork.ReviewRepository.Update(expectedReview);
+                unitOfWork.ReviewRepository.Update(expectedReview);
 
-            var test = await UnitOfWork.ReviewRepository.Get(1);
+                var test = await unitOfWork.ReviewRepository.Get(newReviewId).ConfigureAwait(true);
 
-            Assert.Equal(expectedReview.Id, test.Id);
-
+                Assert.Equal(expectedReview.Id, test.Id);
+            }
         }
 
         [Fact]
         public async Task Delete()
         {
-
-            UnitOfWork = GetOption("TestDeleteReview");
-
-
-            var reviews = new List<DataBase.Entities.Review>()
+            using (var unitOfWork = Utils.GetUnitOfWork("TestDeleteReview"))
             {
-                new DataBase.Entities.Review()
+                var reviews = new List<DataBase.Entities.Review>()
                 {
-                    Id = 1,
-                    UserId = "Jack",
-                    PlaceId = 1,
-                    Rating = 4,
-                    Text = "This is picturesque cathedral, I love it"
-                },
+                    new DataBase.Entities.Review()
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = Guid.NewGuid(),
+                        PlaceId = Guid.NewGuid(),
+                        Rating = 4,
+                        Text = "This is picturesque cathedral, I love it"
+                    },
+                    new DataBase.Entities.Review()
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = Guid.NewGuid(),
+                        PlaceId = Guid.NewGuid(),
+                        Rating = 5,
+                        Text = "Amazing place!"
+                    }
+                };
 
-                new DataBase.Entities.Review()
-                {
-                    Id = 2,
-                    UserId = "Leo",
-                    PlaceId = 2,
-                    Rating = 5,
-                    Text = "Amazing place!"
-                }
-            };
+                unitOfWork.ReviewRepository.Create(reviews[0]);
 
-            UnitOfWork.ReviewRepository.Create(reviews[0]);
+                unitOfWork.ReviewRepository.Create(reviews[1]);
 
-            UnitOfWork.ReviewRepository.Create(reviews[1]);
+                unitOfWork.ReviewRepository.Delete(reviews[0].Id);
 
-            UnitOfWork.ReviewRepository.Delete(1);
+                await unitOfWork.Commit().ConfigureAwait(true);
 
-            UnitOfWork.Commit();
+                var test = await unitOfWork.ReviewRepository.GetAll().ConfigureAwait(true);
 
-            var test = await UnitOfWork.ReviewRepository.GetAll();
+                List<DataBase.Entities.Review> review = test.ToList();
 
-            List<DataBase.Entities.Review> review = test.ToList();
-
-            Assert.Equal(1, review.Count());
-
+                Assert.Single(review);
+            }
         }
 
     }

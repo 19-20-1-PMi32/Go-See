@@ -1,6 +1,7 @@
 ﻿using GS.DataBase.Entities;
 using GS.DataBase.Repository.Contracts;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace GS.DataBase.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<Place> Get(int id)
+        public async Task<Place> Get(Guid id)
         {
             return await _dbContext.Places.FindAsync(id);
         }
@@ -35,7 +36,7 @@ namespace GS.DataBase.Repository
             _dbContext.Places.Update(entity);
         }
 
-        public async void Delete(int id)
+        public async void Delete(Guid id)
         {
             var place = await _dbContext.Places.FindAsync(id);
             if (place != null)

@@ -22,7 +22,7 @@ namespace GS.DataBase.Repository
             _dbContext.Trips.Add(entity);
         }
 
-        public async void DeleteAsync(int id)
+        public async void Delete(Guid id)
         {
             var trip = await _dbContext.Trips.FindAsync(id);
             if (trip != null)
@@ -31,7 +31,7 @@ namespace GS.DataBase.Repository
             }
         }
 
-        public async Task<Trip> Get(int id)
+        public async Task<Trip> Get(Guid id)
         {
             return await _dbContext.Trips.FindAsync(id);
         }

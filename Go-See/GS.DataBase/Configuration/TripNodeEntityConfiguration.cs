@@ -17,8 +17,7 @@ namespace GS.DataBase.Configuration
                 .HasKey(x => x.Id);
 
             builder
-                .Property(x => x.Id)
-                .ValueGeneratedOnAdd();
+                .Property(x => x.Id);
 
             builder
                 .Property(x => x.TripId)

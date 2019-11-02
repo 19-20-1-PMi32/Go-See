@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GS.DataBase.Entities;
@@ -8,12 +9,12 @@ namespace GS.DataBase.Repository.Contracts
     {
         Task<IEnumerable<City>> GetAll();
         
-        Task<City> Get(int id);
+        Task<City> Get(Guid id);
 
         void Update(City entity);
 
         void Create(City entity);
 
-        void Delete(int id);
+        void Delete(Guid id);
     }
 }
