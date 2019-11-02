@@ -39,7 +39,7 @@ namespace GS.DataBaseTest
             var expectedReview = new DataBase.Entities.Review()
             {
                 Id = 1,
-                UserId = "Jack",
+                UserId = Guid.NewGuid(),
                 PlaceId = 1,
                 Rating = 4,
                 Text = "This is picturesque cathedral, I love it"
@@ -72,7 +72,7 @@ namespace GS.DataBaseTest
             var expectedReview = new DataBase.Entities.Review()
             {
                 Id = 1,
-                UserId = "Jack",
+                UserId = Guid.NewGuid(),
                 PlaceId = 1,
                 Rating = 4,
                 Text = "This is picturesque cathedral, I love it"
@@ -108,7 +108,7 @@ namespace GS.DataBaseTest
                 new DataBase.Entities.Review()
                 {
                     Id = 1,
-                    UserId = "Jack",
+                    UserId = Guid.NewGuid(),
                     PlaceId = 1,
                     Rating = 4,
                     Text = "This is picturesque cathedral, I love it"
@@ -117,7 +117,7 @@ namespace GS.DataBaseTest
                 new DataBase.Entities.Review()
                 {
                     Id = 2,
-                    UserId = "Leo",
+                    UserId = Guid.NewGuid(),
                     PlaceId = 2,
                     Rating = 5,
                     Text = "Amazing place!"
@@ -148,7 +148,7 @@ namespace GS.DataBaseTest
             var expectedReview = new DataBase.Entities.Review()
             {
                 Id = 1,
-                UserId = "Jack",
+                UserId = Guid.NewGuid(),
                 PlaceId = 1,
                 Rating = 4,
                 Text = "This is picturesque cathedral, I love it"
@@ -180,7 +180,7 @@ namespace GS.DataBaseTest
                 new DataBase.Entities.Review()
                 {
                     Id = 1,
-                    UserId = "Jack",
+                    UserId = Guid.NewGuid(),
                     PlaceId = 1,
                     Rating = 4,
                     Text = "This is picturesque cathedral, I love it"
@@ -189,7 +189,7 @@ namespace GS.DataBaseTest
                 new DataBase.Entities.Review()
                 {
                     Id = 2,
-                    UserId = "Leo",
+                    UserId = Guid.NewGuid(),
                     PlaceId = 2,
                     Rating = 5,
                     Text = "Amazing place!"

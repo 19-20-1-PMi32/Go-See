@@ -46,4 +46,10 @@ namespace GS.DataBase.Repository
             _dbContext.TripNodes.Update(entity);
         }
     }
+
+
+    
+
+
+
 }
