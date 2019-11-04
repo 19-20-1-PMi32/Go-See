@@ -10,7 +10,7 @@ namespace GS.BusinessLogic
 {
     public class UserService : IUserService
     {
-        private UnitOfWork unitOfWork;
+        private readonly UnitOfWork unitOfWork;
 
         public UserService(IUnitOfWork unitOfWork)
         {

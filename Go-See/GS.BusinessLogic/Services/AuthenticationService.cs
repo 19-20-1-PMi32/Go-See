@@ -10,48 +10,54 @@ namespace GS.BusinessLogic
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private UnitOfWork unitOfWork;
+        private readonly UnitOfWork unitOfWork;
 
         public AuthenticationService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork as UnitOfWork;
         }
 
-        public async Task<Guid> CreateUser(GS.Core.DTO.User userParam)
+        public async Task<Guid> CreateUser(Core.DTO.User userParam)
         {
-            Guid id = Guid.NewGuid();
+            var isExist = (await unitOfWork.UserRepository.GetAllAsync())
+                .Any(x => x.Login == userParam.Login);
 
-            var user = new GS.DataBase.Entities.User
+            if (!isExist)
             {
-                Id = id,
-                Login = userParam.Login,
-                FirstName = userParam.FirstName,
-                LastName = userParam.LastName,
-                Email = userParam.Email,
-                Phone = userParam.Phone,
-                PasswordHash = userParam.PasswordHash
-            };
+                var id = Guid.NewGuid();
 
-            unitOfWork.UserRepository.Create(user);
-            await unitOfWork.Commit();
+                var user = new GS.DataBase.Entities.User
+                {
+                    Id = id,
+                    Login = userParam.Login,
+                    FirstName = userParam.FirstName,
+                    LastName = userParam.LastName,
+                    Email = userParam.Email,
+                    Phone = userParam.Phone,
+                    PasswordHash = userParam.PasswordHash
+                };
 
-            return id;
+                unitOfWork.UserRepository.Create(user);
+                await unitOfWork.Commit();
+
+                return id;
+            }
+
+            throw new ArgumentException("User already exist");
         }
 
         public async Task<Guid> LogIn(string username, string password)
         {
-            IEnumerable<GS.DataBase.Entities.User> users = await unitOfWork.UserRepository.GetAllAsync();
+            var users = await unitOfWork.UserRepository.GetAllAsync();
 
-            GS.DataBase.Entities.User user = users.Where(entry => entry.Login == username).First();
+            var user = users.Where(entry => entry.Login == username).FirstOrDefault();
 
-            if (user.PasswordHash == password)
+            if (user != null && user.PasswordHash == password)
             {
                 return user.Id;
             }
-            else
-            {
-                throw new Exception("Wrong password or login");
-            }
+
+            throw new ArgumentException("Wrong password or login");
         }
     }
 }
