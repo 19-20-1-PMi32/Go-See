@@ -10,11 +10,11 @@ namespace GS.BusinessLogic
 {
     public class UserService : IUserService
     {
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
         public UserService(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork as UnitOfWork;
+            this.unitOfWork = unitOfWork;
         }
 
         public async Task<User> GetUser(Guid userId)

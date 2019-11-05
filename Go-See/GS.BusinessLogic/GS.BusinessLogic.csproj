@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GS.Core\GS.Core.csproj" />
     <ProjectReference Include="..\GS.DataBase\GS.DataBase.csproj" />
   </ItemGroup>

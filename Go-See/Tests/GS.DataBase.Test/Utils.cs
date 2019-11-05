@@ -8,7 +8,7 @@ namespace GS.DataBaseTest
 {
     public static class Utils
     {
-        public static UnitOfWork GetUnitOfWork(string name)
+        public static IUnitOfWork GetUnitOfWork(string name)
         {
             var options = new DbContextOptionsBuilder<GSDbContext>()
                 .UseInMemoryDatabase(databaseName: name)
@@ -17,7 +17,6 @@ namespace GS.DataBaseTest
             var context = new GSDbContext(options, false);
 
             return new UnitOfWork(context);
-
         }
     }
 }

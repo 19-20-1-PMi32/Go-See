@@ -9,7 +9,7 @@ namespace GS.BusinessLogic.Test
 {
     public abstract class TestBase
     {
-        protected readonly UnitOfWork _unitOfWork;
+        protected readonly IUnitOfWork _unitOfWork;
 
         protected abstract string ContextDBName { get; }
 

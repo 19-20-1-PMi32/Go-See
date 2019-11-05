@@ -10,11 +10,11 @@ namespace GS.BusinessLogic
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
         public AuthenticationService(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork as UnitOfWork;
+            this.unitOfWork = unitOfWork;
         }
 
         public async Task<Guid> CreateUser(Core.DTO.User userParam)
@@ -26,7 +26,7 @@ namespace GS.BusinessLogic
             {
                 var id = Guid.NewGuid();
 
-                var user = new GS.DataBase.Entities.User
+                var user = new DataBase.Entities.User
                 {
                     Id = id,
                     Login = userParam.Login,

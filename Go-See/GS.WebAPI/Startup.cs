@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using GS;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,14 +30,20 @@ namespace GS.WebAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors(options =>
-                 {
-                     options.AddPolicy("Default", policy =>
-                          {
-                              policy.AllowAnyOrigin()
-                                  .AllowAnyHeader()
-                                  .AllowAnyMethod();
-                          });
-                 });
+            {
+                options.AddPolicy("Default", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+
+            builder.RegisterModule<BusinessLogic.DependencyModule>();
+            builder.RegisterModule<DataBase.DependencyModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

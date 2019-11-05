@@ -16,7 +16,7 @@ namespace GS.WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         private IUserService userService;
         private IAuthenticationService authenticationService;
 
