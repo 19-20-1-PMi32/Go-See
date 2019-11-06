@@ -44,13 +44,11 @@ namespace GS.WebAPI
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<GSDbContext>(options => options.UseSqlServer(connectionString));
-            services.Configure<AppSetting>(configuration.GetSection("AppSettings"));
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
 
             builder.RegisterModule<BusinessLogic.DependencyModule>();
-            builder.RegisterModule<DataBase.DependencyModule>();
 
             AutofacContainer = builder.Build();
 

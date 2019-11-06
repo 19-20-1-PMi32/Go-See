@@ -9,6 +9,8 @@ namespace GS.BusinessLogic
         {
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
             builder.RegisterType<UserService>().As<IUserService>();
+
+            builder.RegisterModule<DataBase.DependencyModule>();
         }
     }
 }
