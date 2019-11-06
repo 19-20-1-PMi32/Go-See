@@ -15,6 +15,6 @@ namespace GS.DataBase.Repository.Contracts
 
         void Create(City entity);
 
-        void Delete(Guid id);
+        Task Delete(Guid id);
     }
 }

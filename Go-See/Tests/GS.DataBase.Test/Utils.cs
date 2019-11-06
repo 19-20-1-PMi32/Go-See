@@ -14,7 +14,7 @@ namespace GS.DataBaseTest
                 .UseInMemoryDatabase(databaseName: name)
                 .Options;
 
-            var context = new GSDbContext(options, false);
+            var context = new GSDbContext(options);
 
             return new UnitOfWork(context);
         }

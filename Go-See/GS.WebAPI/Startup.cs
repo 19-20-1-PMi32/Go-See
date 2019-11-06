@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using GS;
+using GS.DataBase;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using System;
 
 namespace GS.WebAPI
 {
@@ -25,8 +19,10 @@ namespace GS.WebAPI
 
         public IConfiguration Configuration { get; }
 
+        public ILifetimeScope AutofacContainer { get; private set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors(options =>
@@ -39,11 +35,17 @@ namespace GS.WebAPI
                 });
             });
 
+            services.AddDbContext<GSDbContext>(,ServiceLifetime.Scoped,ServiceLifetime.Scoped);
+
             var builder = new ContainerBuilder();
             builder.Populate(services);
 
             builder.RegisterModule<BusinessLogic.DependencyModule>();
             builder.RegisterModule<DataBase.DependencyModule>();
+
+            AutofacContainer = builder.Build();
+
+            return new AutofacServiceProvider(AutofacContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

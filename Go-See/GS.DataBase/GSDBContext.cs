@@ -10,9 +10,9 @@ namespace GS.DataBase
 {
     public class GSDbContext : DbContext
     {
-        private bool _isSeedOn { get; set; }
+        private readonly bool _isSeedOn;
 
-        public GSDbContext(DbContextOptions options, bool IsSeedOn) : base(options) { _isSeedOn = IsSeedOn; }
+        public GSDbContext(DbContextOptions options, bool IsSeedOn = false) : base(options) { _isSeedOn = IsSeedOn; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

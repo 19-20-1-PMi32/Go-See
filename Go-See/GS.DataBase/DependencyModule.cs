@@ -8,14 +8,14 @@ namespace GS.DataBase
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ICityRepository>().As<CityRepository>();
-            builder.RegisterType<IPlaceRepository>().As<PlaceRepository>();
-            builder.RegisterType<IReviewRepository>().As<ReviewRepository>();
-            builder.RegisterType<ITripNodeRepository>().As<TripNodeRepository>();
-            builder.RegisterType<ITripRepository>().As<TripRepository>();
-            builder.RegisterType<IUserRepository>().As<UserRepository>();
+            builder.RegisterType<CityRepository>().As<ICityRepository>();
+            builder.RegisterType<PlaceRepository>().As<IPlaceRepository>();
+            builder.RegisterType<ReviewRepository>().As<IReviewRepository>();
+            builder.RegisterType<TripNodeRepository>().As<ITripNodeRepository>();
+            builder.RegisterType<TripRepository>().As<ITripRepository>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
 
-            builder.RegisterType<IUnitOfWork>().As<UnitOfWork>();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
         }
     }
 }
