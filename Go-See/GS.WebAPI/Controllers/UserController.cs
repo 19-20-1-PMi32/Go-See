@@ -13,14 +13,11 @@ namespace GS.WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        // private readonly IUnitOfWork unitOfWork;
         private readonly IUserService _userService;
         private readonly IAuthenticationService _authenticationService;
 
         public UserController(IUserService userService, IAuthenticationService authenticationService)
         {
-            //var contextFactory = new GSDbContextFactory();
-            //unitOfWork = new UnitOfWork(contextFactory.CreateDbContext(new string[] { }));
             _userService = userService;
             _authenticationService = authenticationService;
         }

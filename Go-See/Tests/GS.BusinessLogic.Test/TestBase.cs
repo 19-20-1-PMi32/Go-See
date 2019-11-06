@@ -19,7 +19,7 @@ namespace GS.BusinessLogic.Test
                 .UseInMemoryDatabase(databaseName: ContextDBName)
                 .Options;
 
-            var context = new GSDbContext(options, false);
+            var context = new GSDbContext(options);
 
             _unitOfWork = new UnitOfWork(context);
         }

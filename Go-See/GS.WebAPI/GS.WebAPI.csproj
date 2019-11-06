@@ -20,9 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utils\" />
     <Folder Include="Resources\" />
     <Folder Include="Parameters\Validation\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 
   <ItemGroup>

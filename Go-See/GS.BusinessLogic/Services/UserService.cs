@@ -10,29 +10,36 @@ namespace GS.BusinessLogic
 {
     public class UserService : IUserService
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public UserService(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<User> GetUser(Guid userId)
         {
-            var userEntity = await unitOfWork.UserRepository.Get(userId);
+            var userEntity = await _unitOfWork.UserRepository.Get(userId);
 
-            var user = new User
+            if (userEntity != null)
             {
-                Id = userEntity.Id,
-                FirstName = userEntity.FirstName,
-                LastName = userEntity.LastName,
-                Email = userEntity.Email,
-                Phone = userEntity.Phone,
-                Login = userEntity.Login,
-                PasswordHash = userEntity.PasswordHash
-            };
+                var user = new User
+                {
+                    Id = userEntity.Id,
+                    FirstName = userEntity.FirstName,
+                    LastName = userEntity.LastName,
+                    Email = userEntity.Email,
+                    Phone = userEntity.Phone,
+                    Login = userEntity.Login,
+                    PasswordHash = userEntity.PasswordHash
+                };
 
-            return user;
+                return user;
+            }
+            else
+            {
+                throw new ArgumentException("Can not find user with such id");
+            }
         }
     }
 }

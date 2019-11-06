@@ -4,9 +4,11 @@ using GS.DataBase;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.IO;
 
 namespace GS.WebAPI
 {
@@ -35,7 +37,14 @@ namespace GS.WebAPI
                 });
             });
 
-            services.AddDbContext<GSDbContext>(,ServiceLifetime.Scoped,ServiceLifetime.Scoped);
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<GSDbContext>(options => options.UseSqlServer(connectionString));
+            services.Configure<AppSetting>(configuration.GetSection("AppSettings"));
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
