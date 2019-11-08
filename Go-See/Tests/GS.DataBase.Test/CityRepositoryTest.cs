@@ -157,7 +157,7 @@ namespace GS.DataBaseTest
 
                 unitOfWork.CityRepository.Create(cities[1]);
 
-                unitOfWork.CityRepository.Delete(cities[0].Id);
+                await unitOfWork.CityRepository.Delete(cities[0].Id);
 
                 await unitOfWork.Commit().ConfigureAwait(true);
 

@@ -36,7 +36,7 @@ namespace GS.DataBase.Repository
             _dbContext.Cities.Update(entity);
         }
 
-        public async void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
             var city = await _dbContext.Cities.FindAsync(id);
             if (city != null)

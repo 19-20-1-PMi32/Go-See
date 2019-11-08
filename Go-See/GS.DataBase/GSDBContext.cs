@@ -10,9 +10,7 @@ namespace GS.DataBase
 {
     public class GSDbContext : DbContext
     {
-        private bool _isSeedOn { get; set; }
-
-        public GSDbContext(DbContextOptions options, bool IsSeedOn) : base(options) { _isSeedOn = IsSeedOn; }
+        public GSDbContext(DbContextOptions<GSDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,16 +21,13 @@ namespace GS.DataBase
             modelBuilder.ApplyConfiguration(new ReviewEntityConfiguration());
             modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
 
-            if (_isSeedOn)
-            {
-                modelBuilder.Entity<City>().HasData(SeedDataProvider.GetCities());
-                modelBuilder.Entity<Place>().HasData(SeedDataProvider.GetPlace());
-                modelBuilder.Entity<Review>().HasData(SeedDataProvider.GetReviews());
-                modelBuilder.Entity<Trip>().HasData(SeedDataProvider.GetTrips());
-                modelBuilder.Entity<TripNode>().HasData(SeedDataProvider.GetTripNodes());
-                modelBuilder.Entity<User>().HasData(SeedDataProvider.GetUsers());
-            }
-
+            //Uncomment when it is needed to fill db with fake data
+            //modelBuilder.Entity<City>().HasData(SeedDataProvider.GetCities());
+            //modelBuilder.Entity<Place>().HasData(SeedDataProvider.GetPlace());
+            //modelBuilder.Entity<Review>().HasData(SeedDataProvider.GetReviews());
+            //modelBuilder.Entity<Trip>().HasData(SeedDataProvider.GetTrips());
+            //modelBuilder.Entity<TripNode>().HasData(SeedDataProvider.GetTripNodes());
+            //modelBuilder.Entity<User>().HasData(SeedDataProvider.GetUsers());
         }
 
         public DbSet<City> Cities { get; set; }

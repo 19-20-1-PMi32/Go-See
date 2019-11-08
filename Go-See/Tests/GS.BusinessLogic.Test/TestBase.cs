@@ -9,7 +9,7 @@ namespace GS.BusinessLogic.Test
 {
     public abstract class TestBase
     {
-        protected readonly UnitOfWork _unitOfWork;
+        protected readonly IUnitOfWork _unitOfWork;
 
         protected abstract string ContextDBName { get; }
 
@@ -19,7 +19,7 @@ namespace GS.BusinessLogic.Test
                 .UseInMemoryDatabase(databaseName: ContextDBName)
                 .Options;
 
-            var context = new GSDbContext(options, false);
+            var context = new GSDbContext(options);
 
             _unitOfWork = new UnitOfWork(context);
         }

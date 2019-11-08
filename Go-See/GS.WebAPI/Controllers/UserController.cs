@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using GS.BusinessLogic;
 using GS.BusinessLogic.Contracts;
 using GS.Core.DTO;
 using GS.DataBase;
 using GS.WebAPI.Parameters;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GS.WebAPI.Controllers
@@ -16,23 +13,20 @@ namespace GS.WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUnitOfWork unitOfWork;
-        private IUserService userService;
-        private IAuthenticationService authenticationService;
+        private readonly IUserService _userService;
+        private readonly IAuthenticationService _authenticationService;
 
-        public UserController()
+        public UserController(IUserService userService, IAuthenticationService authenticationService)
         {
-            var contextFactory = new GSDbContextFactory();
-            unitOfWork = new UnitOfWork(contextFactory.CreateDbContext(new string[] { }));
-            userService = new UserService(unitOfWork);
-            authenticationService = new AuthenticationService(unitOfWork);
+            _userService = userService;
+            _authenticationService = authenticationService;
         }
 
         // GET api/user/00000000-0000-0000-0000-000000000000
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            var user = await userService.GetUser(id);
+            var user = await _userService.GetUser(id);
             return Ok(user);
         }
 
@@ -49,7 +43,7 @@ namespace GS.WebAPI.Controllers
                 Login = value.Login,
                 PasswordHash = value.PasswordHash
             };
-            var userId = await authenticationService.CreateUser(newUser);
+            var userId = await _authenticationService.CreateUser(newUser);
             return Ok(userId);
         }
 
@@ -57,7 +51,7 @@ namespace GS.WebAPI.Controllers
         [ProducesResponseType(201)]
         public async Task<IActionResult> LogIn([FromBody]LogInParam value)
         {
-            var userId = await authenticationService.LogIn(value.Login, value.Password);
+            var userId = await _authenticationService.LogIn(value.Login, value.Password);
             return Ok(userId);
         }
     }

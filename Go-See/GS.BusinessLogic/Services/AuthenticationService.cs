@@ -10,23 +10,23 @@ namespace GS.BusinessLogic
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public AuthenticationService(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork as UnitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Guid> CreateUser(Core.DTO.User userParam)
         {
-            var isExist = (await unitOfWork.UserRepository.GetAllAsync())
+            var isExist = (await _unitOfWork.UserRepository.GetAllAsync())
                 .Any(x => x.Login == userParam.Login);
 
             if (!isExist)
             {
                 var id = Guid.NewGuid();
 
-                var user = new GS.DataBase.Entities.User
+                var user = new DataBase.Entities.User
                 {
                     Id = id,
                     Login = userParam.Login,
@@ -37,8 +37,8 @@ namespace GS.BusinessLogic
                     PasswordHash = userParam.PasswordHash
                 };
 
-                unitOfWork.UserRepository.Create(user);
-                await unitOfWork.Commit();
+                _unitOfWork.UserRepository.Create(user);
+                await _unitOfWork.Commit();
 
                 return id;
             }
@@ -48,7 +48,7 @@ namespace GS.BusinessLogic
 
         public async Task<Guid> LogIn(string username, string password)
         {
-            var users = await unitOfWork.UserRepository.GetAllAsync();
+            var users = await _unitOfWork.UserRepository.GetAllAsync();
 
             var user = users.Where(entry => entry.Login == username).FirstOrDefault();
 
