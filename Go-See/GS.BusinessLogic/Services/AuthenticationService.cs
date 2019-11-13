@@ -5,16 +5,19 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using GS.DataBase;
+using AutoMapper;
 
 namespace GS.BusinessLogic
 {
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public AuthenticationService(IUnitOfWork unitOfWork)
+        public AuthenticationService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<Guid> CreateUser(Core.DTO.User userParam)
@@ -25,17 +28,8 @@ namespace GS.BusinessLogic
             if (!isExist)
             {
                 var id = Guid.NewGuid();
-
-                var user = new DataBase.Entities.User
-                {
-                    Id = id,
-                    Login = userParam.Login,
-                    FirstName = userParam.FirstName,
-                    LastName = userParam.LastName,
-                    Email = userParam.Email,
-                    Phone = userParam.Phone,
-                    PasswordHash = userParam.PasswordHash
-                };
+                var user = _mapper.Map<DataBase.Entities.User>(userParam);
+                user.Id = id;
 
                 _unitOfWork.UserRepository.Create(user);
                 await _unitOfWork.Commit();

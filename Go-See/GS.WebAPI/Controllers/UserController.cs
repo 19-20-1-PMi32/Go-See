@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using GS.BusinessLogic;
 using GS.BusinessLogic.Contracts;
 using GS.Core.DTO;
@@ -15,11 +16,13 @@ namespace GS.WebAPI.Controllers
     {
         private readonly IUserService _userService;
         private readonly IAuthenticationService _authenticationService;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserService userService, IAuthenticationService authenticationService)
+        public UserController(IUserService userService, IAuthenticationService authenticationService, IMapper mapper)
         {
             _userService = userService;
             _authenticationService = authenticationService;
+            _mapper = mapper;
         }
 
         // GET api/user/00000000-0000-0000-0000-000000000000
@@ -34,15 +37,7 @@ namespace GS.WebAPI.Controllers
         [ProducesResponseType(201)]
         public async Task<IActionResult> Create([FromBody]UserParam value)
         {
-            var newUser = new User()
-            {
-                FirstName = value.FirstName,
-                LastName = value.LastName,
-                Phone = value.Phone,
-                Email = value.Email,
-                Login = value.Login,
-                PasswordHash = value.PasswordHash
-            };
+            var newUser = _mapper.Map<User>(value);
             var userId = await _authenticationService.CreateUser(newUser);
             return Ok(userId);
         }
