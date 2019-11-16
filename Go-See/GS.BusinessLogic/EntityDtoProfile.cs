@@ -15,6 +15,13 @@ namespace GS.BusinessLogic
             CreateMap<DataBase.Entities.Trip, Core.DTO.Trip>();
             CreateMap<DataBase.Entities.TripNode, Core.DTO.TripNode>();
             CreateMap<DataBase.Entities.User, Core.DTO.User>();
+
+            CreateMap<Core.DTO.City, DataBase.Entities.City>();
+            CreateMap<Core.DTO.Place, DataBase.Entities.Place>();
+            CreateMap<Core.DTO.Review, DataBase.Entities.Review>();
+            CreateMap<Core.DTO.Trip, DataBase.Entities.Trip>();
+            CreateMap<Core.DTO.TripNode, DataBase.Entities.TripNode>();
+            CreateMap<Core.DTO.User, DataBase.Entities.User>();
         }
     }
 }

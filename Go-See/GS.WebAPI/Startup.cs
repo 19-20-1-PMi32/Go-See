@@ -47,7 +47,7 @@ namespace GS.WebAPI
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<GSDbContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddAutoMapper(typeof(ParametersDtoProfile), typeof(EntityDtoProfile));
+            services.AddAutoMapper(typeof(ParametersDtoProfile).Assembly, typeof(EntityDtoProfile).Assembly);
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
