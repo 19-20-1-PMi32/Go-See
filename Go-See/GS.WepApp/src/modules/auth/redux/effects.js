@@ -1,6 +1,5 @@
-import { put, takeEvery, select } from "redux-saga/effects";
+import { put, takeEvery } from "redux-saga/effects";
 import { push } from "connected-react-router";
-import { getFormValues } from "redux-form";
 import hash from "object-hash";
 
 import ActionTypes from "./types";
@@ -11,13 +10,13 @@ export function* cancel() {
   yield put(push("../"));
 }
 
-export function* createAccount() {
-  const form = "create-account-form";
-  const values = yield select(getFormValues(form));
+export function* createAccount(action) {
+  const values = action.payload;
+
   try {
-    if (values.password === values.confirmPassword) {
+    if (values.password === values.confirm) {
       const passwordHash = hash({
-        login: values.login,
+        login: values.username,
         passsword: values.password
       });
 
@@ -26,7 +25,7 @@ export function* createAccount() {
         lastName: values.lastName,
         email: values.email,
         phone: values.phone,
-        login: values.login,
+        login: values.username,
         passwordHash
       };
 
@@ -41,17 +40,16 @@ export function* createAccount() {
   }
 }
 
-export function* logIn() {
-  const form = "log-in-form";
-  const values = yield select(getFormValues(form));
+export function* logIn(action) {
+  const values = action.payload;
 
   const passwordHash = hash({
-    login: values.login,
+    login: values.username,
     passsword: values.password
   });
 
   try {
-    const api = AuthAPI.logIn(values.login, passwordHash);
+    const api = AuthAPI.logIn(values.username, passwordHash);
     const userId = yield api;
 
     yield put(User.Actions.setUID(userId));
@@ -61,11 +59,8 @@ export function* logIn() {
   }
 }
 
-// export function* restorePassword(action) {}
-
 export default function* root() {
   yield takeEvery(ActionTypes.CREATE_ACCOUNT, createAccount);
-  // yield takeEvery(ActionTypes.RESTORE_PASSWORD, restorePassword);
   yield takeEvery(ActionTypes.LOG_IN, logIn);
   yield takeEvery(ActionTypes.CANCEL, cancel);
 }

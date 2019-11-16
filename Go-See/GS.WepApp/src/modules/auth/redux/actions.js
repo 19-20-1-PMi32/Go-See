@@ -1,7 +1,8 @@
 import ActionTypes from "./types";
 
-const createAccount = () => ({
-  type: ActionTypes.CREATE_ACCOUNT
+const createAccount = payload => ({
+  type: ActionTypes.CREATE_ACCOUNT,
+  payload
 });
 
 const restorePassword = payload => ({
@@ -9,8 +10,9 @@ const restorePassword = payload => ({
   payload
 });
 
-const logIn = () => ({
-  type: ActionTypes.LOG_IN
+const logIn = payload => ({
+  type: ActionTypes.LOG_IN,
+  payload
 });
 
 const fail = () => ({

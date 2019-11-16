@@ -1,19 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { submit } from "redux-form";
 import { logIn } from "../redux/actions";
 
 import UI from "./ui";
-
-const FORM_NAME = "log-in-form";
 
 const Container = props => <UI {...props} />;
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: () => dispatch(logIn()),
-  submit: () => dispatch(submit(FORM_NAME))
+  onSubmit: props => dispatch(logIn(props))
 });
 
 export default connect(

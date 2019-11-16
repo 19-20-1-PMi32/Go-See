@@ -1,92 +1,171 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import { Field, reduxForm } from "redux-form";
+import { Form, Input, Tooltip, Icon, Button } from "antd";
+import styles from "./index.scss";
 
-import { FormField } from "#components";
-
-const UI = reduxForm({
-  form: "create-account-form"
-})(({ onSubmit, submit }) => {
+const RegistrationForm = ({ form, onSubmit }) => {
+  const [confirmDirty, setConfirmDirty] = useState(false);
   const { t } = useTranslation();
 
-  const handleSubmit = () => {
-    return new Promise(() => onSubmit()).then();
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 8 }
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 16 }
+    }
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <Field
-          id="firstName"
-          name="firstName"
-          label={t("user.firstName")}
-          isRequired
-          component={FormField.Input}
-        />
-      </div>
-      <div>
-        <Field
-          id="lastName"
-          name="lastName"
-          label={t("user.lastName")}
-          isRequired
-          component={FormField.Input}
-        />
-      </div>
-      <div>
-        <Field
-          id="login"
-          name="login"
-          label={t("auth.login")}
-          isRequired
-          component={FormField.Input}
-        />
-      </div>
-      <div>
-        <Field
-          id="email"
-          name="email"
-          label={t("user.email")}
-          component={FormField.Input}
-        />
-      </div>
-      <div>
-        <Field
-          id="phone"
-          name="phone"
-          label={t("user.phone")}
-          component={FormField.Input}
-        />
-      </div>
-      <div>
-        <Field
-          id="password"
-          name="password"
-          label={t("auth.password")}
-          isRequired
-          component={FormField.Input}
-        />
-      </div>
-      <div>
-        <Field
-          id="confirmPassword"
-          name="confirmPassword"
-          label={t("auth.confirmPassword")}
-          isRequired
-          component={FormField.Input}
-        />
-      </div>
-      <button type="button" onClick={submit}>
-        {t("auth.buttons.signup")}
-      </button>
-    </form>
-  );
-});
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0
+      },
+      sm: {
+        span: 16,
+        offset: 8
+      }
+    }
+  };
 
-UI.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  submit: PropTypes.func.isRequired
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        onSubmit(values);
+      }
+    });
+  };
+
+  const handleConfirmBlur = e => {
+    const { value } = e.target;
+
+    setConfirmDirty(confirmDirty || !!value);
+  };
+
+  const compareToFirstPassword = (rule, value, callback) => {
+    if (value && value !== form.getFieldValue("password")) {
+      callback("Two passwords that you enter is inconsistent!");
+    } else {
+      callback();
+    }
+  };
+
+  const validateToNextPassword = (rule, value, callback) => {
+    if (value && confirmDirty) {
+      form.validateFields(["confirm"], { force: true });
+    }
+
+    callback();
+  };
+
+  const TitleWithTooltip = (
+    <span>
+      {`${t("auth.username")} `}
+      <Tooltip title={t("message.username")}>
+        <Icon type="question-circle-o" />
+      </Tooltip>
+    </span>
+  );
+
+  return (
+    <div className={styles["register-form-container"]}>
+      <Form {...formItemLayout} onSubmit={handleSubmit}>
+        <Form.Item label={t("user.firstName")}>
+          {form.getFieldDecorator("firstName", {
+            rules: [
+              {
+                required: true,
+                message: t("warnings.auth.requiredFirstName"),
+                whitespace: true
+              }
+            ]
+          })(<Input />)}
+        </Form.Item>
+        <Form.Item label={t("user.lastName")}>
+          {form.getFieldDecorator("lastName", {
+            rules: [
+              {
+                required: true,
+                message: t("warnings.auth.requiredLastName"),
+                whitespace: true
+              }
+            ]
+          })(<Input />)}
+        </Form.Item>
+
+        <Form.Item label={t("user.email")}>
+          {form.getFieldDecorator("email", {
+            rules: [
+              {
+                type: "email",
+                message: t("warnings.auth.validEmail")
+              }
+            ]
+          })(<Input />)}
+        </Form.Item>
+        <Form.Item label={t("user.phone")}>
+          {form.getFieldDecorator("phone", { rules: [] })(<Input />)}
+        </Form.Item>
+        <Form.Item label={TitleWithTooltip}>
+          {form.getFieldDecorator("username", {
+            rules: [
+              {
+                required: true,
+                message: t("warnings.auth.requiredUsername")
+              }
+            ]
+          })(<Input />)}
+        </Form.Item>
+        <Form.Item label={t("auth.password")} hasFeedback>
+          {form.getFieldDecorator("password", {
+            rules: [
+              {
+                required: true,
+                message: t("warnings.auth.requiredPassword")
+              },
+              {
+                validator: validateToNextPassword
+              }
+            ]
+          })(<Input.Password />)}
+        </Form.Item>
+        <Form.Item label={t("auth.confirmPassword")} hasFeedback>
+          {form.getFieldDecorator("confirm", {
+            rules: [
+              {
+                required: true,
+                message: t("warnings.auth.confirmPassword")
+              },
+              {
+                validator: compareToFirstPassword
+              }
+            ]
+          })(<Input.Password onBlur={handleConfirmBlur} />)}
+        </Form.Item>
+        <Form.Item {...tailFormItemLayout}>
+          <Button type="primary" htmlType="submit">
+            {t("auth.buttons.register")}
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
+  );
 };
 
-export default UI;
+RegistrationForm.propTypes = {
+  form: PropTypes.shape({
+    validateFields: PropTypes.func.isRequired,
+    getFieldDecorator: PropTypes.func.isRequired,
+    getFieldValue: PropTypes.func.isRequired,
+    validateFieldsAndScroll: PropTypes.func.isRequired
+  }).isRequired,
+  onSubmit: PropTypes.func.isRequired
+};
+
+export default Form.create({ name: "register" })(RegistrationForm);

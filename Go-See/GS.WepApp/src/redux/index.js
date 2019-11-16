@@ -2,7 +2,6 @@ import { createStore } from "redux-dynamic-modules";
 import { getSagaExtension } from "redux-dynamic-modules-saga";
 import { applyMiddleware } from "redux";
 import { connectRouter, routerMiddleware } from "connected-react-router";
-import { reducer as ReduxForm } from "redux-form";
 import User from "./user";
 
 const rootModule = history => ({
@@ -10,8 +9,7 @@ const rootModule = history => ({
   /* reducer */
   reducerMap: {
     router: connectRouter(history),
-    user: User.reducer,
-    form: ReduxForm
+    user: User.reducer
   },
   /* middlewares */
   middlewares: [routerMiddleware(history)],
