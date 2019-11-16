@@ -14,7 +14,7 @@ namespace GS.BusinessLogic
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        private async Task<GS.DataBase.Entities.User> GetUserEntity(Guid userId)
+        private async Task<DataBase.Entities.User> GetUserEntity(Guid userId)
         {
             var userEntity = await _unitOfWork.UserRepository.Get(userId);
 
