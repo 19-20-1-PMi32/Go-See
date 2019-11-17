@@ -1,21 +1,35 @@
 {
   "helloWorld": "Hello, world!",
   "auth": {
-    "login": "Login",
+    "username": "Username",
     "password": "Password",
     "confirmPassword": "Confirm password",
     "buttons": {
       "login": "Log in",
-      "signup": "Sign up"
+      "register": "Register",
+      "createAccount":"Create account"
     }
   },
   "user": {
-    "firstName": "First Name",
-    "lastName": "LastName",
-    "email": "Email",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "E-mail",
     "phone": "Phone"
   },
   "search": {
     "title": "Where are you going"
+  },
+  "warnings": {
+    "auth": {
+      "requiredPassword": "Please input your password!",
+      "requiredUsername": "Please input your username!",
+      "confirmPassword": "Please confirm your password!",
+      "validEmail": "The input is not valid E-mail!",
+      "requiredLastName": "Please input your last name!",
+      "requiredFirstName": "Please input your first name!"
+    }
+  },
+  "message": {
+    "username": "What do you want others to call you?"
   }
 }

@@ -54,7 +54,15 @@ module.exports = {
               ],
               plugins: [
                 "@babel/plugin-transform-runtime",
-                "@babel/plugin-proposal-class-properties"
+                "@babel/plugin-proposal-class-properties",
+                [
+                  "import",
+                  {
+                    libraryName: "antd",
+                    libraryDirectory: "es",
+                    style: "css"
+                  }
+                ]
               ]
             }
           }

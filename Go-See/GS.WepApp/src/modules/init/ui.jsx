@@ -21,7 +21,7 @@ const Init = () => {
       <div>
         <Link to="/search">{`${t("search.title")}?`}</Link>
         <Link to="/login">{t("auth.buttons.login")}</Link>
-        <Link to="/signup">{t("auth.buttons.signup")}</Link>
+        <Link to="/signup">{t("auth.buttons.createAccount")}</Link>
       </div>
     </>
   );
