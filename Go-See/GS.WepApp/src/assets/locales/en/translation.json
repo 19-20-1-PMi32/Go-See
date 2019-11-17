@@ -7,7 +7,7 @@
     "buttons": {
       "login": "Log in",
       "register": "Register",
-      "createAccount":"Create account"
+      "createAccount":"Sign up"
     }
   },
   "user": {
