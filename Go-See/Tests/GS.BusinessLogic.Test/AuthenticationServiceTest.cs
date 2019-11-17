@@ -19,7 +19,7 @@ namespace GS.BusinessLogic.Test
 
         public AuthenticationServiceTest() : base()
         {
-            _service = new AuthenticationService(_unitOfWork);
+            _service = new AuthenticationService(_unitOfWork, _mapper);
         }
 
         [Fact]

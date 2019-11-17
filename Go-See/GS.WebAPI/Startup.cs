@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
+using GS.BusinessLogic;
 using GS.DataBase;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +46,8 @@ namespace GS.WebAPI
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<GSDbContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddAutoMapper(typeof(ParametersDtoProfile).Assembly, typeof(EntityDtoProfile).Assembly);
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
