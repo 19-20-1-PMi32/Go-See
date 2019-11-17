@@ -13,7 +13,7 @@ const Init = () => {
     <div className={styles["main-page-container"]}>
       <div>
         <Link to="/">
-          <img src="/src/assets/logo.png" alt="Logo" style={{width: '120px', margin: '15px 15px', transform: 'rotate(-5deg)'}} />
+          <img className={styles["logo-img"]} src="/src/assets/logo.png" alt="Logo" />
         </Link>
       </div>
       <div>

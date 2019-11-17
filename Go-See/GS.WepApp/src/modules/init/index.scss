@@ -11,7 +11,7 @@
     justify-content: center;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    grid-auto-columns:150px;
+    grid-auto-columns: 9.375rem;
     padding-top: 15vh;
     text-align: center;
     justify-items: center;
@@ -19,13 +19,13 @@
 
 .main-page-buttons > * {
     background: rgba(107, 166, 218, 0.85);
-    border: 1.5px solid #FFFFFF;
+    border: 0.09375rem solid #FFFFFF;
     box-sizing: border-box;
-    border-radius: 45px;
+    border-radius: 2.8125rem;
     color: #FFFFFF;
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 1.375rem;
 }
 
 .main-page-buttons > *:nth-child(1) {
@@ -52,21 +52,27 @@
 }
 
 .search-button {
-    padding: 11px 20px;
+    padding: 0.6875rem 1.25rem;
 }
 
 .login-button {
-    margin: 7px 0px;
-    margin-left: 20px;
-    padding: 0px 30px;
-    padding-top: 4px;
-    font-size: 20px;
+    margin: 0.4375rem 0rem;
+    margin-left: 1.25rem;
+    padding: 0rem 1.875rem;
+    padding-top: 0.25rem;
+    font-size: 1.25rem;
 }
 
 .signup-button {
-    margin: 7px 0px;
-    margin-right: 20px;
-    padding: 0px 25px;
-    padding-top: 4px;
-    font-size: 20px;
+    margin: 0.4375rem 0rem;
+    margin-right: 1.25rem;
+    padding: 0rem 1.5625rem;
+    padding-top: 0.25rem;
+    font-size: 1.25rem;
+}
+
+.logo-img {
+    width: 6.8rem;
+    margin: 0.9375rem 0.9375rem;
+    transform: rotate(-5deg);
 }
