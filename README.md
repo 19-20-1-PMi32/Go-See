@@ -11,3 +11,4 @@ This application is travel planner with such functionality:
   - Full location information
   - Review of the place and its assessment
   - Ability to mark the place as visited
+
