@@ -1,0 +1,27 @@
+name: Run test when create pull request to develop
+
+on:
+  pull_request:
+     branches:
+       - develop    
+jobs:
+ 
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+    - name: Build GS.WebAPI
+      run:  dotnet build --configuration Release ./Go-See/GS.WebAPI
+    - name: Build GS.BusinessLogic.Test
+      run:  dotnet build --configuration Release ./Go-See/Tests/GS.BusinessLogic.Test
+    - name: Build GS.DataBase.Test
+      run:  dotnet build --configuration Release ./Go-See/Tests/GS.DataBase.Test
+    - name: Run test in GS.BusinessLogic.Test
+      run:  dotnet test ./Go-See/Tests/GS.BusinessLogic.Test
+    - name: Run test in GS.DataBase.Test
+      run:  dotnet test ./Go-See/Tests/GS.DataBase.Test
