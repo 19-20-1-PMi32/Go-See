@@ -19,7 +19,7 @@ const Init = () => {
       <div>
         <Auth />
       </div>
-      <div>
+      <div className={styles["search-field"]}>
         <Route path="/search">
           <Search />
         </Route>

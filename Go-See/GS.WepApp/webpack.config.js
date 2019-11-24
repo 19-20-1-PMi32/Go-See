@@ -60,10 +60,30 @@ module.exports = {
                   {
                     libraryName: "antd",
                     libraryDirectory: "es",
-                    style: "css"
+                    style: true
                   }
                 ]
               ]
+            }
+          }
+        ]
+      },
+      {
+        test: /.less$/,
+        use: [
+          {
+            loader: 'style-loader',
+          }, {
+            loader: 'css-loader',
+          },
+          {
+            loader: "less-loader",
+            options: {
+              modifyVars: {
+                "@button-color": "#1DA57A",
+                "link-color": "#1DA57A"
+              },
+              javascriptEnabled: true
             }
           }
         ]
