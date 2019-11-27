@@ -1,48 +1,48 @@
 [
   {
-    "Id": 1,
+    "Id": "2d75c681-dde0-4ebf-b0aa-e5cfe170dca8",
     "UserId": "8a255896-6f0f-4f67-9baa-551483e76bf6",
-    "PlaceId": 1,
+    "PlaceId": "95c84711-1874-471d-a379-2be67ffe82b0",
     "Rating": 4,
     "Text": "This picturesque cathedral is also so typical of the Orthodox architecture and is really an awesome building. Its open to visit and to participate for those who wish to. Its just a short walk from the Heavens gate, Kiev Opera House and St Volodymyrs Cathedral."
   },
 
   {
-    "Id": 2,
+    "Id": "db43925d-6840-4f61-b4a7-4c1094d0a092",
     "UserId": "0f58a296-6f85-4f67-9baa-551483e76bf6",
-    "PlaceId": 2,
+    "PlaceId": "422eb593-d068-476f-9768-7ae6ac43d82c",
     "Rating": 3,
     "Text": "A lot of activity in the square, along with a very helpful tourist information center."
   },
 
   {
-    "Id": 3,
+    "Id": "bb305f87-3adf-45af-8337-d446b330d4f4",
     "UserId": "551483e7-6f85-4f67-9baa-0f58a2966bf6",
-    "PlaceId": 3,
+    "PlaceId": "c411a195-680e-461f-8675-060e11636c96",
     "Rating": 5,
     "Text": "We walked around this massive building during the day. It was stunning to look at. So many spires and ornate tasteful details. We rode by it at night. With the building all lite up, it was majestic! A definite must see!"
   },
 
   {
-    "Id": 4,
+    "Id": "08ae14b8-8e59-4126-96de-4c9d42de3434",
     "UserId": "551483e7-6f85-4f67-9baa-0f58a2966bf6",
-    "PlaceId": 4,
+    "PlaceId": "7c53d6b6-50d0-4b19-8226-dda7d6eb7abd",
     "Rating": 4,
     "Text": "Baroque style at its best. Impressive architecture, fantastic gardens. All clean and well maintained. It was magical listening to the concert in one of the main halls with out any AV input. Excellent connectivity from centre of Vienna. A must place to visit"
   },
 
   {
-    "Id": 6,
+    "Id": "837c4f6a-dc2c-4aff-9e16-90acd57425d3",
     "UserId": "8a255896-6f0f-4f67-9baa-551483e76bf6",
-    "PlaceId": 6,
+    "PlaceId": "69077c36-b070-4903-985b-1785d5547529",
     "Rating": 4,
     "Text": "Really nice bridge with way too many people on it. Not much more to say about it, very crowded probably better to visit really early in the morning."
   },
 
   {
-    "Id": 7,
+    "Id": "04714d94-dbaf-4747-aa9d-f417bdeb5c58",
     "UserId": "0f58a296-6f85-4f67-9baa-551483e76bf6",
-    "PlaceId": 7,
+    "PlaceId": "636c9cfb-8abb-4393-9f13-b1c55a5295d4",
     "Rating": 5,
     "Text": "Really loved this simple museum with wonderfully restored Viking ships (and contents) that were found in burial sites. Simply and impressively presented. We couldn't see a need for the new building they are planning - we loved it just as it is."
   }

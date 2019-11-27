@@ -1,6 +1,6 @@
 ﻿[
   {
-    "Id": 1,
+    "Id": "79c63500-3cdf-4ea5-a395-ed175da496b5",
     "Name": "Kyiv",
     "Country": "Ukraine",
     "IsCapital": true,
@@ -8,7 +8,7 @@
   },
 
   {
-    "Id": 2,
+    "Id": "b9cf7616-0eba-44cd-9efe-cca8cdc05dd2",
     "Name": "Lviv",
     "Country": "Ukraine",
     "IsCapital": false,
@@ -16,7 +16,7 @@
   },
 
   {
-    "Id": 3,
+    "Id": "5fa68335-7124-455d-8b60-d2eddb08af75",
     "Name": "Budapest",
     "Country": "Hungary",
     "IsCapital": true,
@@ -24,7 +24,7 @@
   },
 
   {
-    "Id": 4,
+    "Id": "2fb28fea-174a-4c50-8373-812fe25bb0c7",
     "Name": "Vienna",
     "Country": "‎Austria",
     "IsCapital": true,
@@ -32,7 +32,7 @@
   },
 
   {
-    "Id": 5,
+    "Id": "be3299db-161c-41ed-bfa0-7bac10702498",
     "Name": "Rome",
     "Country": "Italy",
     "IsCapital": true,
@@ -40,7 +40,7 @@
   },
 
   {
-    "Id": 6,
+    "Id": "ff6b700a-3786-4920-8560-dbeef260cc14",
     "Name": "Prague",
     "Country": "Czech Republic",
     "IsCapital": true,
@@ -48,7 +48,7 @@
   },
 
   {
-    "Id": 7,
+    "Id": "88d8d1b2-b2da-46e2-9233-0a11f421bdb8",
     "Name": "Oslo",
     "Country": "Norway",
     "IsCapital": true,
@@ -56,7 +56,7 @@
   },
 
   {
-    "Id": 8,
+    "Id": "b5d87abe-c1bf-4d02-8be5-16b4c840dcd7",
     "Name": "Berlin",
     "Country": "Germany",
     "IsCapital": true,
@@ -64,7 +64,7 @@
   },
 
   {
-    "Id": 9,
+    "Id": "443e9796-a65b-4789-99e0-e10dd4d25d42",
     "Name": "Krakow",
     "Country": "Poland",
     "IsCapital": false,
