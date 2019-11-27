@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace GS.DataBase.Entities
+namespace GS.Core.DTO
 {
-    public class City
+    public class CityWithPlaces
     {
         public Guid Id { get; set; }
 
@@ -18,6 +16,6 @@ namespace GS.DataBase.Entities
 
         public string Description { get; set; }
 
-        public ICollection<Place> Places { get; set; }
+        public IEnumerable<Place> Places { get; set; }
     }
 }

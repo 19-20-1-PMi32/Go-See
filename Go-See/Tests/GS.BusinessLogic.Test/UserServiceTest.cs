@@ -1,8 +1,7 @@
 ﻿using GS.BusinessLogic.Contracts;
+using GS.BusinessLogic.Services;
 using GS.DataBase.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 

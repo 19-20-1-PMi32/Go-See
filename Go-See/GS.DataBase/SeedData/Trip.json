@@ -1,24 +1,24 @@
 [
   {
-    "Id": 1,
+    "Id": "1a255896-6f0f-4f67-9baa-551483e76bf6",
     "Name": "Rome 2019",
     "UserId": "8a255896-6f0f-4f67-9baa-551483e76bf6"
   },
 
   {
-    "Id": 2,
+    "Id": "2b255896-6f0f-4f67-9baa-551483e76bf6",
     "Name": "To the edge of the world",
     "UserId": "0f58a296-6f85-4f67-9baa-551483e76bf6"
   },
 
   {
-    "Id": 3,
+    "Id": "3c255896-6f0f-4f67-9baa-551483e76bf6",
     "Name": "Family trip",
     "UserId": "551483e7-6f85-4f67-9baa-0f58a2966bf6"
   },
 
   {
-    "Id": 4,
+    "Id": "4d255896-6f0f-4f67-9baa-551483e76bf6",
     "Name": "Honeymoon",
     "UserId": "9baa83e7-6f85-4f67-5514-0f58a2966bf6"
   }
