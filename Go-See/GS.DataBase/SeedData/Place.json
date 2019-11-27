@@ -1,72 +1,72 @@
 [
   {
-    "Id": 1,
+    "Id": "95c84711-1874-471d-a379-2be67ffe82b0",
     "Name": "Saint Sophia's Cathedral",
-    "CityId": 1,
+    "CityId": "79c63500-3cdf-4ea5-a395-ed175da496b5",
     "Type": "architecture",
     "Description": "Saint Sophia’s Cathedral is an outstanding complex; work started on it in 1037 and lasted for just three years. As the architectural monument has had only a few reconstructions, you can marvel at the Byzantine cathedral in close to its original form. In addition, as it is located at the intersection of the four leading roads in Kiev, climb to the cathedral’s bell tower and you’ll be rewarded with a magnificent view from the top."
   },
 
   {
-    "Id": 2,
+    "Id": "422eb593-d068-476f-9768-7ae6ac43d82c",
     "Name": "Rynok Square",
-    "CityId": 2,
+    "CityId": "b9cf7616-0eba-44cd-9efe-cca8cdc05dd2",
     "Type": "architecture",
     "Description": "It is the heart of the city, that can be translated as Market Square. For the past 500 years it has been the bustling center of city life and till now retains all the charm of the old European city, without the pretentions of its more famous neighbors - Prague and Krakow."
   },
 
   {
-    "Id": 3,
+    "Id": "c411a195-680e-461f-8675-060e11636c96",
     "Name": "Parliament Building",
-    "CityId": 3,
+    "CityId": "5fa68335-7124-455d-8b60-d2eddb08af75",
     "Type": "architecture",
     "Description": "The Hungarian Parliament Building, which was designed and built in the Gothic Revival style, is one of the largest buildings in Hungary, and is home to hundreds of parliamentary offices. Although the impressive building looks fantastic from every angle, to see the whole building in its full glory, it is worth viewing it from the other side of the Danube."
   },
 
   {
-    "Id": 4,
+    "Id": "7c53d6b6-50d0-4b19-8226-dda7d6eb7abd",
     "Name": "Schönbrunn Palace and Gardens",
-    "CityId": 4,
+    "CityId": "2fb28fea-174a-4c50-8373-812fe25bb0c7",
     "Type": "nature",
     "Description": "The spectacular 18th-century Schönbrunn Palace (Schloss Schönbrunn) is worth visiting not only for its magnificent architecture, but also for its beautiful park-like setting. This Baroque palace contains more than 1,441 rooms and apartments, including those once used by Empress Maria Theresa."
   },
 
   {
-    "Id": 5,
+    "Id": "9415bf74-04a0-4614-9340-22e0d3f058ae",
     "Name": "Rigatoni Carbonara",
-    "CityId": 5,
+    "CityId": "be3299db-161c-41ed-bfa0-7bac10702498",
     "Type": "food",
     "Description": "True Roman Carbonara is an art form. Impossibly creamy (with not a spot of cream in sight), this rich Roman sauce is one of those dishes you dream about for years to c"
   },
 
   {
-    "Id": 6,
+    "Id": "69077c36-b070-4903-985b-1785d5547529",
     "Name": "Charles Bridge",
-    "CityId": 6,
+    "CityId": "ff6b700a-3786-4920-8560-dbeef260cc14",
     "Type": "architecture",
     "Description": "One of the most recognizable old bridges in Europe, magnificent Charles Bridge (Karluv Most) boasts 32 unique points of interest along its 621-meter span. Built in 1357, the bridge has long been the subject of a great deal of superstition, including the builders having laid the initial bridge stone on the 9th of July at exactly 5:31am, a precise set of numbers (135797531) believed to give the structure additional strength."
   },
 
   {
-    "Id": 7,
+    "Id": "636c9cfb-8abb-4393-9f13-b1c55a5295d4",
     "Name": "Viking Ship Museum",
-    "CityId": 7,
+    "CityId": "88d8d1b2-b2da-46e2-9233-0a11f421bdb8",
     "Type": "museum",
     "Description": "No less exciting are similar ships from Tune and Gokstad, together with all the artefacts found buried with them like beds, small boats, a complete cart, tent components, wood carvings, textiles and other treasures brought to light in Viking graves."
   },
 
   {
-    "Id": 8,
+    "Id": "fec0ed93-4f8a-405e-a2b2-4c7e14012845",
     "Name": "Museum Island",
-    "CityId": 8,
+    "CityId": "b5d87abe-c1bf-4d02-8be5-16b4c840dcd7",
     "Type": "museum",
     "Description": "Home to three famous museums - the Pergamon, the Altes and the Bode."
   },
 
   {
-    "Id": 9,
+    "Id": "bd9007a0-40db-443d-80b0-2d5175011aa4",
     "Name": "Pod Aniolami",
-    "CityId": 9,
+    "CityId": "443e9796-a65b-4789-99e0-e10dd4d25d42",
     "Type": "food",
     "Description": "Pod Aniolami is a beautiful restaurant in Krakow Old Town with 13th-century interiors. You can choose different areas of the restaurant to dine in, including downstairs in the cosy cellars, or in the Garden in the medieval courtyard."
   }
