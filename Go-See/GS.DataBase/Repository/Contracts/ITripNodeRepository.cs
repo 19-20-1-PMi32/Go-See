@@ -16,5 +16,9 @@ namespace GS.DataBase.Repository.Contracts
         void Update(TripNode entity);
         
         void Delete(Guid id);
+
+        Task CreateRange(List<TripNode> tripNodes);
+
+        Task DeleteByTripId(Guid id);
     }
 }

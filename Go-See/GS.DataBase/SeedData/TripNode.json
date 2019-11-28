@@ -1,92 +1,92 @@
 [
   {
-    "Id": 1,
-    "TripId": 1,
-    "PlaceId": 1,
+    "Id": "b06945c7-90c9-4ef4-8a86-ed8882f9fc3d",
+    "TripId": "c5cc7755-1b71-468b-aa90-affbf0b01a7b",
+    "PlaceId": "95c84711-1874-471d-a379-2be67ffe82b0",
     "SequenceNumber": 1
   },
 
   {
-    "Id": 2,
-    "TripId": 1,
-    "PlaceId": 2,
+    "Id": "c4629463-1d4a-4630-9a55-a52e2c42a80d",
+    "TripId": "c5cc7755-1b71-468b-aa90-affbf0b01a7b",
+    "PlaceId": "422eb593-d068-476f-9768-7ae6ac43d82c",
     "SequenceNumber": 2
   },
 
   {
-    "Id": 3,
-    "TripId": 1,
-    "PlaceId": 3,
+    "Id": "9a8523df-7832-47df-8b97-36fbb76adf12",
+    "TripId": "c5cc7755-1b71-468b-aa90-affbf0b01a7b",
+    "PlaceId": "c411a195-680e-461f-8675-060e11636c96",
     "SequenceNumber": 3
   },
 
   {
-    "Id": 4,
-    "TripId": 1,
-    "PlaceId": 4,
+    "Id": "23e72385-2e28-410d-9b0c-1cb38c2ef21e",
+    "TripId": "c5cc7755-1b71-468b-aa90-affbf0b01a7b",
+    "PlaceId": "7c53d6b6-50d0-4b19-8226-dda7d6eb7abd",
     "SequenceNumber": 4
   },
 
   {
-    "Id": 5,
-    "TripId": 2,
-    "PlaceId": 5,
+    "Id": "3e4dc225-0637-401b-a629-cba16b6d4b01",
+    "TripId": "2cf6cf41-0fce-4192-ba91-1aebd316d6ae",
+    "PlaceId": "9415bf74-04a0-4614-9340-22e0d3f058ae",
     "SequenceNumber": 1
   },
 
   {
-    "Id": 6,
-    "TripId": 2,
-    "PlaceId": 6,
+    "Id": "031b300d-87d2-4504-a10e-97dc836ed28d",
+    "TripId": "2cf6cf41-0fce-4192-ba91-1aebd316d6ae",
+    "PlaceId": "69077c36-b070-4903-985b-1785d5547529",
     "SequenceNumber": 2
   },
 
   {
-    "Id": 7,
-    "TripId": 2,
-    "PlaceId": 7,
+    "Id": "3844c85d-51ab-42ae-bc60-45e903aa0ceb",
+    "TripId": "2cf6cf41-0fce-4192-ba91-1aebd316d6ae",
+    "PlaceId": "636c9cfb-8abb-4393-9f13-b1c55a5295d4",
     "SequenceNumber": 3
   },
 
   {
-    "Id": 8,
-    "TripId": 3,
-    "PlaceId": 8,
+    "Id": "b440a18c-fa4a-42e1-aed8-8855103e5caf",
+    "TripId": "b7ebc9d5-30bd-4d9a-b7ef-aa51650cbf1f",
+    "PlaceId": "fec0ed93-4f8a-405e-a2b2-4c7e14012845",
     "SequenceNumber": 1
   },
 
   {
-    "Id": 9,
-    "TripId": 3,
-    "PlaceId": 9,
+    "Id": "d313f3cb-8440-43c9-a815-5cce13490218",
+    "TripId": "b7ebc9d5-30bd-4d9a-b7ef-aa51650cbf1f",
+    "PlaceId": "bd9007a0-40db-443d-80b0-2d5175011aa4",
     "SequenceNumber": 2
   },
 
   {
-    "Id": 10,
-    "TripId": 4,
-    "PlaceId": 9,
+    "Id": "a145747b-b6b9-4de9-9e95-677eef75cf45",
+    "TripId": "24decfe2-528f-431c-b07f-ad26470aca73",
+    "PlaceId": "bd9007a0-40db-443d-80b0-2d5175011aa4",
     "SequenceNumber": 1
   },
 
   {
-    "Id": 11,
-    "TripId": 4,
-    "PlaceId": 1,
+    "Id": "c2426a3b-190e-4120-af84-29b09279f726",
+    "TripId": "24decfe2-528f-431c-b07f-ad26470aca73",
+    "PlaceId": "95c84711-1874-471d-a379-2be67ffe82b0",
     "SequenceNumber": 2
   },
 
   {
-    "Id": 12,
-    "TripId": 4,
-    "PlaceId": 2,
+    "Id": "6224aecd-e1f2-4afe-9e82-d67d3f285b60",
+    "TripId": "24decfe2-528f-431c-b07f-ad26470aca73",
+    "PlaceId": "422eb593-d068-476f-9768-7ae6ac43d82c",
     "SequenceNumber": 3
   },
 
   {
-    "Id": 13,
-    "TripId": 4,
-    "PlaceId": 8,
+    "Id": "09bf0c71-4445-4dec-becc-cc4b45f90852",
+    "TripId": "24decfe2-528f-431c-b07f-ad26470aca73",
+    "PlaceId": "fec0ed93-4f8a-405e-a2b2-4c7e14012845",
     "SequenceNumber": 4
   }
 ]

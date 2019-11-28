@@ -45,6 +45,23 @@ namespace GS.DataBase.Repository
         {
             _dbContext.TripNodes.Update(entity);
         }
+
+        public async Task CreateRange(List<TripNode> tripNodes)
+        {
+            await _dbContext.AddRangeAsync(tripNodes);
+        }
+
+        public async Task DeleteByTripId(Guid id)
+        {
+            var tripNodes = await _dbContext.TripNodes.ToListAsync();
+            foreach (var tripNode in tripNodes)
+            {
+                if (tripNode.TripId == id)
+                {
+                    _dbContext.TripNodes.Remove(tripNode);
+                }
+            }
+        }
     }
 
 

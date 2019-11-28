@@ -28,6 +28,7 @@ namespace GS.BusinessLogic.Test
                 cfg.AddProfile(entityDtoProfile);
             });
             _mapper = new Mapper(configuration);
+            
         }
 
         public virtual void Dispose()
