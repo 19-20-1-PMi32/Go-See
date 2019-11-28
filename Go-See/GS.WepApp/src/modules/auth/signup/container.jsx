@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { createAccount, cancel } from "../redux/actions";
 
 import { createAccount } from "../redux/actions";
 import UI from "./ui";
@@ -10,6 +11,7 @@ const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: (props) => dispatch(createAccount(props)),
+  onClose: () => dispatch(cancel())
 });
 
 export default connect(
