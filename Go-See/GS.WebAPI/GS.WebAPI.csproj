@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GS.BusinessLogic\GS.BusinessLogic.csproj" />
     <ProjectReference Include="..\GS.Core\GS.Core.csproj" />
+    <ProjectReference Include="..\GS.DataBase\GS.DataBase.csproj" />
   </ItemGroup>
 
 </Project>
