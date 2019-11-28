@@ -10,7 +10,7 @@ const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: props => dispatch(logIn(props)),
-  onClose: () => dispatch(cancel)
+  onClose: () => dispatch(cancel())
 });
 
 export default connect(

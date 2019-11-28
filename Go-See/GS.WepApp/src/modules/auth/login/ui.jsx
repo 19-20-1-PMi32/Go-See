@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { Form, Icon, Input, Button, Drawer } from "antd";
 
 import styles from "./index.scss";
 
-const LoginForm = ({ form, onSubmit, onClose, visible }) => {
+const LoginForm = ({ form, onSubmit, onClose }) => {
   const { t } = useTranslation();
 
   const handleSubmit = e => {
@@ -21,9 +21,10 @@ const LoginForm = ({ form, onSubmit, onClose, visible }) => {
     <Drawer
       title={t("auth.buttons.login")}
       placement="right"
-      closable={true}
+      maskClosable
       onClose={onClose}
-      visible={visible}>
+      visible
+    >
       <div className={styles["login-form-container"]}>
         <Form onSubmit={handleSubmit}>
           <Form.Item>
@@ -74,8 +75,7 @@ LoginForm.propTypes = {
     getFieldDecorator: PropTypes.func.isRequired
   }).isRequired,
   onSubmit: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
-  visible: PropTypes.bool.isRequired
+  onClose: PropTypes.func.isRequired
 };
 
 export default Form.create({ name: "login" })(LoginForm);
