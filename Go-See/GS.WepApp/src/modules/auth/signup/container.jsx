@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { createAccount, cancel } from "../redux/actions";
 
-import { createAccount } from "../redux/actions";
 import UI from "./ui";
 
 const Container = props => <UI {...props} />;

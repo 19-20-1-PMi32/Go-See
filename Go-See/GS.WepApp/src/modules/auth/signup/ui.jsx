@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import { Form, Input, Tooltip, Icon, Button } from "antd";
+import { Form, Icon, Input, Button, Drawer } from "antd";
+
 import styles from "./index.scss";
 
 const RegistrationForm = ({ form, onSubmit, onClose }) => {
@@ -78,7 +79,12 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
       placement="right"
       maskClosable
       onClose={onClose}
+<<<<<<< Updated upstream
       visible>
+=======
+      visible
+    >
+>>>>>>> Stashed changes
       <div className={styles["register-form-container"]}>
         <Form {...formItemLayout} onSubmit={handleSubmit}>
           <Form.Item label={t("user.firstName")}>
@@ -161,6 +167,10 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
         </Form>
       </div>
     </Drawer>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   );
 };
 
@@ -172,7 +182,11 @@ RegistrationForm.propTypes = {
     validateFieldsAndScroll: PropTypes.func.isRequired
   }).isRequired,
   onSubmit: PropTypes.func.isRequired,
+<<<<<<< Updated upstream
   onClose: PropTypes.func.isRequired,
 };
+=======
+  onClose: PropTypes.func.isRequired};
+>>>>>>> Stashed changes
 
 export default Form.create({ name: "register" })(RegistrationForm);
