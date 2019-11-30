@@ -8,7 +8,7 @@ using System.Text;
 
 namespace GS.BusinessLogic.Test
 {
-    public abstract class TestBase
+    public abstract class TestBase : IDisposable
     {
         protected readonly IUnitOfWork _unitOfWork;
         protected readonly IMapper _mapper;
@@ -28,6 +28,12 @@ namespace GS.BusinessLogic.Test
                 cfg.AddProfile(entityDtoProfile);
             });
             _mapper = new Mapper(configuration);
+            
+        }
+
+        public virtual void Dispose()
+        {
+            _unitOfWork.Dispose();
         }
     }
 }

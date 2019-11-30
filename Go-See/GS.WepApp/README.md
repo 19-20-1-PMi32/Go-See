@@ -2,7 +2,7 @@
 ```sh
 npm i
 ```
-### Befor running app create .env file
+### Before running app create .env file
 ```sh
 GATEWAY_URL=http://localhost:64935/api/
 MOCK_API=false

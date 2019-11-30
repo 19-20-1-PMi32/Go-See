@@ -7,12 +7,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GS.BusinessLogic
+namespace GS.BusinessLogic.Services
 {
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
+        {
+            _unitOfWork = unitOfWork ?? throw new ArgumentException(nameof(unitOfWork));
+            _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
+        }
 
         private async Task<DataBase.Entities.User> GetUserEntity(Guid userId)
         {
@@ -26,12 +32,6 @@ namespace GS.BusinessLogic
             {
                 throw new ArgumentException("Can not find user with such id");
             }
-        }
-
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
-        {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
 
         public async Task<User> GetUser(Guid userId)

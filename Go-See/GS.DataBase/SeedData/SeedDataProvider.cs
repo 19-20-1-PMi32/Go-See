@@ -17,7 +17,7 @@ namespace GS.DataBase.SeedData
             return cities.ToArray();
         }
 
-        public static Place[] GetPlace()
+        public static Place[] GetPlaces()
         {
             string citiesFile = File.ReadAllText(Directory.GetCurrentDirectory() + "/SeedData/Place.json");
             var places = JsonConvert.DeserializeObject<List<Place>>(citiesFile);

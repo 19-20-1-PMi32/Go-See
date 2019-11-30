@@ -1,36 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import { Form, Icon, Input, Button, Drawer } from "antd";
+import { Form, Icon, Input, Button, Drawer, Tooltip } from "antd";
 
 import styles from "./index.scss";
 
 const RegistrationForm = ({ form, onSubmit, onClose }) => {
   const { t } = useTranslation();
-
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 }
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 }
-    }
-  };
-
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0
-      },
-      sm: {
-        span: 16,
-        offset: 8
-      }
-    }
-  };
+  const [confirmDirty, setConfirmDirty] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -49,8 +26,9 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
   };
 
   const compareToFirstPassword = (rule, value, callback) => {
+    const warningMessage = t("warnings.auth.inconsistentPassword");
     if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
+      callback(warningMessage);
     } else {
       callback();
     }
@@ -68,7 +46,7 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
     <span>
       {`${t("auth.username")} `}
       <Tooltip title={t("message.username")}>
-        <Icon type="question-circle-o" />
+        <Icon type="question-circle" />
       </Tooltip>
     </span>
   );
@@ -79,15 +57,15 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
       placement="right"
       maskClosable
       onClose={onClose}
-<<<<<<< Updated upstream
-      visible>
-=======
       visible
+      width={512}
     >
->>>>>>> Stashed changes
-      <div className={styles["register-form-container"]}>
-        <Form {...formItemLayout} onSubmit={handleSubmit}>
-          <Form.Item label={t("user.firstName")}>
+      <div>
+        <Form onSubmit={handleSubmit}>
+          <Form.Item
+            label={t("user.firstName")}
+            className={styles["container-margin"]}
+          >
             {form.getFieldDecorator("firstName", {
               rules: [
                 {
@@ -98,7 +76,10 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
               ]
             })(<Input />)}
           </Form.Item>
-          <Form.Item label={t("user.lastName")}>
+          <Form.Item
+            label={t("user.lastName")}
+            className={styles["container-margin"]}
+          >
             {form.getFieldDecorator("lastName", {
               rules: [
                 {
@@ -110,7 +91,10 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
             })(<Input />)}
           </Form.Item>
 
-          <Form.Item label={t("user.email")}>
+          <Form.Item
+            label={t("user.email")}
+            className={styles["container-margin"]}
+          >
             {form.getFieldDecorator("email", {
               rules: [
                 {
@@ -120,10 +104,16 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
               ]
             })(<Input />)}
           </Form.Item>
-          <Form.Item label={t("user.phone")}>
+          <Form.Item
+            label={t("user.phone")}
+            className={styles["container-margin"]}
+          >
             {form.getFieldDecorator("phone", { rules: [] })(<Input />)}
           </Form.Item>
-          <Form.Item label={TitleWithTooltip}>
+          <Form.Item
+            label={TitleWithTooltip}
+            className={styles["container-margin"]}
+          >
             {form.getFieldDecorator("username", {
               rules: [
                 {
@@ -133,7 +123,11 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
               ]
             })(<Input />)}
           </Form.Item>
-          <Form.Item label={t("auth.password")} hasFeedback>
+          <Form.Item
+            label={t("auth.password")}
+            hasFeedback
+            className={styles["container-margin"]}
+          >
             {form.getFieldDecorator("password", {
               rules: [
                 {
@@ -146,7 +140,11 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
               ]
             })(<Input.Password />)}
           </Form.Item>
-          <Form.Item label={t("auth.confirmPassword")} hasFeedback>
+          <Form.Item
+            label={t("auth.confirmPassword")}
+            hasFeedback
+            className={styles["container-margin"]}
+          >
             {form.getFieldDecorator("confirm", {
               rules: [
                 {
@@ -159,7 +157,7 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
               ]
             })(<Input.Password onBlur={handleConfirmBlur} />)}
           </Form.Item>
-          <Form.Item {...tailFormItemLayout}>
+          <Form.Item className={styles["container-margin"]}>
             <Button type="primary" htmlType="submit">
               {t("auth.buttons.register")}
             </Button>
@@ -167,10 +165,6 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
         </Form>
       </div>
     </Drawer>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
   );
 };
 
@@ -182,11 +176,7 @@ RegistrationForm.propTypes = {
     validateFieldsAndScroll: PropTypes.func.isRequired
   }).isRequired,
   onSubmit: PropTypes.func.isRequired,
-<<<<<<< Updated upstream
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
-=======
-  onClose: PropTypes.func.isRequired};
->>>>>>> Stashed changes
 
 export default Form.create({ name: "register" })(RegistrationForm);

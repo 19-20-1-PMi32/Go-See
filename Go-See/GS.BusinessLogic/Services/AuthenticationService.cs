@@ -1,13 +1,11 @@
 ﻿using GS.BusinessLogic.Contracts;
 using System;
 using System.Linq;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using GS.DataBase;
 using AutoMapper;
 
-namespace GS.BusinessLogic
+namespace GS.BusinessLogic.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
@@ -16,8 +14,8 @@ namespace GS.BusinessLogic
 
         public AuthenticationService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            _unitOfWork = unitOfWork ?? throw new ArgumentException(nameof(unitOfWork));
+            _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
         }
 
         public async Task<Guid> CreateUser(Core.DTO.User userParam)

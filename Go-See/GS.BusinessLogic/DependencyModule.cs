@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using GS.BusinessLogic.Contracts;
+using GS.BusinessLogic.Services;
 
 namespace GS.BusinessLogic
 {
@@ -9,6 +10,8 @@ namespace GS.BusinessLogic
         {
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<PlaceService>().As<IPlaceService>();
+            builder.RegisterType<CityService>().As<ICityService>();
 
             builder.RegisterModule<DataBase.DependencyModule>();
         }

@@ -13,7 +13,11 @@ const Init = () => {
     <div className={styles["main-page-container"]}>
       <div>
         <Link to="/">
-          <img className={styles["logo-img"]} src="/src/assets/logo.png" alt="Logo" />
+          <img
+            className={styles["logo-img"]}
+            src="/src/assets/logo.png"
+            alt="Logo"
+          />
         </Link>
       </div>
       <div>
@@ -25,9 +29,15 @@ const Init = () => {
         </Route>
       </div>
       <div className={styles["main-page-buttons"]}>
-        <Link className={styles["search-button"]} to="/search">{`${t("search.title")} ?`}</Link>
-        <Link className={styles["login-button"]} to="/login">{t("auth.buttons.login")}</Link>
-        <Link className={styles["signup-button"]} to="/signup">{t("auth.buttons.createAccount")}</Link>
+        <Link className={styles["search-button"]} to="/search">
+          {`${t("search.title")} ?`}
+        </Link>
+        <Link className={styles["login-button"]} to="/login">
+          {t("auth.buttons.login")}
+        </Link>
+        <Link className={styles["signup-button"]} to="/signup">
+          {t("auth.buttons.createAccount")}
+        </Link>
       </div>
     </div>
   );
