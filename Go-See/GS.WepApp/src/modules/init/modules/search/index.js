@@ -1,3 +1,3 @@
-import Search from "./ui";
+import Search from "./container";
 
 export default Search;

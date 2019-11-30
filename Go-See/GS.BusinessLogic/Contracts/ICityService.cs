@@ -16,5 +16,6 @@ namespace GS.BusinessLogic.Contracts
 
         Task<CityWithPlaces> GetByIdWithPlaces(Guid cityId);
 
+        Task<CityWithPlaces> GetByNameWithPlaces(string cityName);
     }
 }

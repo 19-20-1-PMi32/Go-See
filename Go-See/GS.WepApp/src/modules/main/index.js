@@ -1,3 +1,3 @@
-import Main from "./ui";
+import Main from "./container";
 
 export default Main;

@@ -53,7 +53,7 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
 
   return (
     <Drawer
-      title={t("auth.buttons.register")}
+      title={t("auth.headers.register")}
       placement="right"
       maskClosable
       onClose={onClose}
@@ -140,11 +140,7 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
               ]
             })(<Input.Password />)}
           </Form.Item>
-          <Form.Item
-            label={t("auth.confirmPassword")}
-            hasFeedback
-            className={styles["container-margin"]}
-          >
+          <Form.Item label={t("auth.confirmPassword")} hasFeedback>
             {form.getFieldDecorator("confirm", {
               rules: [
                 {
@@ -157,7 +153,7 @@ const RegistrationForm = ({ form, onSubmit, onClose }) => {
               ]
             })(<Input.Password onBlur={handleConfirmBlur} />)}
           </Form.Item>
-          <Form.Item className={styles["container-margin"]}>
+          <Form.Item>
             <Button type="primary" htmlType="submit">
               {t("auth.buttons.register")}
             </Button>
