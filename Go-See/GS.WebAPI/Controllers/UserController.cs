@@ -53,49 +53,74 @@ namespace GS.WebAPI.Controllers
 
         [HttpPatch("{id}/update-login/")]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> UpdateLogin(Guid id, [FromBody]string login)
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> UpdateLogin(Guid id, [FromBody]UserNameParam login)
         {
-            await _userService.UpdateLogin(id, login);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _userService.UpdateLogin(id, login.Value);
             return Ok();
         }
 
         [HttpPatch("{id}/update-firstname/")]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> UpdateFirstName(Guid id, [FromBody]string firstname)
+        public async Task<IActionResult> UpdateFirstName(Guid id, [FromBody]FirstNameParam firstname)
         {
-            await _userService.UpdateFirstName(id, firstname);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _userService.UpdateFirstName(id, firstname.Value);
             return Ok();
         }
 
         [HttpPatch("{id}/update-lastname/")]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> UpdateLastName(Guid id, [FromBody]string lastname)
+        public async Task<IActionResult> UpdateLastName(Guid id, [FromBody]LastNameParam lastname)
         {
-            await _userService.UpdateLastName(id, lastname);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _userService.UpdateLastName(id, lastname.Value);
             return Ok();
         }
 
         [HttpPatch("{id}/update-email/")]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> UpdateEmail(Guid id, [FromBody]string email)
+        public async Task<IActionResult> UpdateEmail(Guid id, [FromBody]EmailParam email)
         {
-            await _userService.UpdateEmail(id, email);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _userService.UpdateEmail(id, email.Value);
             return Ok();
         }
 
         [HttpPatch("{id}/update-phone/")]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> UpdatePhone(Guid id, [FromBody]string phone)
+        public async Task<IActionResult> UpdatePhone(Guid id, [FromBody]PhoneParam phone)
         {
-            await _userService.UpdatePhone(id, phone);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _userService.UpdatePhone(id, phone.Value);
             return Ok();
         }
 
         [HttpPatch("{id}/update-password/")]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> UpdatePassword(Guid id, [FromBody]string passwordHash)
+        public async Task<IActionResult> UpdatePassword(Guid id, [FromBody]PasswordParam passwordHash)
         {
-            await _userService.UpdatePasswordHash(id, passwordHash);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await _userService.UpdatePasswordHash(id, passwordHash.Value);
             return Ok();
         }
     }
