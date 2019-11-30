@@ -26,7 +26,8 @@
       "confirmPassword": "Please confirm your password!",
       "validEmail": "The input is not valid E-mail!",
       "requiredLastName": "Please input your last name!",
-      "requiredFirstName": "Please input your first name!"
+      "requiredFirstName": "Please input your first name!",
+      "inconsistentPassword": "Two passwords that you enter is inconsistent!"
     }
   },
   "message": {

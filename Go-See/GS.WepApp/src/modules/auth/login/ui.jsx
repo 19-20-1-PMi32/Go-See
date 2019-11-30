@@ -24,6 +24,7 @@ const LoginForm = ({ form, onSubmit, onClose }) => {
       maskClosable
       onClose={onClose}
       visible
+      width={512}
     >
       <div className={styles["login-form-container"]}>
         <Form onSubmit={handleSubmit}>
