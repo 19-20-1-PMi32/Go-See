@@ -7,7 +7,7 @@ import Main from "./modules/main";
 const App = () => (
   <Switch>
     <Route exect path="/city" component={Main} />
-    <Route path="/" component={<Init />} />
+    <Route path="/" component={Init} />
   </Switch>
 );
 
