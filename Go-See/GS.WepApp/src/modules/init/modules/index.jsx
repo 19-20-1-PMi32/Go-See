@@ -3,16 +3,14 @@ import { DynamicModuleLoader } from "redux-dynamic-modules";
 import { Route } from "react-router-dom";
 
 import { configureStore } from "./redux";
-import LogIn from "./login";
-import SignUp from "./signup";
+import SearchUI from "./search";
 
-const Auth = () => {
+const Search = () => {
   return (
     <DynamicModuleLoader modules={[configureStore()]}>
-      <Route exact path="/login" component={LogIn} />
-      <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/search" component={SearchUI} />
     </DynamicModuleLoader>
   );
 };
 
-export default Auth;
+export default Search;

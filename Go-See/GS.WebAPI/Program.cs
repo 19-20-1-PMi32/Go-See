@@ -1,22 +1,24 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore;
 
 namespace GS.WebAPI
 {
     public class Program
     {
-        public static void Main()
+        public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
+            CreateWebHostBuilder(args).Build().Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
                 .ConfigureServices(services => services.AddAutofac())
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+                .UseStartup<Startup>();
         }
     }
 }

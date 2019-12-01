@@ -13,14 +13,11 @@ module.exports = {
     historyApiFallback: true
   },
   output: {
-    publicPath: "/"
-  },
-  output: {
     path: path.resolve(__dirname, "./build"),
     filename: "[name].js",
     library: "name-app",
     libraryTarget: "umd",
-    publicPath: process.env.PUBLIC_URL,
+    publicPath: "/",
     chunkFilename: "[name].bundle.js"
   },
   resolve: {

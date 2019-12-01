@@ -7,7 +7,11 @@
     "buttons": {
       "login": "Log in",
       "register": "Register",
-      "createAccount":"Sign up"
+      "createAccount": "Sign up"
+    },
+    "headers": {
+      "login": "Log in",
+      "register": "Create an account"
     }
   },
   "user": {
@@ -17,7 +21,9 @@
     "phone": "Phone"
   },
   "search": {
-    "title": "Where are you going"
+    "title": "Where are you going",
+    "placeholder": "What are you looking for ?",
+    "button": "Search"
   },
   "warnings": {
     "auth": {
