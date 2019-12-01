@@ -5,11 +5,14 @@ import { ConnectedRouter } from "connected-react-router";
 import { I18nextProvider } from "react-i18next";
 import { createBrowserHistory } from "history";
 
-import App from "./app";
+import { Switch, Route } from "react-router-dom";
+import Init from "./modules/init";
+import Main from "./modules/main";
+
 import { configureStore } from "./redux";
 import i18n from "#utils/i18n";
 
-import 'antd/dist/antd.css'; 
+import "antd/dist/antd.css";
 
 const history = createBrowserHistory();
 
@@ -26,7 +29,15 @@ const renderApp = () => {
     <Provider store={Store}>
       <ConnectedRouter history={history}>
         <I18nextProvider i18n={i18n}>
-          <App />
+          <Switch>
+            <Route
+              path="/city/:cityId"
+              component={routerProps => (
+                <Main cityId={routerProps.match.params.cityId} />
+              )}
+            />
+            <Route path="/" component={Init} />
+          </Switch>
         </I18nextProvider>
       </ConnectedRouter>
     </Provider>,

@@ -21,7 +21,9 @@
     "phone": "Phone"
   },
   "search": {
-    "title": "Where are you going"
+    "title": "Where are you going",
+    "placeholder": "What are you looking for ?",
+    "button": "Search"
   },
   "warnings": {
     "auth": {
