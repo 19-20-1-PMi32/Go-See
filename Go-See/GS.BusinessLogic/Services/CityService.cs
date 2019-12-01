@@ -77,5 +77,25 @@ namespace GS.BusinessLogic.Services
 
             return citywithPlaces;
         }
+
+        public async Task<CityWithPlaces> GetByNameWithPlaces(string cityName)
+        {
+            var city = await _unitOfWork.CityRepository.GetByName(cityName);
+            var places = await _unitOfWork.PlaceRepository.GetAll();
+
+            var cityPlaces = _mapper.Map<IEnumerable<Place>>(places.Where(x => x.CityId == city.Id));
+
+            var citywithPlaces = new CityWithPlaces()
+            {
+                Id = city.Id,
+                Name = city.Name,
+                Country = city.Country,
+                Description = city.Description,
+                IsCapital = city.IsCapital,
+                Places = cityPlaces
+            };
+
+            return citywithPlaces;
+        }
     }
 }

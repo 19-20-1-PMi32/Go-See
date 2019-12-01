@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GS.DataBase.Entities;
 using GS.DataBase.Repository.Contracts;
@@ -15,7 +16,7 @@ namespace GS.DataBase.Repository
         {
             _dbContext = dbContext;
         }
-        
+
         public async Task<IEnumerable<City>> GetAll()
         {
             return await _dbContext.Cities.ToListAsync();
@@ -24,6 +25,11 @@ namespace GS.DataBase.Repository
         public async Task<City> Get(Guid id)
         {
             return await _dbContext.Cities.FindAsync(id);
+        }
+
+        public async Task<City> GetByName(string cityName)
+        {
+            return await _dbContext.Cities.FirstOrDefaultAsync(x => x.Name == cityName);
         }
 
         public void Create(City entity)

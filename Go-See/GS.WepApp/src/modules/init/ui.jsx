@@ -1,9 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Route } from "react-router";
 import Auth from "../auth";
-import Search from "./modules/search";
+import Search from "./modules";
 import styles from "./index.scss";
 
 const Init = () => {
@@ -24,9 +23,7 @@ const Init = () => {
         <Auth />
       </div>
       <div className={styles["search-field"]}>
-        <Route path="/search">
-          <Search />
-        </Route>
+        <Search />
       </div>
       <div className={styles["main-page-buttons"]}>
         <Link className={styles["search-button"]} to="/search">

@@ -1,9 +1,10 @@
 import React from "react";
 import { Layout, Menu } from "antd";
+import PropTypes from "prop-types";
 
 const { Header, Content } = Layout;
 
-const Init = () => (
+const City = ({ city }) => (
   <Layout>
     <Header className="header">
       <div className="logo" />
@@ -27,10 +28,14 @@ const Init = () => (
           minHeight: 280
         }}
       >
-        Content
+        {`Content: ${city}`}
       </Content>
     </Layout>
   </Layout>
 );
 
-export default Init;
+City.propTypes = {
+  city: PropTypes.shape({}).isRequired
+};
+
+export default City;
