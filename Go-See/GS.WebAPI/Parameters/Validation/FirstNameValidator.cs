@@ -7,8 +7,8 @@ namespace GS.WebAPI.Parameters.Validation
         public FirstNameValidator()
         {
             RuleFor(firstname => firstname.Value)
-                .NotEmpty()
-                .MaximumLength(255);
+                .NotEmpty().WithMessage(ValidationErrors.Required)
+                .MaximumLength(255).WithMessage(ValidationErrors.ValueTooLong);
         }
     }
 }

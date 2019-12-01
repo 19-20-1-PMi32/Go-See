@@ -7,9 +7,9 @@ namespace GS.WebAPI.Parameters.Validation
         public EmailValidator()
         {
             RuleFor(email => email.Value)
-                .NotEmpty()
-                .MaximumLength(320)
-                .EmailAddress();
+                .NotEmpty().WithMessage(ValidationErrors.Required)
+                .MaximumLength(320).WithMessage(ValidationErrors.ValueTooLong)
+                .EmailAddress().WithMessage(ValidationErrors.EmailNotValid);
         }
     }
 }

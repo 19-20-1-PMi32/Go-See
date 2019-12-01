@@ -7,7 +7,7 @@ namespace GS.WebAPI.Parameters.Validation
         public PasswordValidator()
         {
             RuleFor(password => password.Value)
-                .NotEmpty();
+                .NotEmpty().WithMessage(ValidationErrors.Required);
         }
     }
 }
