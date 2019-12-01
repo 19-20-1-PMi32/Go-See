@@ -8,7 +8,7 @@ namespace GS.WebAPI.Parameters.Validation
         {
             RuleFor(phone => phone.Value)
                 .NotEmpty().WithMessage(ValidationErrors.Required)
-                .MaximumLength(25).WithMessage(ValidationErrors.Required)
+                .MaximumLength(25).WithMessage(ValidationErrors.ValueTooLong)
                 .Matches(@"^[\d \-+()]{1,25}$").WithMessage(ValidationErrors.PhoneNotValid);
         }
     }
