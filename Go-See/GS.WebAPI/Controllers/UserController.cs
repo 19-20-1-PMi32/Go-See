@@ -38,6 +38,11 @@ namespace GS.WebAPI.Controllers
         [ProducesResponseType(201)]
         public async Task<IActionResult> Create([FromBody]UserParam value)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var newUser = _mapper.Map<User>(value);
             var userId = await _authenticationService.CreateUser(newUser);
             return Ok(userId);
@@ -47,6 +52,11 @@ namespace GS.WebAPI.Controllers
         [ProducesResponseType(201)]
         public async Task<IActionResult> LogIn([FromBody]LogInParam value)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var userId = await _authenticationService.LogIn(value.Login, value.Password);
             return Ok(userId);
         }
@@ -60,6 +70,7 @@ namespace GS.WebAPI.Controllers
             {
                 return BadRequest();
             }
+
             await _userService.UpdateLogin(id, login.Value);
             return Ok();
         }
@@ -72,6 +83,7 @@ namespace GS.WebAPI.Controllers
             {
                 return BadRequest();
             }
+
             await _userService.UpdateFirstName(id, firstname.Value);
             return Ok();
         }
@@ -84,6 +96,7 @@ namespace GS.WebAPI.Controllers
             {
                 return BadRequest();
             }
+
             await _userService.UpdateLastName(id, lastname.Value);
             return Ok();
         }
@@ -96,6 +109,7 @@ namespace GS.WebAPI.Controllers
             {
                 return BadRequest();
             }
+
             await _userService.UpdateEmail(id, email.Value);
             return Ok();
         }
@@ -108,6 +122,7 @@ namespace GS.WebAPI.Controllers
             {
                 return BadRequest();
             }
+
             await _userService.UpdatePhone(id, phone.Value);
             return Ok();
         }
@@ -120,6 +135,7 @@ namespace GS.WebAPI.Controllers
             {
                 return BadRequest();
             }
+
             await _userService.UpdatePasswordHash(id, passwordHash.Value);
             return Ok();
         }
