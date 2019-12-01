@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 
@@ -37,6 +38,11 @@ namespace GS.WebAPI
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
+            });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Client API", Version = "v1" });
             });
 
             IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -71,6 +77,12 @@ namespace GS.WebAPI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Client API");
+            });
 
             app.UseCors("Default");
             app.UseHttpsRedirection();

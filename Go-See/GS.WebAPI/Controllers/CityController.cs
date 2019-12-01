@@ -35,11 +35,19 @@ namespace GS.WebAPI.Controllers
             return Ok(cities);
         }
 
-        // GET api/city/00000000-0000-0000-0000-000000000000/places
-        [HttpGet("{cityId}/places")]
+        // GET api/city/id/00000000-0000-0000-0000-000000000000/places
+        [HttpGet("id/{cityId}/places")]
         public async Task<IActionResult> GetByIdWithPlaces(Guid cityId)
         {
             var city = await _cityService.GetByIdWithPlaces(cityId);
+            return Ok(city);
+        }
+
+        // GET api/city/name/Lviv/places
+        [HttpGet("name/{cityName}/places")]
+        public async Task<IActionResult> GetByIdWithPlaces(string cityName)
+        {
+            var city = await _cityService.GetByNameWithPlaces(cityName);
             return Ok(city);
         }
     }
