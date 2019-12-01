@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using GS.DataBase;
-using GS.DataBase.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GS.BusinessLogic.Test
 {
@@ -28,7 +25,7 @@ namespace GS.BusinessLogic.Test
                 cfg.AddProfile(entityDtoProfile);
             });
             _mapper = new Mapper(configuration);
-            
+
         }
 
         public virtual void Dispose()

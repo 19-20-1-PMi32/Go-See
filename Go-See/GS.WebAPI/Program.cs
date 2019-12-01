@@ -1,7 +1,7 @@
-﻿using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Autofac.Extensions.DependencyInjection;
+﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace GS.WebAPI
 {

@@ -1,7 +1,7 @@
+using GS.DataBase.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GS.DataBase.Entities;
 
 namespace GS.DataBase.Repository.Contracts
 {

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
+using FluentValidation.AspNetCore;
 using GS.BusinessLogic;
 using GS.DataBase;
 using Microsoft.AspNetCore.Builder;
@@ -29,7 +30,8 @@ namespace GS.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
             services.AddCors(options =>
             {
                 options.AddPolicy("Default", policy =>
