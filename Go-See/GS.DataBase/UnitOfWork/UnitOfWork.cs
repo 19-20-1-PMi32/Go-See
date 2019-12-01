@@ -1,9 +1,6 @@
 ﻿using GS.DataBase.Repository;
 using GS.DataBase.Repository.Contracts;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GS.DataBase

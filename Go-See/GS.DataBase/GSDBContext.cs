@@ -1,10 +1,6 @@
 ﻿using GS.DataBase.Configuration;
 using GS.DataBase.Entities;
-using GS.DataBase.SeedData;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GS.DataBase
 {

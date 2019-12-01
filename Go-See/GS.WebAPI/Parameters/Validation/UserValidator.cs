@@ -27,7 +27,7 @@ namespace GS.WebAPI.Parameters.Validation
                 .NotEmpty().WithMessage(ValidationErrors.Required)
                 .MaximumLength(25).WithMessage(ValidationErrors.ValueTooLong)
                 .Matches(@"^[\d \-+()]{1,25}$").WithMessage(ValidationErrors.PhoneNotValid);
- 
+
             RuleFor(user => user.PasswordHash)
                 .NotEmpty().WithMessage(ValidationErrors.Required);
         }

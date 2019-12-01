@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GS.BusinessLogic.Contracts;
-using Microsoft.AspNetCore.Http;
+﻿using GS.BusinessLogic.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace GS.WebAPI.Controllers
 {

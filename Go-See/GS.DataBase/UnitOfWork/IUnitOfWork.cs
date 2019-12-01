@@ -1,24 +1,22 @@
 ﻿using GS.DataBase.Repository.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GS.DataBase
 {
     public interface IUnitOfWork : IDisposable
     {
-         ICityRepository CityRepository { get; }
+        ICityRepository CityRepository { get; }
 
-         IPlaceRepository PlaceRepository { get; }
+        IPlaceRepository PlaceRepository { get; }
 
-         IReviewRepository ReviewRepository { get; }
+        IReviewRepository ReviewRepository { get; }
 
-         ITripNodeRepository TripNodeRepository { get; }
+        ITripNodeRepository TripNodeRepository { get; }
 
-         ITripRepository TripRepository { get; }
+        ITripRepository TripRepository { get; }
 
-         IUserRepository UserRepository { get; }
+        IUserRepository UserRepository { get; }
 
         Task Commit();
 
