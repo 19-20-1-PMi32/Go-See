@@ -8,6 +8,7 @@ import { createBrowserHistory } from "history";
 import { Switch, Route } from "react-router-dom";
 import Init from "./modules/init";
 import Main from "./modules/main";
+import UserPage from "./modules/user";
 
 import { configureStore } from "./redux";
 import i18n from "#utils/i18n";
@@ -36,6 +37,7 @@ const renderApp = () => {
                 <Main cityId={routerProps.match.params.cityId} />
               )}
             />
+            <Route path="/account" component={UserPage} />
             <Route path="/" component={Init} />
           </Switch>
         </I18nextProvider>
