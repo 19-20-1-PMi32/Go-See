@@ -7,7 +7,11 @@
     "buttons": {
       "login": "Log in",
       "register": "Register",
-      "createAccount":"Sign up"
+      "createAccount": "Sign up"
+    },
+    "headers": {
+      "login": "Log in",
+      "register": "Create an account"
     }
   },
   "user": {
@@ -17,7 +21,9 @@
     "phone": "Phone"
   },
   "search": {
-    "title": "Where are you going"
+    "title": "Where are you going",
+    "placeholder": "What are you looking for ?",
+    "button": "Search"
   },
   "warnings": {
     "auth": {
@@ -26,7 +32,8 @@
       "confirmPassword": "Please confirm your password!",
       "validEmail": "The input is not valid E-mail!",
       "requiredLastName": "Please input your last name!",
-      "requiredFirstName": "Please input your first name!"
+      "requiredFirstName": "Please input your first name!",
+      "inconsistentPassword": "Two passwords that you enter is inconsistent!"
     }
   },
   "message": {

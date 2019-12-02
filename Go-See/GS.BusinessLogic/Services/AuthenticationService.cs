@@ -1,9 +1,9 @@
-﻿using GS.BusinessLogic.Contracts;
+﻿using AutoMapper;
+using GS.BusinessLogic.Contracts;
+using GS.DataBase;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using GS.DataBase;
-using AutoMapper;
 
 namespace GS.BusinessLogic.Services
 {

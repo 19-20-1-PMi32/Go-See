@@ -15,8 +15,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
-    - name: Build GS.WebAPI
-      run:  dotnet build --configuration Release ./Go-See/GS.WebAPI
     - name: Build GS.BusinessLogic.Test
       run:  dotnet build --configuration Release ./Go-See/Tests/GS.BusinessLogic.Test
     - name: Build GS.DataBase.Test
