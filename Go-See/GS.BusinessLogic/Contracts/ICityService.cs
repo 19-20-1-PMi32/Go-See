@@ -1,7 +1,6 @@
 ﻿using GS.Core.DTO;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GS.BusinessLogic.Contracts
@@ -16,5 +15,6 @@ namespace GS.BusinessLogic.Contracts
 
         Task<CityWithPlaces> GetByIdWithPlaces(Guid cityId);
 
+        Task<CityWithPlaces> GetByNameWithPlaces(string cityName);
     }
 }

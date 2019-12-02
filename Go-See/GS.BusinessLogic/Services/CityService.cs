@@ -5,7 +5,6 @@ using GS.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GS.BusinessLogic.Services
@@ -61,6 +60,26 @@ namespace GS.BusinessLogic.Services
         public async Task<CityWithPlaces> GetByIdWithPlaces(Guid cityId)
         {
             var city = await _unitOfWork.CityRepository.Get(cityId);
+            var places = await _unitOfWork.PlaceRepository.GetAll();
+
+            var cityPlaces = _mapper.Map<IEnumerable<Place>>(places.Where(x => x.CityId == city.Id));
+
+            var citywithPlaces = new CityWithPlaces()
+            {
+                Id = city.Id,
+                Name = city.Name,
+                Country = city.Country,
+                Description = city.Description,
+                IsCapital = city.IsCapital,
+                Places = cityPlaces
+            };
+
+            return citywithPlaces;
+        }
+
+        public async Task<CityWithPlaces> GetByNameWithPlaces(string cityName)
+        {
+            var city = await _unitOfWork.CityRepository.GetByName(cityName);
             var places = await _unitOfWork.PlaceRepository.GetAll();
 
             var cityPlaces = _mapper.Map<IEnumerable<Place>>(places.Where(x => x.CityId == city.Id));

@@ -1,10 +1,7 @@
 ﻿using GS.DataBase.Entities;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace GS.DataBase.SeedData
 {

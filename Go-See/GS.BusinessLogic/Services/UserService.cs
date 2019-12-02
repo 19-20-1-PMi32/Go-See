@@ -3,8 +3,6 @@ using GS.BusinessLogic.Contracts;
 using GS.Core.DTO;
 using GS.DataBase;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GS.BusinessLogic.Services
