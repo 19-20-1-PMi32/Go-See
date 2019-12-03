@@ -11,33 +11,15 @@ namespace GS.BusinessLogic.Test
     {
         private readonly IUserService _service;
 
-        private readonly User _testUser;
-
         protected override string ContextDBName => "User Service Test";
 
         public UserServiceTest() : base()
         {
             _service = new UserService(_unitOfWork, _mapper);
-
-            _testUser = new User
-            {
-                Id = Guid.NewGuid(),
-                Login = "Test1",
-                PasswordHash = "testpasswordhash",
-                FirstName = "Test1",
-                LastName = "Test1",
-                Email = "test1@gmail.com",
-                Phone = "123"
-            };
-
-            _unitOfWork.UserRepository.Create(_testUser);
-            _unitOfWork.Commit().Wait();
         }
 
         public override void Dispose()
         {
-            _unitOfWork.UserRepository.Delete(_testUser.Id);
-            _unitOfWork.Commit().Wait();
             base.Dispose();
         }
 
