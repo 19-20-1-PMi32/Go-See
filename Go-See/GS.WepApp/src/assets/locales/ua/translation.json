@@ -1,3 +1,42 @@
 {
-  "helloWorld": "Привіт, світ!"
+  "helloWorld": "Привіт, світ!",
+  "auth": {
+    "username": "Ім'я користувача",
+    "password": "Пароль",
+    "confirmPassword": "Підтвердіть пароль",
+    "buttons": {
+      "login": "Увійти",
+      "register": "Зареєструватися",
+      "createAccount": "Зареєструватися"
+    },
+    "headers": {
+      "login": "Увійти",
+      "register": "Створити акаунт"
+    }
+  },
+  "user": {
+    "firstName": "Ім'я",
+    "lastName": "Прізвище",
+    "email": "E-mail",
+    "phone": "Номер телефону"
+  },
+  "search": {
+    "title": "Куди ви плануєте вирушити ?",
+    "placeholder": "Що ви шукаєте ?",
+    "button": "Пошук"
+  },
+  "warnings": {
+    "auth": {
+      "requiredPassword": "Будь ласка, введіть пароль!",
+      "requiredUsername": "Будь ласка, введіть ім'я користувача!",
+      "confirmPassword": "Будь ласка, підтвердіть ваш пароль!",
+      "validEmail": "Введений E-mail не коректний!",
+      "requiredLastName": "Будь ласка, введіть ваше прізвище!",
+      "requiredFirstName": "Будь ласка, введіть ваше ім'я!",
+      "inconsistentPassword": "Паролі не співпадають!"
+    }
+  },
+  "message": {
+    "username": "Як ви хочете, щоб вас називали ?"
+  }
 }
