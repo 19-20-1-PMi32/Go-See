@@ -38,5 +38,23 @@
   },
   "message": {
     "username": "Як ви хочете, щоб вас називали ?"
+  },
+  "city": {
+    "search": {
+      "placeholder": "Пошук міць"
+    },
+    "topAttractions": "Найцікавіші місця",
+    "navigation": {
+      "top": "Найцікавіші місця",
+      "whatToEat": "Смачно поїсти",
+      "bestToSee": "Варто відвідати",
+      "bestToDo": "Найцікавіші розваги",
+      "bestToLive": "Найкращі готелі"
+    }
+  },
+  "navigation": {
+    "profile": "Профіль",
+    "trips": "Подорожі",
+    "logout": "Вийти"
   }
 }
