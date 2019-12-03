@@ -38,5 +38,23 @@
   },
   "message": {
     "username": "What do you want others to call you?"
+  },
+  "city": {
+    "search": {
+      "placeholder": "Search for attractions"
+    },
+    "topAttractions": "Top Attractions",
+    "navigation": {
+      "top": "Top Attractions",
+      "whatToEat": "What to eat",
+      "bestToSee": "Best things to see",
+      "bestToDo": "Best things to do",
+      "bestToLive": "Best hotels to live"
+    }
+  },
+  "navigation": {
+    "profile": "Your Profile",
+    "trips": "Your Trips",
+    "logout": "Log out"
   }
 }
