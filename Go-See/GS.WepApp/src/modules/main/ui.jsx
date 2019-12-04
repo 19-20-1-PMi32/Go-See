@@ -32,13 +32,13 @@ const Place = (props) => {
 
   const info = (message) => {
     Modal.info({
-      title: 'This is a notification message',
+      title: t("city.description"),
       content: (
         <div>
           <p>{message}</p>
         </div>
       ),
-      visible: visible,
+      visible,
       onOk() { handleCancel(!visible); }
     });
   };
@@ -151,7 +151,7 @@ const City = ({ city }) => {
             <div className={styles["lang-curr"]}>
               <Select
                 labelInValue
-                defaultValue={{ key: "en" }}
+                defaultValue={{ key: t("language") }}
                 style={{ width: 70 }}
                 onChange={changeLanguage}
               >
