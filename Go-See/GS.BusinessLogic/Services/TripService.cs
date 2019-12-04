@@ -99,8 +99,9 @@ namespace GS.BusinessLogic.Services
             }
 
             await _unitOfWork.TripNodeRepository.DeleteByTripId(tripId);
-            await _unitOfWork.TripNodeRepository.CreateRange(newTripNodes);
+            await _unitOfWork.Commit();
 
+            await _unitOfWork.TripNodeRepository.CreateRange(newTripNodes);
             await _unitOfWork.Commit();
         }
     }

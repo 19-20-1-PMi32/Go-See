@@ -11,9 +11,6 @@ namespace GS.BusinessLogic.Test
     {
         private readonly IAuthenticationService _service;
 
-        private readonly Guid _testUserId = Guid.NewGuid();
-        private readonly string _testUserPasswordHash = "TestPasswordHash";
-
         protected override string ContextDBName => "Auth Service Test";
 
         public AuthenticationServiceTest() : base()
@@ -21,22 +18,14 @@ namespace GS.BusinessLogic.Test
             _service = new AuthenticationService(_unitOfWork, _mapper);
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+
         [Fact]
         public async Task LogIn_AlreadyRegistered_UserId()
         {
-            var _testUser = new User
-            {
-                Id = _testUserId,
-                Login = "Test1",
-                PasswordHash = _testUserPasswordHash,
-                FirstName = "Test1",
-                LastName = "Test1",
-                Email = "test1@gmail.com",
-                Phone = "123"
-            };
-            _unitOfWork.UserRepository.Create(_testUser);
-            await _unitOfWork.Commit();
-
             var userId = await _service.LogIn(_testUser.Login, _testUser.PasswordHash);
             Assert.Equal(_testUser.Id, userId);
         }
@@ -46,40 +35,48 @@ namespace GS.BusinessLogic.Test
         {
             var otherLogin = "otherTestUser";
             await Assert.ThrowsAsync<ArgumentException>(
-                () => _service.LogIn(otherLogin, _testUserPasswordHash));
+                () => _service.LogIn(otherLogin, _testUser.PasswordHash));
+        }
+
+        [Fact]
+        public async Task LogIn_WrongPassword_ThrowException()
+        {
+            var otherPassword = "otherTestUser";
+            await Assert.ThrowsAsync<ArgumentException>(
+                () => _service.LogIn(_testUser.Login, otherPassword));
         }
 
         [Fact]
         public async Task CreateUser_NotRegistered_UserId()
         {
-            var _testUser = new Core.DTO.User
+            var _newUser = new Core.DTO.User
             {
                 Login = "Test2",
-                PasswordHash = _testUserPasswordHash,
+                PasswordHash = "TestPasswordHash2",
                 FirstName = "Test2",
                 LastName = "Test2",
                 Email = "test2@gmail.com",
                 Phone = "321"
             };
 
-            var userId = await _service.CreateUser(_testUser);
+            var userId = await _service.CreateUser(_newUser);
             Assert.True(userId != Guid.Empty);
         }
 
         [Fact]
         public async Task CreateUser_AlreadyRegistered_ThrowException()
         {
-            var _testUser = new Core.DTO.User
+            var _newUser = new Core.DTO.User
             {
-                Login = "Test2",
-                PasswordHash = _testUserPasswordHash,
+                Login = _testUser.Login,
+                PasswordHash = "TestPasswordHash2",
                 FirstName = "Test2",
                 LastName = "Test2",
                 Email = "test2@gmail.com",
                 Phone = "321"
             };
             await Assert.ThrowsAsync<ArgumentException>(
-                () => _service.CreateUser(_testUser));
+                () => _service.CreateUser(_newUser));
         }
     }
 }
