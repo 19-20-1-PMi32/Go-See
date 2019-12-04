@@ -28,18 +28,11 @@ h2 {
 }
 
 .lang-curr {
-    display: inline-block;
-    color: white;
-    font-size: 1rem;
     font-weight: 500;
 }
 
 .lang-curr > *:nth-child(1) {
     margin-right: 0.5rem;
-}
-
-.lang-curr > * {
-    cursor: pointer;
 }
 
 .content-bg {
@@ -62,7 +55,6 @@ h2 {
 .user-info {
     display: flex;
     align-items: center;
-    height: 100%;
     min-height: 12.5rem;
     background: rgba(107, 166, 218, 0.3);
     border-top: 0.2rem solid rgba(107, 166, 218, 0.9);
@@ -79,10 +71,15 @@ h2 {
 
 .button-user {
     width: 11.25rem;
+    height: 3.125rem !important;
     font-weight: 500 !important;
     color: white !important;
     background-color: rgba(107, 166, 218, 0.9) !important;
     border: none !important;
+}
+
+.user-data {
+    text-align: center;
 }
 
 .user-data h2, .review-block h2 {
@@ -102,6 +99,7 @@ h2 {
 
 .phone-number, .e-mail {
     display: flex;
+    justify-content: center;
 }
 
 .user-nums {
@@ -141,6 +139,7 @@ h2 {
 
 .button-review {
     width: 11.25rem;
+    height: 3.125rem !important;
     border-width: 0.09375rem 0.09375rem 0rem 0.09375rem !important;
     border-color: rgba(107, 166, 218, 0.85) !important;
     font-weight: 500 !important;
@@ -149,7 +148,7 @@ h2 {
 
 @media screen and (max-width: 767px) {
     .header-container {
-        min-height: 9rem;
+        min-height: 9.5rem;
     }
 
     .content-bg {
@@ -159,10 +158,21 @@ h2 {
     .logo-img {
         position: absolute;
         top: -1.25rem;
-        width: 7rem;
       }
     
     .search-input {
         margin-top: 1.25rem !important;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .lang-curr {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.5rem;
+    }
+    
+    .lang-curr > *:nth-child(1) {
+        margin-bottom: 0.3rem;
     }
 }
