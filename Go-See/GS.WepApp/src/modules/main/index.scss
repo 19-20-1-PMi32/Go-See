@@ -131,9 +131,6 @@ h2 {
 }
 
 .lang-curr {
-  display: inline-block;
-  color: white;
-  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -141,22 +138,29 @@ h2 {
   margin-right: 0.5rem;
 }
 
-.lang-curr > * {
-  cursor: pointer;
-}
-
 @media screen and (max-width: 767px) {
     .header-container {
-        min-height: 9rem;
+        min-height: 9.5rem;
     }
 
     .logo-img {
         position: absolute;
         top: -1.25rem;
-        width: 7rem;
       }
     
     .search-input {
         margin-top: 1.25rem !important;
     }
+}
+
+@media screen and (max-width: 570px) {
+  .lang-curr {
+      display: flex;
+      flex-direction: column;
+      margin-left: 0.5rem;
+  }
+  
+  .lang-curr > *:nth-child(1) {
+      margin-bottom: 0.3rem;
+  }
 }

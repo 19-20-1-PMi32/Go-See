@@ -92,7 +92,13 @@ const City = ({ city }) => {
     <Layout>
       <Header className={styles["header-container"]}>
         <Row type="flex" justify="start" align="middle">
-          <Col xs={4} sm={4} md={3} lg={2} xl={2}>
+          <Col 
+            xs={4}
+            sm={4}
+            md={3}
+            lg={2}
+            xl={2}
+          >
             <Link to="/">
               <img
                 className={styles["logo-img"]}
@@ -115,8 +121,8 @@ const City = ({ city }) => {
             />
           </Col>
           <Col
-            xs={{ span: 3, offset: 10 }}
-            sm={{ span: 3, offset: 10 }}
+            xs={{ span: 3, offset: 12 }}
+            sm={{ span: 3, offset: 11 }}
             md={{ span: 1, offset: 2 }}
             lg={{ span: 1, offset: 3 }}
             xl={{ span: 1, offset: 5 }}
@@ -136,8 +142,8 @@ const City = ({ city }) => {
             </Dropdown>
           </Col>
           <Col
-            xs={{ span: 10, offset: 1 }}
-            sm={{ span: 7, offset: 2 }}
+            xs={{ span: 7, offset: 1 }}
+            sm={{ span: 7, offset: 1 }}
             md={{ span: 5, offset: 1 }}
             lg={{ span: 4, offset: 1 }}
             xl={{ span: 4, offset: 0 }}
