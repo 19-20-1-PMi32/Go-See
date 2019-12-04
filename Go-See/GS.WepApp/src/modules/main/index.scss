@@ -146,26 +146,17 @@ h2 {
 }
 
 @media screen and (max-width: 767px) {
-  .header-container {
-    min-height: 9rem;
-  }
+    .header-container {
+        min-height: 9rem;
+    }
 
-  .logo-img {
-    position: absolute;
-    top: -20px;
-    width: 7rem;
-  }
-
-  .search-input {
-    margin-top: 20px !important;
-  }
-}
-.sider {
-  width: fit-content !important;
-  height: 100% !important;
-}
-
-.sider-menu {
-  width: fit-content !important;
-  height: 100% !important;
+    .logo-img {
+        position: absolute;
+        top: -1.25rem;
+        width: 7rem;
+      }
+    
+    .search-input {
+        margin-top: 1.25rem !important;
+    }
 }
