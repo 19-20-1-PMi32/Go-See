@@ -1,13 +1,14 @@
 {
+  "language": "ua",
   "helloWorld": "Привіт, світ!",
   "auth": {
     "username": "Ім'я користувача",
     "password": "Пароль",
     "confirmPassword": "Підтвердіть пароль",
     "buttons": {
-      "login": "Увійти",
-      "register": "Зареєструватися",
-      "createAccount": "Зареєструватися"
+      "login": "Log in",
+      "register": "Register",
+      "createAccount": "Sign up"
     },
     "headers": {
       "login": "Увійти",
@@ -21,7 +22,7 @@
     "phone": "Номер телефону"
   },
   "search": {
-    "title": "Куди ви плануєте вирушити ?",
+    "title": "Куди вирушаєте",
     "placeholder": "Що ви шукаєте ?",
     "button": "Пошук"
   },
@@ -50,7 +51,8 @@
       "bestToSee": "Варто відвідати",
       "bestToDo": "Найцікавіші розваги",
       "bestToLive": "Найкращі готелі"
-    }
+    },
+    "description": "Опис місця"
   },
   "navigation": {
     "profile": "Профіль",

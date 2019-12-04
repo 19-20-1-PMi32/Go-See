@@ -1,4 +1,5 @@
 {
+  "language": "en",
   "helloWorld": "Hello, world!",
   "auth": {
     "username": "Username",
@@ -50,7 +51,8 @@
       "bestToSee": "Best things to see",
       "bestToDo": "Best things to do",
       "bestToLive": "Best hotels to live"
-    }
+    },
+    "description": "Place description"
   },
   "navigation": {
     "profile": "Your Profile",

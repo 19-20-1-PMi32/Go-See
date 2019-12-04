@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
@@ -12,7 +13,8 @@ import {
   Input,
   Dropdown,
   Avatar,
-  Select
+  Select,
+  Modal
 } from "antd";
 
 import { Link } from "react-router-dom";
@@ -22,6 +24,52 @@ import i18n from "#utils/i18n";
 import styles from "./index.scss";
 
 const { Header, Content, Sider } = Layout;
+
+const Place = (props) => {
+
+  const [visible, handleCancel] = useState(false);
+  const { t } = useTranslation();
+
+  const info = (message) => {
+    Modal.info({
+      title: t("city.description"),
+      content: (
+        <div>
+          <p>{message}</p>
+        </div>
+      ),
+      visible,
+      onOk() { handleCancel(!visible); }
+    });
+  };
+
+  return (
+    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+      <div
+        className={classNames(
+          styles["attract-component"],
+          styles["first-img"]
+        )}
+      >
+        <Icon
+          type="info-circle"
+          theme="twoTone"
+          twoToneColor="#68aae3"
+          className={styles["info-icon"]}
+          onClick={() => { handleCancel(!visible); info(props.place.description); }}
+        />
+        <div className={styles["star-list"]}>
+          <Icon type="star" theme="filled" />
+          <Icon type="star" theme="filled" />
+          <Icon type="star" theme="filled" />
+          <Icon type="star" theme="filled" />
+          <Icon type="star" theme="twoTone" twoToneColor="#ebb434" />
+        </div>
+      </div>
+      <p className={styles["attract-text"]}>{props.place.name}</p>
+    </Col>
+  );
+};
 
 const City = ({ city }) => {
   const { t } = useTranslation();
@@ -103,7 +151,7 @@ const City = ({ city }) => {
             <div className={styles["lang-curr"]}>
               <Select
                 labelInValue
-                defaultValue={{ key: "en" }}
+                defaultValue={{ key: t("language") }}
                 style={{ width: 70 }}
                 onChange={changeLanguage}
               >
@@ -114,7 +162,7 @@ const City = ({ city }) => {
                 labelInValue
                 defaultValue={{ key: "usd" }}
                 style={{ width: 70 }}
-                onChange={() => {}}
+                onChange={() => { }}
               >
                 <Select.Option value="usd">USD</Select.Option>
                 <Select.Option value="uah">UAH</Select.Option>
@@ -132,7 +180,7 @@ const City = ({ city }) => {
           <div className={styles.sider}>
             <div className={styles["navbar-header"]}>
               <img src="/src/assets/flags/USA.png" alt="USA flag" />
-              <p>New York</p>
+              <p>{city.name}</p>
             </div>
             <Menu
               mode="inline"
@@ -205,12 +253,7 @@ const City = ({ city }) => {
           <h2>{t("city.topAttractions")}</h2>
           <div className={styles["main-text"]}>
             <p>
-              New York is really hard to beat when it comes to attractions, it
-              has an incredible range of options to check out and explore. In
-              the Big Apple you can find the most incredible work of engineering
-              and architecture, the museums are filled with art collections of
-              enormous value, not to mention the nearly infinite selection of
-              shops to buy everything you can think of.
+              {city.description}
             </p>
           </div>
 
@@ -221,112 +264,7 @@ const City = ({ city }) => {
               gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 35]}
               style={{ maxWidth: 1320 }}
             >
-              <Col xs={24} sm={20} md={14} lg={10} xl={8}>
-                <div
-                  className={classNames(
-                    styles["attract-component"],
-                    styles["first-img"]
-                  )}
-                >
-                  <Icon
-                    type="info-circle"
-                    theme="twoTone"
-                    twoToneColor="#68aae3"
-                    className={styles["info-icon"]}
-                  />
-                  <div className={styles["star-list"]}>
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="twoTone" twoToneColor="#ebb434" />
-                  </div>
-                </div>
-                <p className={styles["attract-text"]}>Guggenheim Museum</p>
-              </Col>
-              <Col
-                xs={24}
-                sm={20}
-                md={14}
-                lg={{ span: 10, offset: 1 }}
-                xl={{ span: 8, offset: 1 }}
-              >
-                <div
-                  className={classNames(
-                    styles["attract-component"],
-                    styles["second-img"]
-                  )}
-                >
-                  <Icon
-                    type="info-circle"
-                    theme="twoTone"
-                    twoToneColor="#68aae3"
-                    className={styles["info-icon"]}
-                  />
-                  <div className={styles["star-list"]}>
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                  </div>
-                </div>
-                <p className={styles["attract-text"]}>
-                  St Patrick&#39;s Cathedral
-                </p>
-              </Col>
-              <Col xs={24} sm={20} md={14} lg={10} xl={8}>
-                <div
-                  className={classNames(
-                    styles["attract-component"],
-                    styles["third-img"]
-                  )}
-                >
-                  <Icon
-                    type="info-circle"
-                    theme="twoTone"
-                    twoToneColor="#68aae3"
-                    className={styles["info-icon"]}
-                  />
-                  <div className={styles["star-list"]}>
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                  </div>
-                </div>
-                <p className={styles["attract-text"]}>Empire State Building</p>
-              </Col>
-              <Col
-                xs={24}
-                sm={20}
-                md={14}
-                lg={{ span: 10, offset: 1 }}
-                xl={{ span: 8, offset: 1 }}
-              >
-                <div
-                  className={classNames(
-                    styles["attract-component"],
-                    styles["forth-img"]
-                  )}
-                >
-                  <Icon
-                    type="info-circle"
-                    theme="twoTone"
-                    twoToneColor="#68aae3"
-                    className={styles["info-icon"]}
-                  />
-                  <div className={styles["star-list"]}>
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                    <Icon type="star" theme="filled" />
-                  </div>
-                </div>
-                <p className={styles["attract-text"]}>Broadway</p>
-              </Col>
+              {city.places.map(item => <Place place={item} />)}
             </Row>
           </div>
         </Content>
