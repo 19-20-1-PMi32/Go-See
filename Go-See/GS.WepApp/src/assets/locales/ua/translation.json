@@ -6,8 +6,8 @@
     "confirmPassword": "Підтвердіть пароль",
     "buttons": {
       "login": "Увійти",
-      "register": "Зареєструватися",
-      "createAccount": "Зареєструватися"
+      "register": "Реєстрація",
+      "createAccount": "Реєстрація"
     },
     "headers": {
       "login": "Увійти",
@@ -21,7 +21,7 @@
     "phone": "Номер телефону"
   },
   "search": {
-    "title": "Куди ви плануєте вирушити ?",
+    "title": "Куди ви плануєте вирушити",
     "placeholder": "Що ви шукаєте ?",
     "button": "Пошук"
   },
