@@ -32,7 +32,7 @@
     "i18next-xhr-backend": "^3.2.2",
     "less": "^3.10.3",
     "mini-css-extract-plugin": "^0.7.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "object-hash": "^2.0.0",
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.7.2",
